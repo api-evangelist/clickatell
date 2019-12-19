@@ -1,0 +1,72 @@
+{
+    "id": "a75e12ec843c8623562d36c5443c3370",
+    "name": "Clickatell SMS",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "b2aa7fb9b795c51e54bc479831b93a09",
+            "name": "Send Message",
+            "url": "httpapi.clickatell.comhttp\/sendmsg\/",
+            "description": "The Clickatell HTTP\/S API provides just about the simplest way of programming your connection to Clickatell, and if you need to overcome a firewall problem HTTP\/S is almost certainly your best solution.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "api_id",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "password",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "text",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "to",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "user",
+                    "description": "The user id sending message.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "a75e12ec843c8623562d36c5443c3370",
+            "rawModeData": ""
+        }
+    ]
+}
