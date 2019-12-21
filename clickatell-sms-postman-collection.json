@@ -1,5 +1,5 @@
 {
-    "id": "a75e12ec843c8623562d36c5443c3370",
+    "id": "15e83aef54015b7f05d08d4b09da9fd4",
     "name": "Clickatell SMS",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "b2aa7fb9b795c51e54bc479831b93a09",
+            "id": "26039c1ec533874be83900d6827cbf49",
             "name": "Send Message",
             "url": "httpapi.clickatell.comhttp\/sendmsg\/",
             "description": "The Clickatell HTTP\/S API provides just about the simplest way of programming your connection to Clickatell, and if you need to overcome a firewall problem HTTP\/S is almost certainly your best solution.",
@@ -65,7 +65,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "a75e12ec843c8623562d36c5443c3370",
+            "collectionId": "15e83aef54015b7f05d08d4b09da9fd4",
             "rawModeData": ""
         }
     ]
