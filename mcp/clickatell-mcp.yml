@@ -1,0 +1,11 @@
+generated: '2026-10-09'
+method: derived
+type: MCPServer
+source: derived
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived

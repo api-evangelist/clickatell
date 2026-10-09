@@ -1,23 +1,79 @@
 aid: clickatell
+
 name: Clickatell
-description: 'Clickatell is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+
+description: 'Clickatell provides cloud communications platforms enabling businesses to engage customers via SMS, WhatsApp, and other chat channels. Their APIs support sending messages, two‑factor authentication, and chat commerce solutions across industries such as airlines, retail, and finance. Clickatell’s developer portal offers extensive documentation, SDKs, and sandbox environments for rapid integration.'
+
 url: https://raw.githubusercontent.com/api-evangelist/clickatell/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-09 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-08'
+
 modified: '2026-10-08'
+
 tags:
 - Company
-apis: []
+- Communications
+- Messaging
+- SMS
+- Chat
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: Documentation
+  url: https://dev.augment.market/
+- type: LLMsTxt
+  url: llms/clickatell-llms.txt
+- type: WellKnown
+  url: well-known/clickatell-well-known.yml
+- type: Hosts
+  url: hosts/clickatell-hosts.yml
+- type: Vendors
+  url: vendors/clickatell-vendors.yml
+- type: TermsOfService
+  url: https://augment.market/terms
+- type: PrivacyPolicy
+  url: https://augment.market/privacy
+- type: Leadership
+  url: https://augment.market/team
+- type: DomainSecurity
+  url: security/clickatell-domain-security.yml
 - type: Website
   url: https://augment.market/c/clickatell
+
+apis: []
+
+x-coverage:
+  state: gated
+  reason: partner-login
+  method: derived
+  generated: '2026-10-09'
+  generator: derive-coverage.py (pre-flight evidence)
+  detail: >-
+    the company serves an API surface but requires credentials before any description of it can be read
+  evidence:
+  - url: https://docs.augment.market/mcp
+    status: 401
+  - url: https://api.augment.market/mcp
+    status: 403
+  - url: https://augment.market/c/clickatell
+    status: 200
+x-enrichment:
+  date: '2026-10-09'
+  status: enriched
+  artifacts_added: 9
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

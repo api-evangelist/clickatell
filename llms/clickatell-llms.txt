@@ -1,0 +1,34 @@
+#  Augment | The Secondary Marketplace for Private Stock
+> Augment is a FINRA-registered marketplace that allows accredited investors to buy and sell shares in over 300 pre-IPO companies, providing a seamless platform for secondary market transactions with low investment minimums starting at $10K.
+
+
+## Homepage
+- [Home](https://augment.market/): Discover and invest in pre-IPO companies through a transparent, tech-enabled private market
+
+## Primary Categories / Sections
+- [Marketplace](https://augment.market/marketplace): Explore 300+ private companies with real-time pricing and streamlined transactions
+- [Collective](https://augment.market/collective): Access curated deals through Augment’s pooled investment fund, starting from $10K
+- [The Power 20](https://augment.market/the-power-20): A quarterly ranking of the top-performing pre-IPO companies on Augment
+- [Manual](https://augment.market/manual): In-depth educational content covering private markets, secondary trading, and investor strategies
+
+## Key Pages
+- [Search](https://augment.market/search): Find companies, sectors, or deals by keyword
+- [Live](https://augment.market/live): Livestreams covering trends, tools, and insights in private investing
+- [Team](https://augment.market/team): Meet the Augment.Market leadership and team members
+- [Contact](https://augment.market/contact): Reach out for support, partnerships, or media inquiries
+
+## Support / Help Content
+- [Blog](https://augment.market/blog): Market updates, company insights, and secondary market trends
+- [Disclosures](https://augment.market/disclosures): Legal information for investors and issuers
+- [Auctions Seller Terms](https://augment.market/auctions-seller-terms): Rules and guidelines for participating in secondary share auctions
+
+## Contact & About
+- [Privacy Policy](https://augment.market/privacy): Details on how user data is collected and used
+- [Terms of Service](https://augment.market/terms): The terms governing use of Augment.Market
+- [Business Continuity Planning](https://augment.market/business-continuity-planning): Operational readiness and risk disclosures
+- [Contact](https://augment.market/contact): Get in touch with our team for assistance
+
+## Sitemaps
+- [XML Sitemap](https://augment.market/sitemap.xml): Includes all crawlable and indexable pages for Augment.Market
+
+_Last Updated: 2026-01-22_
