@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-detailed-widget-config-response-schema.json",
+  "title": "DetailedWidgetConfigResponse",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-chat-2-pay-api-openapi.json#/components/schemas/DetailedWidgetConfigResponse",
+  "type": "object",
+  "properties": {
+    "updateTime": {
+      "type": "string",
+      "description": "Last modified time",
+      "format": "date-time"
+    },
+    "whatsappChannelEnabled": {
+      "type": "boolean",
+      "description": "Checks if WA omni integration is enabled"
+    },
+    "smsChannelEnabled": {
+      "type": "boolean",
+      "description": "Checks if SMS omni integration is enabled"
+    },
+    "integrators": {
+      "uniqueItems": true,
+      "type": "array",
+      "description": "Integrators",
+      "items": {
+        "$ref": "#/$defs/IntegratorStatusResponse"
+      }
+    },
+    "apiKey": {
+      "type": "string",
+      "description": "Api key"
+    },
+    "supportedCurrencies": {
+      "uniqueItems": true,
+      "type": "array",
+      "description": "Supported currencies",
+      "items": {
+        "$ref": "#/$defs/CurrencyResponse"
+      }
+    },
+    "environment": {
+      "type": "string",
+      "description": "Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)"
+    }
+  },
+  "$defs": {
+    "CurrencyResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Currency unique identifier",
+          "format": "int32"
+        },
+        "iso": {
+          "type": "string",
+          "description": "The ISO currency code"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of currency"
+        },
+        "symbol": {
+          "type": "string",
+          "description": "Symbol used to display currency"
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "True if this is set as the default currency; otherwise, false"
+        }
+      },
+      "description": "Supported currencies"
+    },
+    "IntegratorStatusResponse": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "description": "Unique identifier generated for each custom application the customer links to the account"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the integrator"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status",
+          "enum": [
+            "ACTIVATED",
+            "DEACTIVATED",
+            "DELETED"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "description": "Integrator type",
+          "enum": [
+            "OMS",
+            "CLICKATELL_PRODUCT",
+            "APPLICATION"
+          ]
+        }
+      },
+      "description": "Integrators"
+    }
+  }
+}

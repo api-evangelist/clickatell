@@ -1,0 +1,311 @@
+generated: '2026-10-13'
+method: searched
+source:
+- https://zapier.com/apps/clickatell/integrations
+checked:
+- https://composio.dev/toolkits/clickatell
+- https://monid.ai/tools/clickatell
+- https://n8n.io/integrations/clickatell/
+- https://zapier.com/apps/clickatell/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: clickatell
+  url: https://zapier.com/apps/clickatell/integrations
+  external_url: https://www.clickatell.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: new_sms_received
+    label: New SMS
+  actions:
+  - key: send_sms
+    label: New SMS
+  searches: []
+edges:
+- partner_name: WhatsApp
+  partner: whatsapp
+  partner_match: domain
+  type: contract
+  channel: contract-enum
+  relationship: messaging-channel
+  direction: provider-built
+  evidence: https://github.com/api-evangelist/clickatell/blob/main/openapi/clickatell-one-api-api-openapi.yml
+  contract_reference:
+    repo: clickatell
+    spec_file: clickatell-one-api-api-openapi.yml
+    value: whatsapp
+    property: schemas.OmniMessageRequest.channel
+    matched_domain: whatsapp.com
+    detected_by: sweep-cpaas.py
+    detected: '2026-10-13'
+- partner_name: novu
+  partner: novu
+  partner_match: domain
+  type: contract
+  channel: contract-enum
+  relationship: delivery-provider
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/novu/blob/main/openapi/novu-channel-connections-api-openapi.yml
+  contract_reference:
+    repo: novu
+    spec_file: novu-channel-connections-api-openapi.yml
+    value: clickatell
+    property: schemas.GetChannelConnectionResponseDto.providerId
+    matched_domain: clickatell.com
+    detected_by: sweep-cpaas.py
+    detected: '2026-10-13'
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: MySQL
+  partner: mysql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/mysql
+  direction: third-party
+  category: Databases
+  partner_url: https://www.mysql.com/
+- partner_name: PlanSo Forms for WordPress
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/planso
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://forms.planso.de/
+- partner_name: Magento
+  partner: magento
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/magento
+  direction: third-party
+  category: eCommerce
+  partner_url: https://magento.com/
+- partner_name: WHMCS
+  partner: whmcs
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/whmcs
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.whmcs.com/
+- partner_name: Odoo ERP Self Hosted
+  partner: odoo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/openerp
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.odoo.com/
+- partner_name: Stripe (Legacy)
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/stripe-legacy
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: GitHub
+  partner: github
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/github
+  direction: third-party
+  category: Developer Tools
+  partner_url: https://github.com/
+- partner_name: Evernote
+  partner: evernote
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/evernote
+  direction: third-party
+  category: Notes
+  partner_url: https://evernote.com/
+- partner_name: monday.com
+  partner: monday-com
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: GoTo Webinar
+  partner: gotowebinar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/gotowebinar
+  direction: third-party
+  category: Webinars
+  partner_url: https://www.gotomeeting.com/
+- partner_name: RightSignature
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/rightsignature
+  direction: third-party
+  category: Signatures
+  partner_url: https://rightsignature.com/
+- partner_name: Contentful
+  partner: contentful
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/contentful
+  direction: third-party
+  category: Content & Files
+  partner_url: https://www.contentful.com/
+- partner_name: Solve CRM
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/solve360
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://solve360.com/
+- partner_name: HotspotSystem
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/hotspotsystem
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.hotspotsystem.com/
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/clickatell/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+templates:
+- title: Send Clickatell SMS for new PlanSo Forms submissions
+  url: https://zapier.com/apps/clickatell/integrations/planso/2424/send-clickatell-sms-for-new-planso-forms-submissions
+  apps:
+  - planso
+  - clickatell
+- title: Send Clickatell SMS for new Zoho Creator records
+  url: https://zapier.com/apps/clickatell/integrations/zoho-creator/4946/send-clickatell-sms-for-new-zoho-creator-records
+  apps:
+  - zoho-creator
+  - clickatell
+- title: Send Clickatell SMS messages for new entries on Wufoo
+  url: https://zapier.com/apps/clickatell/integrations/wufoo/6943/send-clickatell-sms-messages-for-new-entries-on-wufoo
+  apps:
+  - wufoo
+  - clickatell
+- title: Send Clickatell SMS messages for new emails
+  url: https://zapier.com/apps/clickatell/integrations/email/6944/send-clickatell-sms-messages-for-new-emails
+  apps:
+  - email
+  - clickatell
+- title: Send Clickatell SMS messages for new rows on Google Sheets
+  url: https://zapier.com/apps/clickatell/integrations/google-sheets/6946/send-clickatell-sms-messages-for-new-rows-on-google-sheets
+  apps:
+  - google-sheets
+  - clickatell
+- title: Send Clickatell SMS messages for order status changes on WooCommerce
+  url: https://zapier.com/apps/clickatell/integrations/woocommerce/6947/send-clickatell-sms-messages-for-order-status-changes-on-woocommerce
+  apps:
+  - woocommerce
+  - clickatell
+- title: Send SMS messages from Clickatell  for updated rows on Google Sheets
+  url: https://zapier.com/apps/clickatell/integrations/google-sheets/6948/send-sms-messages-from-clickatell-for-updated-rows-on-google-sheets
+  apps:
+  - google-sheets
+  - clickatell
+- title: Send SMS messages from Clickatell for new Freshdesk tickets
+  url: https://zapier.com/apps/clickatell/integrations/freshdesk/6949/send-sms-messages-from-clickatell-for-new-freshdesk-tickets
+  apps:
+  - freshdesk
+  - clickatell
+- title: Send SMS messages from Clickatell for new Knack records
+  url: https://zapier.com/apps/clickatell/integrations/knack/6950/send-sms-messages-from-clickatell-for-new-knack-records
+  apps:
+  - knack
+  - clickatell
+- title: Send SMS messages from Clickatell for new Gravity Forms submissions
+  url: https://zapier.com/apps/clickatell/integrations/gravity-forms/6951/send-sms-messages-from-clickatell-for-new-gravity-forms-submissions
+  apps:
+  - gravity-forms
+  - clickatell
+- title: Send SMS messages from Clickatell for new submissions on JotForm
+  url: https://zapier.com/apps/clickatell/integrations/jotform/6952/send-sms-messages-from-clickatell-for-new-submissions-on-jotform
+  apps:
+  - jotform
+  - clickatell
+- title: Send SMS messages from Clickatell for new RSS feed items
+  url: https://zapier.com/apps/clickatell/integrations/rss/6953/send-sms-messages-from-clickatell-for-new-rss-feed-items
+  apps:
+  - rss
+  - clickatell
+template_total: 44

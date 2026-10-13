@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-payment-receipt-response-schema.json",
+  "title": "PaymentReceiptResponse",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-chat-2-pay-api-openapi.json#/components/schemas/PaymentReceiptResponse",
+  "type": "object",
+  "properties": {
+    "receiptLinkRef": {
+      "type": "string",
+      "description": "The unique reference number for the receipt link generated"
+    },
+    "orderNumber": {
+      "type": "string",
+      "description": "The order number that the receipt is for"
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "The date and time the instruction to create the link was received (In ISO 8601 format)",
+      "format": "date-time"
+    },
+    "transactionStatus": {
+      "type": "string",
+      "description": "The current status of the transaction",
+      "enum": [
+        "PAYMENT_LINK_REQUEST_RECEIVED",
+        "PAYMENT_LINK_SENT",
+        "PAYMENT_LINK_DELIVERED",
+        "PAYMENT_STATUS_RECEIVED",
+        "PAYMENT_STATUS_NOTIFICATION_SENT",
+        "RECEIPT_LINK_REQUEST_RECEIVED",
+        "RECEIPT_LINK_SENT",
+        "PAYMENT_LINK_REQUEST_FAILED",
+        "PAYMENT_LINK_SENT_FAILED",
+        "PAYMENT_URL_EXPIRED",
+        "PAYMENT_LINK_DELIVERY_FAILED",
+        "PAYMENT_STATUS_NOTIFICATION_DELIVERY_SUCCESSFUL",
+        "PAYMENT_STATUS_NOTIFICATION_DELIVERY_FAILED",
+        "RECEIPT_LINK_REQUEST_FAILED",
+        "RECEIPT_LINK_SENT_FAILED",
+        "RECEIPT_LINK_DELIVERED",
+        "RECEIPT_LINK_DELIVERY_FAILED",
+        "PAYMENT_LINK_CANCELLED",
+        "PAYMENT_LINK_CLICKED"
+      ]
+    },
+    "transactionStatusId": {
+      "type": "integer",
+      "description": "The ID of the transaction status",
+      "format": "int32"
+    },
+    "error": {
+      "$ref": "#/$defs/ThirdPartySystemErrorResponse"
+    }
+  },
+  "$defs": {
+    "ThirdPartySystemErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "The error code received from third-parties after interaction",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string",
+          "description": "The error code description received from third-parties after interaction"
+        }
+      },
+      "description": "Error details if request failed"
+    }
+  }
+}

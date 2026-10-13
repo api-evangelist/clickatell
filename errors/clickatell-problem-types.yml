@@ -1,0 +1,55 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/clickatell-chat-2-pay-api-api-openapi.yml
+- openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml
+- openapi/clickatell-external-link-callback-api-openapi.yml
+- openapi/clickatell-one-api-api-openapi.yml
+- openapi/clickatell-one-api-client-callbacks-api-openapi.yml
+- openapi/clickatell-sms-api-api-openapi.yml
+- openapi/clickatell-sms-client-callbacks-api-openapi.yml
+- openapi/clickatell-wait-for-callback-api-openapi.yml
+format: custom
+envelope:
+  media_type: '*/*'
+  schema: UnauthorizedErrorResponse
+coverage:
+  operations: 29
+  statuses_declared: 5
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request
+  operations: 12
+  media_types:
+  - '*/*'
+  - application/json
+  schema: BadRequestErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Invalid Chat 2 Pay API key
+  operations: 10
+  media_types:
+  - '*/*'
+  - application/json
+  schema: UnauthorizedErrorResponse
+- status: 402
+  title: Payment Required
+  description: Payment Required. User is out of funds/credits/currency/balance
+  operations: 1
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Account not found
+  operations: 13
+  media_types:
+  - '*/*'
+  schema: NotFoundErrorResponse
+- status: 503
+  title: Service Unavailable
+  description: Service Unavailable
+  operations: 2
+  media_types: []
+  schema: null

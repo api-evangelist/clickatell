@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-transaction-status-notification-response-schema.json",
+  "title": "TransactionStatusNotificationResponse",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-chat-2-pay-api-client-callbacks-openapi.json#/components/schemas/TransactionStatusNotificationResponse",
+  "type": "object",
+  "properties": {
+    "orderNumber": {
+      "type": "string",
+      "description": "The order number associated with the payment"
+    },
+    "paymentLinkRef": {
+      "type": "string",
+      "description": "The payment link reference of the transaction you requested the details for"
+    },
+    "transactionStatuses": {
+      "type": "array",
+      "description": "The list of all transaction statuses transitions",
+      "items": {
+        "$ref": "#/$defs/TransactionStatusEntryResponse"
+      }
+    },
+    "paymentStatuses": {
+      "type": "array",
+      "description": "The list of all payment status transitions",
+      "items": {
+        "$ref": "#/$defs/PaymentStatusLogResponse"
+      }
+    },
+    "paymentStatus": {
+      "type": "string",
+      "description": "The status of the payment",
+      "enum": [
+        "SUCCESS",
+        "FAILED",
+        "PENDING",
+        "UNKNOWN",
+        "REVIEW",
+        "REVERSED",
+        "VOIDED"
+      ]
+    },
+    "paymentStatusId": {
+      "type": "string",
+      "description": "The ID of the payment status"
+    },
+    "paymentStatusTimestamp": {
+      "type": "string",
+      "description": "The date and time the payment outcome from the Payment Gateway was received (ISO 8601 format)",
+      "format": "date-time"
+    },
+    "totalAmount": {
+      "type": "number",
+      "description": "The total amount of the transaction"
+    },
+    "receiptLinkRef": {
+      "type": "string",
+      "description": "The receipt link reference number for the transaction"
+    },
+    "channelName": {
+      "type": "string",
+      "description": "The name of the channel used for the transaction"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency that the transaction was conducted in"
+    },
+    "taxAmount": {
+      "type": "number",
+      "description": "The tax amount of the transaction"
+    },
+    "subTotalAmount": {
+      "type": "number",
+      "description": "The sub-total of the transaction (before tax)"
+    },
+    "additionalData": {
+      "type": "string",
+      "description": "Any additional data over and above what is already included that you want to store in the database along with that record and/or return in the response"
+    },
+    "paymentStatusConversionTime": {
+      "type": "string",
+      "description": "This field will contain the timestamp received from the payment gateway when a transaction which was in a Review status was finalized.\n",
+      "format": "date-time"
+    },
+    "integrator": {
+      "$ref": "#/$defs/IntegratorResponse"
+    },
+    "paymentReviewAutoReversal": {
+      "type": "boolean",
+      "description": "Make automatically transaction reversal in case of REVIEW state",
+      "default": false
+    },
+    "transactionType": {
+      "type": "string",
+      "description": "Specifies the type of transaction that was be performed by Payment Gateway.",
+      "enum": [
+        "TransactionType.AUTHORIZATION(name=Authorization, id=1)",
+        "TransactionType.SALE(name=Sale, id=2)",
+        "TransactionType.VOID(name=Void, id=3)",
+        "TransactionType.CAPTURE(name=Capture, id=4)"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)"
+    },
+    "reconciliationId": {
+      "type": "string",
+      "description": "Reference number that you use to reconcile your transaction reports with your processor reports. Also known as Transaction Reference Number or TRN."
+    },
+    "merchantDescriptor": {
+      "type": "string",
+      "description": "Merchant's business name."
+    }
+  },
+  "$defs": {
+    "IntegratorResponse": {
+      "type": "object",
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "description": "Unique identifier generated for each custom application the customer links to the account"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the integrator"
+        }
+      },
+      "description": "The integrator/application that requested this payment"
+    },
+    "PaymentStatusLogResponse": {
+      "type": "object",
+      "properties": {
+        "transactionType": {
+          "type": "string",
+          "description": "The type of transaction executed",
+          "enum": [
+            "TransactionType.AUTHORIZATION(name=Authorization, id=1)",
+            "TransactionType.SALE(name=Sale, id=2)",
+            "TransactionType.VOID(name=Void, id=3)",
+            "TransactionType.CAPTURE(name=Capture, id=4)"
+          ]
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "The total amount of the transaction"
+        },
+        "paymentGatewayDecision": {
+          "type": "string",
+          "description": "Decision received back from the Payment Gateway for the payment request"
+        },
+        "paymentGatewayReqReferenceNumber": {
+          "type": "string",
+          "description": "Payment Reference number received back from the Payment Gateway for the payment request"
+        },
+        "paymentGatewayResponseTimestamp": {
+          "type": "string",
+          "description": "Timestamp received back from the Payment Gateway for the payment request",
+          "format": "date-time"
+        },
+        "paymentGatewayResponseCode": {
+          "type": "integer",
+          "description": "Response code received back from the Payment Gateway for the payment request",
+          "format": "int32"
+        },
+        "paymentGatewayErrorDecision": {
+          "type": "string",
+          "description": "Error description received back from Payment Gateway if error occurred"
+        },
+        "paymentGatewayAuthReconciliationReferenceNumber": {
+          "type": "string",
+          "description": "Unique number generated by Payment Gateway to identify the transaction for the payment request"
+        },
+        "cardType": {
+          "type": "string",
+          "description": "The type of card used for the transaction, as received back from the Payment Gateway for the payment request"
+        },
+        "maskedCardNumber": {
+          "type": "string",
+          "description": "The masked card number used for the transaction, as received back from the Payment Gateway for the payment request\n"
+        },
+        "cardExpiryDate": {
+          "type": "string",
+          "description": "The expiry date of the card used for the payment, as received back from the Payment Gateway for the payment request\n"
+        }
+      },
+      "description": "The list of all payment status transitions"
+    },
+    "TransactionStatusEntryResponse": {
+      "type": "object",
+      "properties": {
+        "transactionStatusId": {
+          "type": "integer",
+          "description": "Transaction status ID",
+          "format": "int32"
+        },
+        "transactionStatusName": {
+          "type": "string",
+          "description": "Transaction status name"
+        },
+        "created": {
+          "type": "string",
+          "description": "Transaction date",
+          "format": "date-time"
+        },
+        "httpResponseCode": {
+          "type": "integer",
+          "description": "HTTP response code received from third-parties after interaction",
+          "format": "int32"
+        },
+        "responseCode": {
+          "type": "string",
+          "description": "Error code received from third-parties after interaction"
+        },
+        "responseCodeDescription": {
+          "type": "string",
+          "description": "Error description received from third-parties after interaction"
+        }
+      },
+      "description": "The list of all transaction statuses transitions"
+    }
+  }
+}

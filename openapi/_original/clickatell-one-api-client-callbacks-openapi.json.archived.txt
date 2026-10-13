@@ -1,0 +1,2 @@
+# x-archived-from: clickatell-one-api-client-callbacks-openapi.json
+# x-archived-on: 2026-10-13

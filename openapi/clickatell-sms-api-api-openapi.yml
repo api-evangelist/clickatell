@@ -1,0 +1,225 @@
+openapi: 3.2.0
+info:
+  title: SMS API
+  version: 1.0.0
+  x-provenance:
+    method: searched
+    source: https://help.clickatell.com/developers-api-reference/ (OpenAPI fragments embedded verbatim in the GitBook .md twins, merged by info.title)
+    generated: '2026-10-13'
+servers:
+- url: https://platform.clickatell.com
+security:
+- api-key: []
+tags:
+- name: SMS API
+paths:
+  /messages:
+    post:
+      tags:
+      - SMS API
+      summary: Send message via REST integration
+      operationId: sendMessageREST_1
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+        required: true
+      responses:
+        '202':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendMessagesListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SendMessagesListResponse'
+  /messages/rest/bulk:
+    post:
+      tags:
+      - SMS API
+      summary: Send bulk messages via REST integration
+      operationId: sendBulkMessageREST
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendBulkMessageRequest'
+        required: true
+      responses:
+        '202':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendMessagesListResponse'
+  /messages/http/send:
+    get:
+      tags:
+      - SMS API
+      summary: Send message via HTTP integration
+      operationId: sendMessageHTTP
+      parameters:
+      - name: apiKey
+        in: query
+        description: Integration API key.
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: Receiver number.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Sender number in two-way integration.
+        schema:
+          type: string
+      - name: content
+        in: query
+        description: Message content.
+        required: true
+        schema:
+          type: string
+      - name: clientMessageId
+        in: query
+        description: Client message id
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendMessagesListResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/SendMessagesListResponse'
+components:
+  schemas:
+    SendMessagesListResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          xml:
+            name: Messages
+            wrapped: true
+          items:
+            $ref: '#/components/schemas/SendMessageResponse'
+        errorCode:
+          type: integer
+          format: int32
+          xml:
+            name: ErrorCode
+        error:
+          type: string
+          xml:
+            name: Error
+        errorDescription:
+          type: string
+          xml:
+            name: ErrorDescription
+      xml:
+        name: SendMessagesResponse
+    SendBulkMessageRequest:
+      type: object
+      properties:
+        messageList:
+          type: array
+          items:
+            $ref: '#/components/schemas/SendMessageRequest'
+    SendMessageResponse:
+      type: object
+      properties:
+        apiMessageId:
+          type: string
+          xml:
+            name: ApiMessageId
+        accepted:
+          type: boolean
+          xml:
+            name: Accepted
+        to:
+          type: string
+          xml:
+            name: To
+        errorCode:
+          type: integer
+          format: int32
+          xml:
+            name: ErrorCode
+        error:
+          type: string
+          xml:
+            name: Error
+        errorDescription:
+          type: string
+          xml:
+            name: ErrorDescription
+    SendMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          xml:
+            name: Content
+        to:
+          uniqueItems: true
+          type: array
+          xml:
+            name: To
+          items:
+            type: string
+            xml:
+              name: To
+        from:
+          type: string
+          xml:
+            name: From
+        binary:
+          type: boolean
+          xml:
+            name: Binary
+        clientMessageId:
+          type: string
+          xml:
+            name: ClientMessageId
+        scheduledDeliveryTime:
+          type: string
+          xml:
+            name: ScheduledDeliveryTime
+        userDataHeader:
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+          xml:
+            name: UserDataHeader
+        validityPeriod:
+          type: integer
+          format: int32
+          xml:
+            name: ValidityPeriod
+        charset:
+          type: string
+          xml:
+            name: Charset
+      description: Send sms request
+      xml:
+        name: SendMessageRequest
+  securitySchemes:
+    api-key:
+      type: apiKey
+      name: Authorization
+      in: header

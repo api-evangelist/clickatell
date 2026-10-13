@@ -1,4 +1,4 @@
-generated: '2026-10-09'
+generated: '2026-10-13'
 method: probed
 source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
 registry: all/0-working/vendors.yml
@@ -19,31 +19,51 @@ vendors:
 - vendor: cloudflare
   name: Cloudflare
   area: cdn
-  host: augment.market
+  host: help.clickatell.com
   evidence: header:cf-ray
   signal: header
   confidence: high
   kin_score:
   - https_enforced
   - hsts
-- vendor: discourse
-  name: Discourse
-  area: community
-  host: augment.market
-  evidence: https://augment.market/c/clickatell
-  signal: url:/c/
+- vendor: cloudfront
+  name: Amazon CloudFront
+  area: cdn
+  host: www.clickatell.com
+  evidence: cname:cloudfront.net
+  signal: cname
   confidence: high
-  kin_score:
-  - community_present
+  kin_score: []
+- vendor: netlify
+  name: Netlify
+  area: hosting
+  host: www.clickatell.com
+  evidence: header:x-nf-request-id
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: vercel
+  name: Vercel
+  area: hosting
+  host: help.clickatell.com
+  evidence: header:x-vercel-id
+  signal: header
+  confidence: high
+  kin_score: []
 reliance:
   areas_vendor_served:
   - cdn
-  - community
-  vendor_count: 2
+  - hosting
+  vendor_count: 4
   areas_observed: 12
   share_of_observable_areas: 0.167
   note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
     cannot tell those apart
 checked:
 - 'docs-platform: no-docs-host'
-- augment.market (Website)
+- help.clickatell.com (GettingStarted)
+- www.clickatell.com (Website)
+- help.clickatell.com (Documentation)
+- portal.clickatell.com (DeveloperPortal)
+- help.clickatell.com (Support)
+- your-server.com (baseURL)

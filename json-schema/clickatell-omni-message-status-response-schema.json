@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-omni-message-status-response-schema.json",
+  "title": "OmniMessageStatusResponse",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-one-api-openapi.json#/components/schemas/OmniMessageStatusResponse",
+  "type": "object",
+  "properties": {
+    "sms": {
+      "$ref": "#/$defs/OmniMessageStatusEntry"
+    },
+    "whatsapp": {
+      "$ref": "#/$defs/OmniMessageStatusEntry"
+    }
+  },
+  "$defs": {
+    "OmniMessageStatusEntry": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNKNOWN",
+            "QUEUED",
+            "SCHEDULED",
+            "SENT_TO_SUPPLIER",
+            "DEVICE_ACK",
+            "READ",
+            "EXPIRED",
+            "STOPPED_BY_USER",
+            "STOPPED_BY_ADMIN",
+            "DELIVERY_FAILURE",
+            "EMULATED",
+            "INSUFFICIENT_ACCOUNT_BALANCE",
+            "VOLUME_LIMIT",
+            "VOLUME_LIMIT_DAILY",
+            "VOLUME_LIMIT_MONTHLY",
+            "RECIPIENT_DOES_NOT_EXIST",
+            "STOP_MARKETING_MESSAGES",
+            "EXCESSIVE_MESSAGES_TO_RECIPIENT",
+            "ENCRYPTION_ACCESS_DENIED",
+            "ENCRYPTION_CONTENT_ERROR",
+            "ENCRYPTION_VALIDATION_ERROR",
+            "ANONYMOUS_USER_ID_INVALID",
+            "ANONYMOUS_USER_ID_ERROR",
+            "MEDIA_NOT_FOUND",
+            "MEDIA_SIZE_ERROR",
+            "MEDIA_CHECKSUM_FAILURE",
+            "MEDIA_REJECTED_BY_SUPPLIER",
+            "MEDIA_METADATA_ERROR",
+            "MEDIA_ACCESS_ERROR",
+            "MEDIA_TYPE_NOT_SUPPORTED",
+            "ROUTING_ERROR",
+            "WHATSAPP_ACCOUNT_PAYMENT_ISSUE",
+            "WHATSAPP_RE_ENGAGEMENT_REQUIRED",
+            "WHATSAPP_SPAM_RATE_LIMIT_REACHED",
+            "WHATSAPP_SERVER_RATE_LIMIT",
+            "WHATSAPP_EXPERIMENTAL_NUMBER",
+            "WHATSAPP_TEMPLATE_TEXT_TOO_LONG",
+            "WHATSAPP_TEMPLATE_FORMAT_MISMATCH",
+            "WHATSAPP_TEMPLATE_FORMATTING_POLICY_VIOLATED",
+            "WHATSAPP_TEMPLATE_MEDIA_FORMAT_UNSUPPORTED",
+            "WHATSAPP_PARAMETER_MISSING",
+            "WHATSAPP_PARAMETER_INVALID",
+            "WHATSAPP_PARAMETER_NOT_REQUIRED",
+            "WHATSAPP_TEMPLATE_INVALID_URL",
+            "WHATSAPP_TEMPLATE_INVALID_PHONE_NUMBER",
+            "WHATSAPP_TEMPLATE_RECEIVER_NO_BUTTON_SUPPORT",
+            "WHATSAPP_TEMPLATE_DOES_NOT_EXIST",
+            "WHATSAPP_TEMPLATE_PARAM_COUNT_MISMATCH",
+            "WHATSAPP_TEMPLATE_PAUSED",
+            "WHATSAPP_TEMPLATE_DISABLED",
+            "WHATSAPP_COMPLIANCE_INFO_MISSING",
+            "WHATSAPP_PRODUCT_CATALOG_NOT_FOUND",
+            "WHATSAPP_PRODUCT_NOT_FOUND_IN_CATALOG",
+            "WHATSAPP_PRODUCT_COMPLIANCE_ERROR",
+            "WHATSAPP_MESSAGE_UNDELIVERABLE",
+            "WHATSAPP_CHOSE_NOT_TO_DELIVER",
+            "PAYMENT_COMPLETED",
+            "PAYMENT_DECLINED",
+            "PAYMENT_FAILED",
+            "PAYMENT_INVALID_MERCHANT_SESSION",
+            "PAYMENT_INVALID_WEBHOOK_ENDPOINTS"
+          ]
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  }
+}

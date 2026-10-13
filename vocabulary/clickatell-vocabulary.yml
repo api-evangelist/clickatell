@@ -1,0 +1,435 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/clickatell-chat-2-pay-api-api-openapi.yml
+- openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml
+- openapi/clickatell-external-link-callback-api-openapi.yml
+- openapi/clickatell-one-api-api-openapi.yml
+- openapi/clickatell-one-api-client-callbacks-api-openapi.yml
+vocabulary:
+  name: Clickatell Domain Vocabulary
+  description: 'Terms declared by Clickatell''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-13'
+  terms:
+  - term: One API Client Callbacks
+    definition: 'Forward Compatibility While the basic callback structure will remain constant: { "integrationId": "string", "integrationName":
+      "string", "event": {} } There are constant additions to channels including new features and message types, and Clickatell will be adding
+      these to the callbacks as they become available.'
+    tags:
+    - Resource Group
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml
+  - term: TransactionStatusEntryResponse
+    definition: The list of all transaction statuses transitions
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/TransactionStatusEntryResponse
+  - term: PaymentReceiptResponse
+    definition: 'Object declared by the contract with fields: receiptLinkRef, orderNumber, timestamp, transactionStatus, transactionStatusId,
+      error.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PaymentReceiptResponse
+  - term: UnauthorizedErrorResponse
+    definition: 'Object declared by the contract with fields: timestamp, status, error, message, path.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/UnauthorizedErrorResponse
+  - term: EntityUpdatedResponse
+    definition: 'Object declared by the contract with fields: updateTime.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/EntityUpdatedResponse
+  - term: NotFoundErrorResponse
+    definition: 'Object declared by the contract with fields: status, message, errors.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/NotFoundErrorResponse
+  - term: TransactionStatusEndpointResponse
+    definition: 'Object declared by the contract with fields: orderNumber, paymentLinkRef, transactionStatuses, paymentStatuses, paymentStatus,
+      paymentStatusId, paymentStatusTimestamp, totalAmount, receiptLinkRef, channelName, currency, taxAmount. (10 more)'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/TransactionStatusEndpointResponse
+  - term: PaymentReceiptRequest
+    definition: 'Object declared by the contract with fields: receiptLink, paymentLinkRef, timestamp.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PaymentReceiptRequest
+  - term: IntegratorStatusResponse
+    definition: Integrators
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/IntegratorStatusResponse
+  - term: PaymentCancellationResponse
+    definition: 'Object declared by the contract with fields: paymentLinkRef, transactionStatus, transactionStatusId, additionalData, timestamp.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PaymentCancellationResponse
+  - term: JsonNode
+    definition: Any additional data over and above what is already included that you want to store in the database along with that record and/or
+      return in the response
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/JsonNode
+  - term: BadRequestErrorResponse
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/BadRequestErrorResponse
+  - term: PayByLinkRequest
+    definition: 'Object declared by the contract with fields: channel, from, to, orderNumber, timestamp, currency, taxAmount, subTotalAmount,
+      totalAmount, paymentGatewaySettingsId, additionalData, returnPaymentLink. (6 more)'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PayByLinkRequest
+  - term: PaymentGatewayOperationResultResponse
+    definition: 'Object declared by the contract with fields: transactionType, totalAmount, paymentGatewayDecision, paymentGatewayReqReferenceNumber,
+      paymentGatewayResponseTimestamp, paymentGatewayResponseCode, paymentGatewayErrorDecision, paymentGatewayAuthReconciliationReferenceNumber,
+      cardType, maskedCardNumber, cardExpiryDate, paymentStatus. (1 more)'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PaymentGatewayOperationResultResponse
+  - term: PaymentStatusLogResponse
+    definition: The list of all payment status transitions
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PaymentStatusLogResponse
+  - term: LineItemResponse
+    definition: The list of items associated with an order, e.g. products.
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/LineItemResponse
+  - term: IntegrationStatusRequest
+    definition: 'Object declared by the contract with fields: applicationUuid, status.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/IntegrationStatusRequest
+  - term: LineItemRequest
+    definition: The list of items associated with an order, e.g. products.
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/LineItemRequest
+  - term: DetailedWidgetConfigResponse
+    definition: 'Object declared by the contract with fields: updateTime, whatsappChannelEnabled, smsChannelEnabled, integrators, apiKey, supportedCurrencies,
+      environment.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/DetailedWidgetConfigResponse
+  - term: ThirdPartySystemErrorResponse
+    definition: Error details if request failed
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/ThirdPartySystemErrorResponse
+  - term: IntegratorResponse
+    definition: The integrator/application that requested this payment
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/IntegratorResponse
+  - term: CurrencyResponse
+    definition: Supported currencies
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/CurrencyResponse
+  - term: PayByLinkTransactionLogResponse
+    definition: 'Object declared by the contract with fields: paymentLinkRef, transactionStatus, transactionStatusId, timestamp, error, paymentLink,
+      paymentLinkTTL, paymentPageTTL.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-api-openapi.yml#/components/schemas/PayByLinkTransactionLogResponse
+  - term: TransactionStatusNotificationResponse
+    definition: 'Object declared by the contract with fields: orderNumber, paymentLinkRef, transactionStatuses, paymentStatuses, paymentStatus,
+      paymentStatusId, paymentStatusTimestamp, totalAmount, receiptLinkRef, channelName, currency, taxAmount. (9 more)'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml#/components/schemas/TransactionStatusNotificationResponse
+  - term: SendPaymentOutcomeRequest
+    definition: 'Object declared by the contract with fields: orderNo, paymentLinkRef, from, to, paymentStatus, paymentStatusId, currency, totalAmount,
+      additionalData, paymentStatusConversionTime, paymentStatuses, environment.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml#/components/schemas/SendPaymentOutcomeRequest
+  - term: WidgetConfigResponse
+    definition: 'Object declared by the contract with fields: apiKey, enabledChannels, supportedCurrencies, mc2AccountId, chatFlowClientId, configId,
+      environment.'
+    tags:
+    - Object
+    source: openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml#/components/schemas/WidgetConfigResponse
+  - term: Externallink
+    definition: 'Object declared by the contract with fields: result, reference, data.'
+    tags:
+    - Object
+    source: openapi/clickatell-external-link-callback-api-openapi.yml#/components/schemas/Externallink
+  - term: OmniMessagesResponse
+    definition: 'Object declared by the contract with fields: error, apiMessageId, accepted, to, clientMessageId.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniMessagesResponse
+  - term: WhatsAppInteractiveMessageHeader
+    definition: Header content displayed on top of a message.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppInteractiveMessageHeader
+  - term: WhatsAppTemplateHeaderText
+    definition: Required, if type text
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppTemplateHeaderText
+  - term: OmniMessageStatusResponse
+    definition: 'Object declared by the contract with fields: sms, whatsapp.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniMessageStatusResponse
+  - term: WhatsAppContact
+    definition: 'Object declared by the contract with fields: addresses, birthday, emails, name, origin, org, phones, urls.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppContact
+  - term: WhatsAppMessageTemplateBody
+    definition: Body object.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageTemplateBody
+  - term: MediaFileMetadataResponse
+    definition: 'Object declared by the contract with fields: expirationTime, broadcastAllowed.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/MediaFileMetadataResponse
+  - term: OmniIntegrationWaMediaRequest
+    definition: WhatsApp onlyObject containing parameters for sending a media message.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniIntegrationWaMediaRequest
+  - term: WhatsAppTemplateHeaderMedia
+    definition: Required, if type media
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppTemplateHeaderMedia
+  - term: WhatsAppMessageTemplateHeader
+    definition: Template header.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageTemplateHeader
+  - term: WhatsAppMessageListSection
+    definition: 'Object declared by the contract with fields: items, title.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageListSection
+  - term: WhatsAppMessageList
+    definition: WhatsApp onlyObject containing parameter for sending a list message
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageList
+  - term: OmniMessageRequest
+    definition: 'Object declared by the contract with fields: channel, to, content, clientMessageId, scheduledDeliveryTime, validityPeriod, previewFirstUrl,
+      location, contacts, media, template, listPicker. (9 more)'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniMessageRequest
+  - term: MessagingBalanceResponse
+    definition: 'Object declared by the contract with fields: balance, currency.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/MessagingBalanceResponse
+  - term: ReplyStatusNotificationRequest
+    definition: Send Business Read Status notification request
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/ReplyStatusNotificationRequest
+  - term: OmniMediaUploadResponse
+    definition: 'Object declared by the contract with fields: error, fileId, accepted.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniMediaUploadResponse
+  - term: WhatsAppMessageTemplate
+    definition: WhatsApp onlyObject containing parameters for sending a template message.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageTemplate
+  - term: WhatsAppMixedTemplateButtonUrl
+    definition: 'Object declared by the contract with fields: index, type, url.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMixedTemplateButtonUrl
+  - term: ReplyStatusUpdateNotification
+    definition: 'Object declared by the contract with fields: channel, statusCode, messageId, clientEventId.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/ReplyStatusUpdateNotification
+  - term: WhatsAppMessageCTAButton
+    definition: WhatsApp onlyObject containing parameter for sending a button message
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageCTAButton
+  - term: ReplyStatusEvent
+    definition: Business Read Status event request
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/ReplyStatusEvent
+  - term: WhatsAppMixedTemplateButtonOtp
+    definition: 'Object declared by the contract with fields: index, type, otp.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMixedTemplateButtonOtp
+  - term: WhatsAppInteractiveMessageMedia
+    definition: Required, if type media
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppInteractiveMessageMedia
+  - term: WhatsAppMixedTemplateButtonSuggestedResponse
+    definition: 'Object declared by the contract with fields: index, type, suggestedResponse.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMixedTemplateButtonSuggestedResponse
+  - term: WhatsAppTemplateHeaderLocation
+    definition: 'Note: location header only supported for cloud numbers. Required, if type location'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppTemplateHeaderLocation
+  - term: Location
+    definition: WhatsApp onlyObject containing parameters for sending a location message.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/Location
+  - term: WhatsAppMessageLocationRequest
+    definition: WhatsApp only Object for sending a location request message
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageLocationRequest
+  - term: WhatsAppMessageListSectionItem
+    definition: 'Object declared by the contract with fields: title, subtitle, postbackData.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageListSectionItem
+  - term: WhatsAppMessageButtonItem
+    definition: 'Object declared by the contract with fields: postbackData, title, type.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageButtonItem
+  - term: OmniMessageListResponse
+    definition: 'Object declared by the contract with fields: messages, error, type.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniMessageListResponse
+  - term: NotificationEventResponse
+    definition: 'Object declared by the contract with fields: messageStatusUpdate.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/NotificationEventResponse
+  - term: NotificationResponse
+    definition: 'Object declared by the contract with fields: apiEventId, accepted, messageId, clientEventId, error.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/NotificationResponse
+  - term: OmniResponseError
+    definition: 'Object declared by the contract with fields: code, description.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniResponseError
+  - term: WhatsAppMixedTemplateButtonCouponCode
+    definition: 'Object declared by the contract with fields: index, type, couponCode.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMixedTemplateButtonCouponCode
+  - term: OmniMessageStatusEntry
+    definition: 'Object declared by the contract with fields: status, timestamp.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/OmniMessageStatusEntry
+  - term: SendOmniChannelMessagesRequest
+    definition: One api send message request
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/SendOmniChannelMessagesRequest
+  - term: WhatsAppNotificationListResponse
+    definition: 'Object declared by the contract with fields: event, error, type.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppNotificationListResponse
+  - term: WhatsAppMessageButton
+    definition: WhatsApp onlyObject containing parameter for sending a button message
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageButton
+  - term: WhatsAppTemplateWebsiteUrl
+    definition: 'Object declared by the contract with fields: listPosition, parameters.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppTemplateWebsiteUrl
+  - term: WhatsAppMessageTemplateButtons
+    definition: To be deprecatedUse templateButtons instead Interactive template message buttons. buttons parameter supports 1 button type (websiteUrl
+      or suggestedResponse) per send message request.
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppMessageTemplateButtons
+  - term: WhatsAppTemplateSuggestedResponse
+    definition: 'Object declared by the contract with fields: postbackData.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-api-openapi.yml#/components/schemas/WhatsAppTemplateSuggestedResponse
+  - term: MessageStatus
+    definition: 'Object declared by the contract with fields: channel, timestamp, statusCode, status, messageId, clientMessageId.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/MessageStatus
+  - term: ContactsReply
+    definition: 'Object declared by the contract with fields: channel, messageId, relatedMessageId, relatedClientMessageId, from, to, timestamp,
+      encryptionKey, whatsapp, contacts, charset.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/ContactsReply
+  - term: MediaReply
+    definition: 'Object declared by the contract with fields: channel, messageId, relatedMessageId, relatedClientMessageId, from, to, timestamp,
+      encryptionKey, whatsapp, caption.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/MediaReply
+  - term: ListPickerResponseReply
+    definition: 'Object declared by the contract with fields: channel, messageId, relatedMessageId, relatedClientMessageId, from, to, timestamp,
+      encryptionKey, whatsapp, postbackData, selectedItems.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/ListPickerResponseReply
+  - term: ButtonResponseReply
+    definition: 'Object declared by the contract with fields: channel, messageId, relatedMessageId, relatedClientMessageId, from, to, timestamp,
+      encryptionKey, whatsapp, postbackData, selectedItem.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/ButtonResponseReply
+  - term: TextReply
+    definition: 'Object declared by the contract with fields: channel, messageId, relatedMessageId, relatedClientMessageId, from, to, timestamp,
+      encryptionKey, whatsapp, charset, content, sms.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/TextReply
+  - term: TypingStatus
+    definition: 'Object declared by the contract with fields: channel, timestamp, from.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/TypingStatus
+  - term: ReferenceMediaFile
+    definition: 'Object declared by the contract with fields: contentType, downloadUrl, sha256Hash, byteSize, fileName.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/ReferenceMediaFile
+  - term: FallbackStatus
+    definition: 'Object declared by the contract with fields: channel, timestamp, statusDescription, status, messageId, clientMessageId.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/FallbackStatus
+  - term: StatusEvents
+    definition: 'Object declared by the contract with fields: messageStatusUpdate, messageFallback, statusIsTyping.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/StatusEvents
+  - term: OmniStatusCallbackRequest
+    definition: 'Object declared by the contract with fields: integrationId, integrationName, event.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/OmniStatusCallbackRequest
+  - term: ReferralInfo
+    definition: 'Object declared by the contract with fields: headline, content, sourceType, sourceId, sourceUrl.'
+    tags:
+    - Object
+    source: openapi/clickatell-one-api-client-callbacks-api-openapi.yml#/components/schemas/ReferralInfo

@@ -1,0 +1,441 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Chat 2 Pay API Client Callbacks",
+    "version": "2",
+    "x-provenance": {
+      "method": "searched",
+      "source": "https://help.clickatell.com/developers-api-reference/ (OpenAPI fragments embedded verbatim in the GitBook .md twins, merged by info.title)",
+      "generated": "2026-10-13"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://your-server.com",
+      "variables": {}
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/api/v2/callback/transaction-status": {
+      "post": {
+        "tags": [
+          "Chat 2 Pay API Client Callbacks"
+        ],
+        "summary": "Transaction status change notification",
+        "description": "A transaction status change notification is sent after the following events: payment link creation, link cancellation, link clicked, link expiration, payment status change. Notifications are sent to the integrator that created the payment link (specified by \u2018applicationId\u2019). The URL for the notifications can be specified in the \u2018Transaction Status Event\u2019 field when configuring Chat 2 Pay\u2019s \u2018Callback Notifications\u2019 section in the Clickatell Portal.",
+        "operationId": "testTransactionStatusChangeNotification",
+        "requestBody": {
+          "description": "Transaction status request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatusNotificationResponse"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return 200 code if the callback was received and processed successfully. Chat 2 Pay will retry this notification delivery for any other response code."
+          }
+        }
+      }
+    },
+    "/api/v2/callback/payment-status": {
+      "post": {
+        "tags": [
+          "Chat 2 Pay API Client Callbacks"
+        ],
+        "summary": "Payment status change notification",
+        "description": "A payment status change notification is sent after each payment status change, e.g., payment status received, capture, reversal. The URL for the notifications can be specified in the \u2018Payment Status\u2019 field when configuring Chat 2 Pay\u2019s \u2018Callback Notifications\u2019 section in the Clickatell Portal.",
+        "operationId": "testPaymentStatusChangeNotification",
+        "requestBody": {
+          "description": "Payment status request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendPaymentOutcomeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return 200 code if the callback was received and processed successfully. Chat 2 Pay will retry this notification delivery for any other response code."
+          }
+        }
+      }
+    },
+    "/api/v2/callback/config-change": {
+      "post": {
+        "tags": [
+          "Chat 2 Pay API Client Callbacks"
+        ],
+        "summary": "Chat 2 Pay configuration change notification",
+        "description": "A Chat 2 Pay configuration change notification is sent after the following events: API key added or removed, currency added or removed, channel added or removed. Notifications are sent to each active integrator. The URL for the notifications can be specified in the \u2018Chat 2 Pay Settings\u2019 field when configuring Chat 2 Pay\u2019s \u2018Callback Notifications\u2019 section in the Clickatell Portal.",
+        "operationId": "testConfigChangeNotification",
+        "requestBody": {
+          "description": "config request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WidgetConfigResponse"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return 200 code if the callback was received and processed successfully. Chat 2 Pay will retry this notification delivery for any other response code."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TransactionStatusNotificationResponse": {
+        "type": "object",
+        "properties": {
+          "orderNumber": {
+            "type": "string",
+            "description": "The order number associated with the payment"
+          },
+          "paymentLinkRef": {
+            "type": "string",
+            "description": "The payment link reference of the transaction you requested the details for"
+          },
+          "transactionStatuses": {
+            "type": "array",
+            "description": "The list of all transaction statuses transitions",
+            "items": {
+              "$ref": "#/components/schemas/TransactionStatusEntryResponse"
+            }
+          },
+          "paymentStatuses": {
+            "type": "array",
+            "description": "The list of all payment status transitions",
+            "items": {
+              "$ref": "#/components/schemas/PaymentStatusLogResponse"
+            }
+          },
+          "paymentStatus": {
+            "type": "string",
+            "description": "The status of the payment",
+            "enum": [
+              "SUCCESS",
+              "FAILED",
+              "PENDING",
+              "UNKNOWN",
+              "REVIEW",
+              "REVERSED",
+              "VOIDED"
+            ]
+          },
+          "paymentStatusId": {
+            "type": "string",
+            "description": "The ID of the payment status"
+          },
+          "paymentStatusTimestamp": {
+            "type": "string",
+            "description": "The date and time the payment outcome from the Payment Gateway was received (ISO 8601 format)",
+            "format": "date-time"
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "The total amount of the transaction"
+          },
+          "receiptLinkRef": {
+            "type": "string",
+            "description": "The receipt link reference number for the transaction"
+          },
+          "channelName": {
+            "type": "string",
+            "description": "The name of the channel used for the transaction"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency that the transaction was conducted in"
+          },
+          "taxAmount": {
+            "type": "number",
+            "description": "The tax amount of the transaction"
+          },
+          "subTotalAmount": {
+            "type": "number",
+            "description": "The sub-total of the transaction (before tax)"
+          },
+          "additionalData": {
+            "type": "string",
+            "description": "Any additional data over and above what is already included that you want to store in the database along with that record and/or return in the response"
+          },
+          "paymentStatusConversionTime": {
+            "type": "string",
+            "description": "This field will contain the timestamp received from the payment gateway when a transaction which was in a Review status was finalized.\n",
+            "format": "date-time"
+          },
+          "integrator": {
+            "$ref": "#/components/schemas/IntegratorResponse"
+          },
+          "paymentReviewAutoReversal": {
+            "type": "boolean",
+            "description": "Make automatically transaction reversal in case of REVIEW state",
+            "default": false
+          },
+          "transactionType": {
+            "type": "string",
+            "description": "Specifies the type of transaction that was be performed by Payment Gateway.",
+            "enum": [
+              "TransactionType.AUTHORIZATION(name=Authorization, id=1)",
+              "TransactionType.SALE(name=Sale, id=2)",
+              "TransactionType.VOID(name=Void, id=3)",
+              "TransactionType.CAPTURE(name=Capture, id=4)"
+            ]
+          },
+          "environment": {
+            "type": "string",
+            "description": "Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)"
+          },
+          "reconciliationId": {
+            "type": "string",
+            "description": "Reference number that you use to reconcile your transaction reports with your processor reports. Also known as Transaction Reference Number or TRN."
+          },
+          "merchantDescriptor": {
+            "type": "string",
+            "description": "Merchant's business name."
+          }
+        }
+      },
+      "TransactionStatusEntryResponse": {
+        "type": "object",
+        "properties": {
+          "transactionStatusId": {
+            "type": "integer",
+            "description": "Transaction status ID",
+            "format": "int32"
+          },
+          "transactionStatusName": {
+            "type": "string",
+            "description": "Transaction status name"
+          },
+          "created": {
+            "type": "string",
+            "description": "Transaction date",
+            "format": "date-time"
+          },
+          "httpResponseCode": {
+            "type": "integer",
+            "description": "HTTP response code received from third-parties after interaction",
+            "format": "int32"
+          },
+          "responseCode": {
+            "type": "string",
+            "description": "Error code received from third-parties after interaction"
+          },
+          "responseCodeDescription": {
+            "type": "string",
+            "description": "Error description received from third-parties after interaction"
+          }
+        },
+        "description": "The list of all transaction statuses transitions"
+      },
+      "PaymentStatusLogResponse": {
+        "type": "object",
+        "properties": {
+          "transactionType": {
+            "type": "string",
+            "description": "The type of transaction executed",
+            "enum": [
+              "TransactionType.AUTHORIZATION(name=Authorization, id=1)",
+              "TransactionType.SALE(name=Sale, id=2)",
+              "TransactionType.VOID(name=Void, id=3)",
+              "TransactionType.CAPTURE(name=Capture, id=4)"
+            ]
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "The total amount of the transaction"
+          },
+          "paymentGatewayDecision": {
+            "type": "string",
+            "description": "Decision received back from the Payment Gateway for the payment request"
+          },
+          "paymentGatewayReqReferenceNumber": {
+            "type": "string",
+            "description": "Payment Reference number received back from the Payment Gateway for the payment request"
+          },
+          "paymentGatewayResponseTimestamp": {
+            "type": "string",
+            "description": "Timestamp received back from the Payment Gateway for the payment request",
+            "format": "date-time"
+          },
+          "paymentGatewayResponseCode": {
+            "type": "integer",
+            "description": "Response code received back from the Payment Gateway for the payment request",
+            "format": "int32"
+          },
+          "paymentGatewayErrorDecision": {
+            "type": "string",
+            "description": "Error description received back from Payment Gateway if error occurred"
+          },
+          "paymentGatewayAuthReconciliationReferenceNumber": {
+            "type": "string",
+            "description": "Unique number generated by Payment Gateway to identify the transaction for the payment request"
+          },
+          "cardType": {
+            "type": "string",
+            "description": "The type of card used for the transaction, as received back from the Payment Gateway for the payment request"
+          },
+          "maskedCardNumber": {
+            "type": "string",
+            "description": "The masked card number used for the transaction, as received back from the Payment Gateway for the payment request\n"
+          },
+          "cardExpiryDate": {
+            "type": "string",
+            "description": "The expiry date of the card used for the payment, as received back from the Payment Gateway for the payment request\n"
+          }
+        },
+        "description": "The list of all payment status transitions"
+      },
+      "IntegratorResponse": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string",
+            "description": "Unique identifier generated for each custom application the customer links to the account"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the integrator"
+          }
+        },
+        "description": "The integrator/application that requested this payment"
+      },
+      "SendPaymentOutcomeRequest": {
+        "type": "object",
+        "properties": {
+          "orderNo": {
+            "type": "string",
+            "description": "The order number associated with the payment"
+          },
+          "paymentLinkRef": {
+            "type": "string",
+            "description": "The payment link reference of the transaction you requested the details for"
+          },
+          "from": {
+            "type": "string",
+            "description": "The mobile number of the sender used when sending payment link."
+          },
+          "to": {
+            "type": "string",
+            "description": "The end-user\u2019s mobile number that the payment link was sent to (In international format, e.g., 27831234567)."
+          },
+          "paymentStatus": {
+            "type": "string",
+            "description": "The new status of the payment"
+          },
+          "paymentStatusId": {
+            "type": "string",
+            "description": "The ID of the payment status"
+          },
+          "currency": {
+            "type": "string",
+            "description": "The currency that the transaction was conducted in"
+          },
+          "totalAmount": {
+            "type": "number",
+            "description": "The total amount of the transaction"
+          },
+          "additionalData": {
+            "type": "string",
+            "description": "Any additional data over and above what is already included that you want to store in the database along with that record and/or return in the response"
+          },
+          "paymentStatusConversionTime": {
+            "type": "string",
+            "description": "This field will contain the timestamp received from the Payment Gateway when a transaction which was in a Review status was finalized.\n"
+          },
+          "paymentStatuses": {
+            "type": "array",
+            "description": "The list of all payment status transitions",
+            "items": {
+              "$ref": "#/components/schemas/PaymentStatusLogResponse"
+            }
+          },
+          "environment": {
+            "type": "string",
+            "description": "Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)"
+          }
+        }
+      },
+      "WidgetConfigResponse": {
+        "type": "object",
+        "properties": {
+          "apiKey": {
+            "type": "string",
+            "description": "API key required to access the C2P APIs"
+          },
+          "enabledChannels": {
+            "type": "array",
+            "description": "List of enabled channels used to send the payment link",
+            "items": {
+              "type": "string",
+              "description": "List of enabled channels used to send the payment link"
+            }
+          },
+          "supportedCurrencies": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "List of currencies selected in payment gateway settings",
+            "items": {
+              "$ref": "#/components/schemas/CurrencyResponse"
+            }
+          },
+          "mc2AccountId": {
+            "type": "string",
+            "description": "MC2 account ID"
+          },
+          "chatFlowClientId": {
+            "type": "string",
+            "description": "ChatFlow client ID"
+          },
+          "configId": {
+            "type": "string",
+            "description": "Chat 2 Pay configuration ID"
+          },
+          "environment": {
+            "type": "string",
+            "description": "Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)"
+          }
+        }
+      },
+      "CurrencyResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Currency unique identifier",
+            "format": "int32"
+          },
+          "iso": {
+            "type": "string",
+            "description": "The ISO currency code"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of currency"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Symbol used to display currency"
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "True if this is set as the default currency; otherwise, false"
+          }
+        },
+        "description": "Supported currencies"
+      }
+    }
+  }
+}

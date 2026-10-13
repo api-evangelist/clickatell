@@ -2,29 +2,33 @@ aid: clickatell
 
 name: Clickatell
 
-description: 'Clickatell provides cloud communications platforms enabling businesses to engage customers via SMS, WhatsApp, and other chat channels. Their APIs support sending messages, two‑factor authentication, and chat commerce solutions across industries such as airlines, retail, and finance. Clickatell’s developer portal offers extensive documentation, SDKs, and sandbox environments for rapid integration.'
+description: Clickatell is a chat commerce and CPaaS company offering SMS and WhatsApp messaging (One API), the SMS API, Chat 2 Pay payments-in-chat,
+  and Chat Flow workflow APIs for businesses.
 
 url: https://raw.githubusercontent.com/api-evangelist/clickatell/refs/heads/main/apis.yml
 
 x-type: company
 
-x-source: harvest:secondary-market
+x-source: harvest:market-gap
 
 x-tier: profiled
-x-tier-reason: enrichment pass 2026-10-09 (modular-v1; was harvest)
+
+x-tier-reason: enrichment pass 2026-10-13 (local-v5; merged over 2026-10-09 modular-v1 venue-derived profile)
 
 specificationVersion: '0.20'
 
-created: '2026-10-08'
+created: '2026-10-13'
 
-modified: '2026-10-08'
+modified: '2026-10-13'
 
 tags:
 - Company
-- Communications
-- Messaging
 - SMS
-- Chat
+- WhatsApp
+- Messaging
+- CPaaS
+- Chat Commerce
+- Payments
 
 maintainers:
 - FN: Kin Lane
@@ -33,8 +37,22 @@ maintainers:
   email: info@apis.io
 
 common:
-- type: Documentation
-  url: https://dev.augment.market/
+- type: IntegrationEdges
+  url: integrations/clickatell-integration-edges.yml
+- type: AgenticAccess
+  url: agentic-access/clickatell-agentic-access.yml
+- type: Spectral
+  url: rules/clickatell-rules.yml
+- type: JSONLD
+  url: json-ld/clickatell-context.jsonld
+- type: Vocabulary
+  url: vocabulary/clickatell-vocabulary.yml
+- type: DataModel
+  url: data-model/clickatell-data-model.yml
+- type: ErrorCatalog
+  url: errors/clickatell-problem-types.yml
+- type: Conformance
+  url: conformance/clickatell-conformance.yml
 - type: LLMsTxt
   url: llms/clickatell-llms.txt
 - type: WellKnown
@@ -43,37 +61,532 @@ common:
   url: hosts/clickatell-hosts.yml
 - type: Vendors
   url: vendors/clickatell-vendors.yml
-- type: TermsOfService
-  url: https://augment.market/terms
-- type: PrivacyPolicy
-  url: https://augment.market/privacy
-- type: Leadership
-  url: https://augment.market/team
+- type: SDKs
+  url: packages/clickatell-packages.yml
+- type: Packages
+  url: packages/clickatell-packages.yml
+- type: GettingStarted
+  url: https://help.clickatell.com/whatsapp/getting-started/whatsapp
+- type: Authentication
+  url: authentication/clickatell-authentication.yml
 - type: DomainSecurity
   url: security/clickatell-domain-security.yml
 - type: Website
-  url: https://augment.market/c/clickatell
+  url: https://www.clickatell.com
+- type: Documentation
+  url: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+- type: DeveloperPortal
+  url: https://portal.clickatell.com/
+- type: ChangeLog
+  url: https://help.clickatell.com/release-notes
+- type: Pricing
+  url: https://www.clickatell.com/packages/
+- type: Support
+  url: https://help.clickatell.com/
+- type: Security
+  url: https://www.clickatell.com/security
+- type: LLMsTxt
+  url: https://help.clickatell.com/llms.txt
 
-apis: []
+apis:
+- aid: clickatell:clickatell-chat-2-pay-api-api
+  name: Clickatell Chat 2 Pay API
+  description: The Chat 2 Pay API API from Clickatell — 8 operation(s) for chat 2 pay api.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - Chat 2 Pay API
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-chat-2-pay-api-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-chat-2-pay-api-client-callbacks-api
+  name: Clickatell Chat 2 Pay API Client Callbacks API
+  description: >-
+    The Chat 2 Pay API Client Callbacks API from Clickatell — 3 operation(s) for chat 2 pay api client
+    callbacks.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - Chat 2 Pay API Client Callbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-external-link-callback-api
+  name: Clickatell External Link Callback API
+  description: >-
+    The External Link Callback API from Clickatell — 1 operation(s) for external link callback.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - External Link Callback
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-external-link-callback-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-one-api-api
+  name: Clickatell One API
+  description: The One API API from Clickatell — 6 operation(s) for one api.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - One API
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-one-api-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-one-api-client-callbacks-api
+  name: Clickatell One API Client Callbacks API
+  description: >-
+    <b>Forward Compatibility</b><br>While the basic callback structure will remain constant:<br><pre>
 
+    {
+      "integrationId": "string",
+      "integrationName": "string",
+      "event": {}
+    }</pre>There are constant additions to channels including new features and message types, and Clickatell
+    will be adding these to the callbacks as they become available. <br><br>Customers are required to
+    implement callback processing in such a way that new event types as well as additional parameters
+    in an event type do not break callback processing in the customer system.<ul><li>Any HTTP 200 range
+    status code response from client is considered an acknowledgement that the callback was successful.
+    Anything else will be retried, excluding redirect status code.</li><li>Callback payloads and configurations
+    are different (not backwards compatible).</li><li>In future, one HTTPS callback request may contain
+    multiple events for efficiency, but for now batch sizes are always 1.</li><li>The events in callbacks
+    may be out of sequence. User should look at timestamp fields to determine order.</li><li>Timestamps
+    are millisecond unit timestamps.</li><li>If the customer application does not respond fast enough
+    to HTTP/S callbacks, we will retry the callback. This means they may experience duplicate callbacks
+    (due to the retries).</li><li>Customer can configure a callback URL for status event callbacks and
+    another URL for MO messages. This helps to maintain low latency conversations by splitting the events.</li></ul>
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - One API Client Callbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-one-api-client-callbacks-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-sms-api-api
+  name: Clickatell SMS API
+  description: The SMS API API from Clickatell — 3 operation(s) for sms api.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - SMS API
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-sms-api-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-sms-client-callbacks-api
+  name: Clickatell SMS Client Callbacks API
+  description: The SMS Client Callbacks API from Clickatell — 2 operation(s) for sms client callbacks.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - SMS Client Callbacks
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-sms-client-callbacks-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
+- aid: clickatell:clickatell-wait-for-callback-api
+  name: Clickatell Wait for Callback API
+  description: The Wait for Callback API from Clickatell — 1 operation(s) for wait for callback.
+  humanURL: https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference
+  baseURL: https://your-server.com
+  tags:
+  - Wait for Callback
+  properties:
+  - type: OpenAPI
+    url: openapi/clickatell-wait-for-callback-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-notification-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-payment-outcome-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-transaction-status-endpoint-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-gateway-operation-result-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-pay-by-link-transaction-log-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-payment-receipt-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-detailed-widget-config-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-externallink-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-waitforcallback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-status-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-reply-callback-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-omni-channel-messages-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-whats-app-notification-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-reply-status-notification-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-message-status-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-omni-media-upload-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-reply-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-sms-status-callback-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-message-request-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-messages-list-response-schema.json
+  - type: JSONSchema
+    url: json-schema/clickatell-send-bulk-message-request-schema.json
 x-coverage:
-  state: gated
-  reason: partner-login
+  state: none
+  reason: no-developer-program
   method: derived
-  generated: '2026-10-09'
+  generated: '2026-10-13'
   generator: derive-coverage.py (pre-flight evidence)
   detail: >-
-    the company serves an API surface but requires credentials before any description of it can be read
+    the company publishes no developer documentation host and no machine-readable contract on its own domain
   evidence:
-  - url: https://docs.augment.market/mcp
-    status: 401
-  - url: https://api.augment.market/mcp
-    status: 403
-  - url: https://augment.market/c/clickatell
+  - url: https://www.clickatell.com
     status: 200
 x-enrichment:
-  date: '2026-10-09'
   status: enriched
-  artifacts_added: 9
-  pass: modular-v1
-  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local
+  pass: local-v5
+  date: '2026-10-13'

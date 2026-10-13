@@ -1,6 +1,6 @@
-generated: '2026-10-09'
+generated: '2026-10-13'
 method: probed
 generator: harvest-llms.py
-source: https://augment.market/llms.txt
-bytes: 2367
+source: https://help.clickatell.com/llms.txt
+bytes: 44366
 note: saved verbatim; the provider's own document

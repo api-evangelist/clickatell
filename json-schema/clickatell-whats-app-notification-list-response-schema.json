@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-whats-app-notification-list-response-schema.json",
+  "title": "WhatsAppNotificationListResponse",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-one-api-openapi.json#/components/schemas/WhatsAppNotificationListResponse",
+  "type": "object",
+  "properties": {
+    "event": {
+      "$ref": "#/$defs/NotificationEventResponse"
+    },
+    "error": {
+      "$ref": "#/$defs/OmniResponseError"
+    },
+    "type": {
+      "type": "string",
+      "writeOnly": true,
+      "enum": [
+        "SUCCESS",
+        "MIXED",
+        "FAIL"
+      ]
+    }
+  },
+  "$defs": {
+    "NotificationEventResponse": {
+      "type": "object",
+      "properties": {
+        "messageStatusUpdate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NotificationResponse"
+          }
+        }
+      }
+    },
+    "NotificationResponse": {
+      "type": "object",
+      "properties": {
+        "apiEventId": {
+          "type": "string"
+        },
+        "accepted": {
+          "type": "boolean"
+        },
+        "messageId": {
+          "type": "string"
+        },
+        "clientEventId": {
+          "type": "string"
+        },
+        "error": {
+          "$ref": "#/$defs/OmniResponseError"
+        }
+      }
+    },
+    "OmniResponseError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "description": "<i>Error Code</i> value in ",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string",
+          "description": "<i>Error Message</i>"
+        }
+      }
+    }
+  }
+}

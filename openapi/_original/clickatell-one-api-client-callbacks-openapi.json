@@ -1,0 +1,954 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "One API Client Callbacks",
+    "version": "1.0.0",
+    "x-provenance": {
+      "method": "searched",
+      "source": "https://help.clickatell.com/developers-api-reference/ (OpenAPI fragments embedded verbatim in the GitBook .md twins, merged by info.title)",
+      "generated": "2026-10-13"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://customer-server/",
+      "description": "Customer server",
+      "variables": {}
+    }
+  ],
+  "tags": [
+    {
+      "name": "One API Client Callbacks",
+      "description": "<b>Forward Compatibility</b><br>While the basic callback structure will remain constant:<br><pre>\n{\n  \"integrationId\": \"string\",\n  \"integrationName\": \"string\",\n  \"event\": {}\n}</pre>There are constant additions to channels including new features and message types, and Clickatell will be adding these to the callbacks as they become available. <br><br>Customers are required to implement callback processing in such a way that new event types as well as additional parameters in an event type do not break callback processing in the customer system.<ul><li>Any HTTP 200 range status code response from client is considered an acknowledgement that the callback was successful. Anything else will be retried, excluding redirect status code.</li><li>Callback payloads and configurations are different (not backwards compatible).</li><li>In future, one HTTPS callback request may contain multiple events for efficiency, but for now batch sizes are always 1.</li><li>The events in callbacks may be out of sequence. User should look at timestamp fields to determine order.</li><li>Timestamps are millisecond unit timestamps.</li><li>If the customer application does not respond fast enough to HTTP/S callbacks, we will retry the callback. This means they may experience duplicate callbacks (due to the retries).</li><li>Customer can configure a callback URL for status event callbacks and another URL for MO messages. This helps to maintain low latency conversations by splitting the events.</li></ul>"
+    }
+  ],
+  "paths": {
+    "/client-callback/one-api-reply": {
+      "post": {
+        "tags": [
+          "One API Client Callbacks"
+        ],
+        "summary": "Example of a customer's One Api reply callback",
+        "operationId": "sendPostOmniReplyCallback",
+        "parameters": [],
+        "requestBody": {
+          "description": "Reply request to client",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OmniReplyCallbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/client-callback/one-api-status": {
+      "post": {
+        "tags": [
+          "One API Client Callbacks"
+        ],
+        "summary": "Example of a customer's One Api status callback",
+        "operationId": "sendPostOmniStatusCallback",
+        "parameters": [],
+        "requestBody": {
+          "description": "Status request to client",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OmniStatusCallbackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OmniReplyCallbackRequest": {
+        "type": "object",
+        "properties": {
+          "integrationId": {
+            "type": "string"
+          },
+          "integrationName": {
+            "type": "string"
+          },
+          "event": {
+            "$ref": "#/components/schemas/ReplyEvents"
+          }
+        }
+      },
+      "ReplyEvents": {
+        "type": "object",
+        "properties": {
+          "moText": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TextReply"
+            }
+          },
+          "moMedia": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MediaReply"
+            }
+          },
+          "moLocation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationReply"
+            }
+          },
+          "moContacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContactsReply"
+            }
+          },
+          "moSuggestedResponse": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SuggestedResponseReply"
+            }
+          },
+          "moListPickerResponse": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListPickerResponseReply"
+            }
+          },
+          "moButtonResponse": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ButtonResponseReply"
+            }
+          }
+        }
+      },
+      "TextReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "charset": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "sms": {
+            "$ref": "#/components/schemas/Sms"
+          }
+        }
+      },
+      "WhatsAppContent": {
+        "type": "object",
+        "properties": {
+          "profileName": {
+            "type": "string",
+            "description": "Users profile name as set up on their WA Client"
+          },
+          "referralInfo": {
+            "$ref": "#/components/schemas/ReferralInfo"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Business-Scoped User ID (BSUID) of the WhatsApp user. Format: CC.alphanumeric (max 131 chars). Always present for WhatsApp messages. Not encrypted for client-side encryption."
+          },
+          "parentUserId": {
+            "type": "string",
+            "description": "Parent BSUID for linked business portfolios. Format: CC.ENT.alphanumeric (max 135 chars). Present only if your company is an eligible enterprise explicitly enrolled in a Parent BSUID account. Not encrypted for client-side encryption."
+          },
+          "username": {
+            "type": "string",
+            "description": "WhatsApp username handle. Present only if the user has enabled a username. Encrypted for client-side encryption."
+          }
+        },
+        "description": "WhatsApp specific content"
+      },
+      "ReferralInfo": {
+        "type": "object",
+        "properties": {
+          "headline": {
+            "type": "string",
+            "description": "Headline used in the ad that generated the message."
+          },
+          "content": {
+            "type": "string",
+            "description": "Body from the ad that generated the message."
+          },
+          "sourceType": {
+            "type": "string",
+            "description": "The type of the ad\u2019s source.",
+            "enum": [
+              "ad",
+              "post"
+            ]
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Facebook ID for an ad or a post."
+          },
+          "sourceUrl": {
+            "type": "string",
+            "description": "The url that leads to the ad or post. Opening this url takes you to the ad viewed by your user."
+          }
+        }
+      },
+      "Sms": {
+        "type": "object",
+        "properties": {
+          "udh": {
+            "type": "string"
+          },
+          "network": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "MediaReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "caption": {
+            "type": "string"
+          }
+        },
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/InlineMediaReply"
+          },
+          {
+            "$ref": "#/components/schemas/ReferenceMediaReply"
+          }
+        ]
+      },
+      "InlineMediaReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "sha256Hash": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          }
+        }
+      },
+      "ReferenceMediaReply": {
+        "required": [
+          "files"
+        ],
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "caption": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "description": "An array of the file object with a list of media items that is attached to the inbound media message. This parameter is only applicable to MO event callbacks for media by reference ",
+            "items": {
+              "$ref": "#/components/schemas/ReferenceMediaFile"
+            }
+          }
+        }
+      },
+      "ReferenceMediaFile": {
+        "required": [
+          "byteSize",
+          "contentType",
+          "downloadUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "contentType": {
+            "type": "string",
+            "description": "Media content type for the media item"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "description": "Download URL to be used for downloading the media item"
+          },
+          "sha256Hash": {
+            "type": "string"
+          },
+          "byteSize": {
+            "type": "integer",
+            "description": "Byte size of the file to be downloaded",
+            "format": "int64"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "Original file name (if it is available)"
+          }
+        }
+      },
+      "LocationReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "charset": {
+            "type": "string",
+            "description": "Character encoding",
+            "default": "UTF-8"
+          },
+          "locationAddress": {
+            "type": "string",
+            "description": "Address of the location"
+          },
+          "locationName": {
+            "type": "string",
+            "description": "Name of the location"
+          },
+          "latitude": {
+            "type": "string",
+            "description": "Numeric latitude value expressed as a string"
+          },
+          "latitute": {
+            "type": "string",
+            "description": "Numeric latitude value expressed as a string"
+          },
+          "longitude": {
+            "type": "string",
+            "description": "Numeric longitude value expressed as a string"
+          }
+        }
+      },
+      "ContactsReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WhatsAppContact"
+            }
+          },
+          "charset": {
+            "type": "string"
+          }
+        }
+      },
+      "WhatsAppContact": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "addresses": {
+            "minItems": 1,
+            "type": "array",
+            "description": "List of address object. See request example WhatsApp Contacts: One message",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "birthday": {
+            "pattern": "YYYY-MM-DD",
+            "type": "string",
+            "description": "String date value."
+          },
+          "emails": {
+            "minItems": 1,
+            "type": "array",
+            "description": "List of the email object. See request example WhatsApp Contacts: One message",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "name": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "description": "Name object. See request example WhatsApp Contacts: One message"
+            },
+            "description": "Name object. See request example WhatsApp Contacts: One message"
+          },
+          "origin": {
+            "type": "string",
+            "description": "<b>WhatsApp inbound only</b><br>Indicates how the contact was shared by the user. <i>contact_request</i> means the contact was shared in direct response to a REQUEST_CONTACT_INFO button; <i>other</i> means the contact was shared organically (e.g. a forwarded vCard). Present only on inbound contact messages when supplied by WhatsApp; omitted when absent. Not encrypted for client-side encryption.",
+            "enum": [
+              "contact_request",
+              "other"
+            ]
+          },
+          "org": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "description": "See request example WhatsApp Contacts: One message"
+            },
+            "description": "See request example WhatsApp Contacts: One message"
+          },
+          "phones": {
+            "minItems": 1,
+            "type": "array",
+            "description": "List of the phone object. See request example WhatsApp Contacts: One message",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "urls": {
+            "minItems": 1,
+            "type": "array",
+            "description": "List of the url object. See request example WhatsApp Contacts: One message",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SuggestedResponseReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "charset": {
+            "type": "string"
+          },
+          "postbackData": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "ListPickerResponseReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "postbackData": {
+            "type": "string"
+          },
+          "selectedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SelectedButtonItem"
+            }
+          }
+        }
+      },
+      "SelectedButtonItem": {
+        "type": "object",
+        "properties": {
+          "postbackData": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "ButtonResponseReply": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "description": "Specifies the channel which is used with the specified message",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "messageId": {
+            "type": "string",
+            "description": "Id of a message that originated from client"
+          },
+          "relatedMessageId": {
+            "type": "string",
+            "description": "Id of a message to which client responds"
+          },
+          "relatedClientMessageId": {
+            "type": "string",
+            "description": "Id which was specified in <i>clientMessageId</i> field"
+          },
+          "from": {
+            "type": "string",
+            "description": "Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages."
+          },
+          "to": {
+            "type": "string",
+            "description": "Receiver phone number"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp when the system received the message in milliseconds",
+            "format": "int64"
+          },
+          "encryptionKey": {
+            "type": "string",
+            "description": "<b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter"
+          },
+          "whatsapp": {
+            "$ref": "#/components/schemas/WhatsAppContent"
+          },
+          "postbackData": {
+            "type": "string"
+          },
+          "selectedItem": {
+            "$ref": "#/components/schemas/SelectedButtonItem"
+          }
+        }
+      },
+      "OmniStatusCallbackRequest": {
+        "type": "object",
+        "properties": {
+          "integrationId": {
+            "type": "string"
+          },
+          "integrationName": {
+            "type": "string"
+          },
+          "event": {
+            "$ref": "#/components/schemas/StatusEvents"
+          }
+        }
+      },
+      "StatusEvents": {
+        "type": "object",
+        "properties": {
+          "messageStatusUpdate": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MessageStatus"
+            }
+          },
+          "messageFallback": {
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/FallbackStatus"
+            }
+          },
+          "statusIsTyping": {
+            "type": "array",
+            "readOnly": true,
+            "items": {
+              "$ref": "#/components/schemas/TypingStatus"
+            }
+          }
+        }
+      },
+      "MessageStatus": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "messageId": {
+            "type": "string"
+          },
+          "clientMessageId": {
+            "type": "string"
+          }
+        }
+      },
+      "FallbackStatus": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "statusDescription": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "messageId": {
+            "type": "string"
+          },
+          "clientMessageId": {
+            "type": "string"
+          }
+        }
+      },
+      "TypingStatus": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string",
+            "enum": [
+              "sms",
+              "whatsapp"
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "from": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

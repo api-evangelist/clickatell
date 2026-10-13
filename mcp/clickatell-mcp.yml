@@ -1,11 +1,166 @@
-generated: '2026-10-09'
+generated: '2026-10-13'
 method: derived
-type: MCPServer
-source: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/clickatell-chat-2-pay-api-api-openapi.yml
+- openapi/clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml
+- openapi/clickatell-external-link-callback-api-openapi.yml
+- openapi/clickatell-one-api-api-openapi.yml
+- openapi/clickatell-one-api-client-callbacks-api-openapi.yml
+- openapi/clickatell-sms-api-api-openapi.yml
+- openapi/clickatell-sms-client-callbacks-api-openapi.yml
+- openapi/clickatell-wait-for-callback-api-openapi.yml
+status: candidate
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
   auth: unknown
-  verified: derived
+  verified: probed
+note: No MCP server was found. The pre-flight posted tools/list to /mcp on api.clickatell.com, www.clickatell.com, app.clickatell.com, help.clickatell.com;
+  verdict absent. Candidate tools below are derived from the 29 operation(s) in the provider's own OpenAPI (29 listed); they describe what a server
+  WOULD expose, not one that exists.
+tools:
+- name: update_integration_status
+  operationId: updateIntegrationStatus
+  method: PUT
+  path: /api/v2/integration
+  description: Update application's integration status
+- name: test_transaction_status_change_notification
+  operationId: testTransactionStatusChangeNotification
+  method: POST
+  path: /api/v2/callback/transaction-status
+  description: Transaction status change notification
+- name: post_callback
+  operationId: postCallback
+  method: POST
+  path: /callback
+  description: Direct an end-user to an external web page
+- name: message_status
+  operationId: messageStatus
+  method: GET
+  path: /v1/message/{omniMessageId}
+  description: Query status of a message
+- name: send_post_omni_reply_callback
+  operationId: sendPostOmniReplyCallback
+  method: POST
+  path: /client-callback/one-api-reply
+  description: Example of a customer's One Api reply callback
+- name: send_message_rest_1
+  operationId: sendMessageREST_1
+  method: POST
+  path: /messages
+  description: Send message via REST integration
+- name: send_get_sms_status_callback
+  operationId: sendGetSmsStatusCallback
+  method: GET
+  path: /client-callback/sms-status
+  description: Example of a customer's sms status end-point
+- name: post_chat_callback
+  operationId: postChatCallback
+  method: POST
+  path: /chat/callback
+  description: Wait for an external system to initiate a callback
+- name: reverse_transaction
+  operationId: reverseTransaction
+  method: POST
+  path: /api/v2/payment/{paymentLinkRef}/reverse
+  description: Reverse authorization and void a capture
+- name: test_payment_status_change_notification
+  operationId: testPaymentStatusChangeNotification
+  method: POST
+  path: /api/v2/callback/payment-status
+  description: Payment status change notification
+- name: send_messages
+  operationId: sendMessages
+  method: POST
+  path: /v1/message
+  description: Send one or more messages
+- name: send_post_omni_status_callback
+  operationId: sendPostOmniStatusCallback
+  method: POST
+  path: /client-callback/one-api-status
+  description: Example of a customer's One Api status callback
+- name: send_bulk_message_rest
+  operationId: sendBulkMessageREST
+  method: POST
+  path: /messages/rest/bulk
+  description: Send bulk messages via REST integration
+- name: send_post_sms_status_callback
+  operationId: sendPostSmsStatusCallback
+  method: POST
+  path: /client-callback/sms-status
+  description: Example of a customer's sms status end-point
+- name: capture_payment
+  operationId: capturePayment
+  method: POST
+  path: /api/v2/payment/{paymentLinkRef}/capture
+  description: Request to capture the payment amount
+- name: test_config_change_notification
+  operationId: testConfigChangeNotification
+  method: POST
+  path: /api/v2/callback/config-change
+  description: Chat 2 Pay configuration change notification
+- name: send_business_status_notification
+  operationId: sendBusinessStatusNotification
+  method: POST
+  path: /v1/notification
+  description: Send Business Read status notification
+- name: send_message_http
+  operationId: sendMessageHTTP
+  method: GET
+  path: /messages/http/send
+  description: Send message via HTTP integration
+- name: send_get_sms_reply_callback
+  operationId: sendGetSmsReplyCallback
+  method: GET
+  path: /client-callback/sms-reply
+  description: Example of a customer's sms status end-point
+- name: create_pay_by_link_transaction_log
+  operationId: createPayByLinkTransactionLog
+  method: POST
+  path: /api/v2/chat-2-pay
+  description: Generate and send a payment link
+- name: get_metadata
+  operationId: getMetadata
+  method: GET
+  path: /v1/media/{fileId}
+  description: Get media file metadata
+- name: send_post_sms_reply_callback
+  operationId: sendPostSmsReplyCallback
+  method: POST
+  path: /client-callback/sms-reply
+  description: Example of a customer's sms reply end-point
+- name: create_payment_receipt
+  operationId: createPaymentReceipt
+  method: POST
+  path: /api/v2/order-receipt
+  description: Create payment receipt
+- name: download_file
+  operationId: downloadFile
+  method: GET
+  path: /v1/media
+  description: Media Download
+- name: cancel_link
+  operationId: cancelLink
+  method: POST
+  path: /api/v2/cancel/{paymentLinkRef}
+  description: Cancels a payment link
+- name: upload_file
+  operationId: uploadFile
+  method: POST
+  path: /v1/media
+  description: Upload media file for One Api
+- name: get_transaction_status
+  operationId: getTransactionStatus
+  method: GET
+  path: /api/v2/chat-2-pay/transaction-status
+  description: Get transaction details
+- name: account_messaging_balance
+  operationId: accountMessagingBalance
+  method: GET
+  path: /v1/balance
+  description: Return information about account balance
+- name: get_config_settings
+  operationId: getConfigSettings
+  method: GET
+  path: /api/v2/config
+  description: Get Chat 2 Pay configuration

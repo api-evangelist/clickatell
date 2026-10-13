@@ -1,34 +1,425 @@
-#  Augment | The Secondary Marketplace for Private Stock
-> Augment is a FINRA-registered marketplace that allows accredited investors to buy and sell shares in over 300 pre-IPO companies, providing a seamless platform for secondary market transactions with low investment minimums starting at $10K.
+# Clickatell User Guides
+
+## Clickatell Chat Commerce Platform
+
+- [Clickatell Chat Commerce Platform](https://help.clickatell.com/clickatell-chat-commerce-platform.md): Your key to digital transformation.
+- [Connect](https://help.clickatell.com/platform-packages/connect.md): Outbound messaging at scale.
+- [Interact](https://help.clickatell.com/platform-packages/interact.md): Two-way conversational messaging.
+- [Transact](https://help.clickatell.com/platform-packages/transact.md): Digital commerce in messaging.
+- [Upgrades & extras](https://help.clickatell.com/platform-packages/upgrades-and-extras.md): Extend the functionality of your chat commerce solution.
+- [Features by package](https://help.clickatell.com/platform-packages/features-by-package.md): A break-down of all the features included per package.
+- [Messaging channels](https://help.clickatell.com/platform-capabilities/messaging-channels.md)
+- [Global SMS](https://help.clickatell.com/platform-capabilities/messaging-channels/global-sms.md)
+- [WhatsApp Business](https://help.clickatell.com/platform-capabilities/messaging-channels/whatsapp-business.md)
+- [Apple Messages for Business](https://help.clickatell.com/platform-capabilities/messaging-channels/apple-messages-for-business.md)
+- [Regional USSD](https://help.clickatell.com/platform-capabilities/messaging-channels/regional-ussd.md)
+- [Broadcast Messenger](https://help.clickatell.com/platform-capabilities/broadcast-messenger.md)
+- [Broadcast Messenger](https://help.clickatell.com/platform-capabilities/broadcast-messenger-1.md): Amplify your marketing impact with Broadcast Messenger.
+- [SMS Campaign Manager](https://help.clickatell.com/platform-capabilities/broadcast-messenger-1/sms-campaign-manager.md)
+- [Automations](https://help.clickatell.com/platform-capabilities/automations.md): Build meaningful conversations with your customers using Chat Flow.
+- [Live Agent Chat](https://help.clickatell.com/platform-capabilities/live-agent-chat.md): Deliver better customer service experiences with Chat Desk.
+- [Digital Commerce](https://help.clickatell.com/platform-capabilities/digital-commerce.md): Send a message, receive a payment.
+- [Artificial Intelligence](https://help.clickatell.com/platform-capabilities/artificial-intelligence.md): Chat has never been more intelligent.
+- [Integrations](https://help.clickatell.com/platform-capabilities/integrations.md): Integrations to take chat commerce even further.
+- [Dashboards in Clickatell Portal](https://help.clickatell.com/data-and-analytics/dashboards-in-clickatell-portal.md)
+- [Messaging channels](https://help.clickatell.com/data-and-analytics/dashboards-in-clickatell-portal/messaging-channels.md)
+- [Chat Desk (Agent Service Desk )](https://help.clickatell.com/data-and-analytics/dashboards-in-clickatell-portal/chat-desk-agent-service-desk.md)
+- [Chat Flow (Automations)](https://help.clickatell.com/data-and-analytics/dashboards-in-clickatell-portal/chat-flow-automations.md)
+- [Chat 2 Pay (Payments)](https://help.clickatell.com/data-and-analytics/dashboards-in-clickatell-portal/chat-2-pay-payments.md)
+- [Integrations](https://help.clickatell.com/data-and-analytics/dashboards-in-clickatell-portal/integrations.md)
+- [Raw Data Access](https://help.clickatell.com/data-and-analytics/raw-data-access.md)
+- [User Portal](https://help.clickatell.com/clickatell-user-portal/user-portal.md)
+- [View & edit API integrations](https://help.clickatell.com/clickatell-user-portal/user-portal/view-and-edit-api-integrations.md)
+- [Account Management](https://help.clickatell.com/clickatell-user-portal/user-portal/account-management.md)
+- [Account details](https://help.clickatell.com/clickatell-user-portal/user-portal/account-management/account-details.md)
+- [Billing and Payments](https://help.clickatell.com/clickatell-user-portal/user-portal/account-management/billing-and-payments.md)
+- [Profile settings](https://help.clickatell.com/clickatell-user-portal/user-portal/account-management/profile-settings.md)
+- [My Purchases](https://help.clickatell.com/clickatell-user-portal/user-portal/account-management/my-purchases.md)
+- [User Management](https://help.clickatell.com/clickatell-user-portal/user-portal/user-management.md)
+- [Definitions of User Permissions](https://help.clickatell.com/clickatell-user-portal/user-portal/definitions-of-user-permissions.md)
+- [Help & Message Center](https://help.clickatell.com/clickatell-user-portal/user-portal/help-and-message-center.md)
+- [Multi-Factor Authentication](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication.md)
+- [How to enable MFA on your account](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/how-to-enable-mfa-on-your-account.md)
+- [How to disable MFA on your account](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/how-to-disable-mfa-on-your-account.md)
+- [How to reset a user's MFA](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/how-to-reset-a-users-mfa.md)
+- [Security Events](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/security-events.md)
+- [What to do if a user is locked out](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/what-to-do-if-a-user-is-locked-out.md)
+- [What to do if you cannot access your authenticator app](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/what-to-do-if-you-cannot-access-your-authenticator-app.md)
+- [How to set up MFA for each user](https://help.clickatell.com/clickatell-user-portal/user-portal/multi-factor-authentication/how-to-set-up-mfa-for-each-user.md)
+- [Infrastructure & Support](https://help.clickatell.com/clickatell-user-portal/infrastructure-and-support.md)
+- [Security & Compliance](https://help.clickatell.com/clickatell-user-portal/security-and-compliance.md)
+- [Customer Enablement Services](https://help.clickatell.com/clickatell-user-portal/customer-enablement-services.md)
+- [All User Guides](https://help.clickatell.com/help-and-information/all-user-guides.md): An index with links to all Clickatell's user guides.
+
+## WhatsApp
+
+- [WhatsApp](https://help.clickatell.com/whatsapp/getting-started/whatsapp.md)
+- [Quick start guide (WhatsApp)](https://help.clickatell.com/whatsapp/getting-started/quick-start-guide-whatsapp.md)
+- [Create a WhatsApp Business account](https://help.clickatell.com/whatsapp/getting-started/create-a-whatsapp-business-account.md)
+- [Add & manage WhatsApp Business profiles](https://help.clickatell.com/whatsapp/getting-started/add-and-manage-whatsapp-business-profiles.md)
+- [Test your integration](https://help.clickatell.com/whatsapp/getting-started/test-your-integration.md)
+- [Get business verified](https://help.clickatell.com/whatsapp/getting-started/get-business-verified.md)
+- [Initiate WhatsApp conversations](https://help.clickatell.com/whatsapp/getting-started/initiate-whatsapp-conversations.md)
+- [Message types](https://help.clickatell.com/whatsapp/channel-capabilities/message-types.md)
+- [WhatsApp message templates](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates.md)
+- [Add message templates](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/add-message-templates.md)
+- [Send message templates](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/send-message-templates.md)
+- [Use media in message templates](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/use-media-in-message-templates.md)
+- [Use location in message templates](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/use-location-in-message-templates.md)
+- [Use interactive buttons in message templates](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/use-interactive-buttons-in-message-templates.md)
+- [Showcase product catalog in message template](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/showcase-product-catalog-in-message-template.md)
+- [Message templates: best practices & examples](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/message-templates-best-practices-and-examples.md)
+- [Message template rejection reasons](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-message-templates/message-template-rejection-reasons.md)
+- [Interactive messages: lists, reply buttons, location requests](https://help.clickatell.com/whatsapp/channel-capabilities/interactive-messages-lists-reply-buttons-location-requests.md)
+- [Ads That Click to WhatsApp](https://help.clickatell.com/whatsapp/channel-capabilities/ads-that-click-to-whatsapp.md)
+- [WhatsApp Commerce Messages](https://help.clickatell.com/whatsapp/channel-capabilities/whatsapp-commerce-messages.md)
+- [Conversational Components](https://help.clickatell.com/whatsapp/channel-capabilities/conversational-components.md)
+- [Icebreakers](https://help.clickatell.com/whatsapp/channel-capabilities/conversational-components/icebreakers.md)
+- [Commands](https://help.clickatell.com/whatsapp/channel-capabilities/conversational-components/commands.md)
+- [Reporting & Analytics](https://help.clickatell.com/whatsapp/channel-capabilities/reporting-and-analytics.md)
+- [What's New? 🎈](https://help.clickatell.com/whatsapp/help-and-information/whats-new.md): Read more about new features, improvements, and bug fixes contained in the latest release of Clickatell's WhatsApp channel offering.
+
+## SMS
+
+- [SMS Overview](https://help.clickatell.com/sms/getting-started/sms-overview.md)
+- [Quick start guide (SMS)](https://help.clickatell.com/sms/getting-started/quick-start-guide-sms.md)
+- [Activate SMS](https://help.clickatell.com/sms/getting-started/activate-sms.md)
+- [Add new SMS setups](https://help.clickatell.com/sms/getting-started/add-new-sms-setups.md)
+- [Add Campaign Manager](https://help.clickatell.com/sms/getting-started/add-new-sms-setups/add-campaign-manager.md)
+- [View & edit SMS setups](https://help.clickatell.com/sms/getting-started/view-and-edit-sms-setups.md)
+- [Add, view, and edit SMS numbers](https://help.clickatell.com/sms/getting-started/add-view-and-edit-sms-numbers.md)
+- [Add, view, and edit test phones](https://help.clickatell.com/sms/getting-started/add-view-and-edit-test-phones.md)
+- [1-way SMS communication](https://help.clickatell.com/sms/1-way-sms-communication.md)
+- [2-way SMS communication](https://help.clickatell.com/sms/2-way-sms-communication.md)
+- [Long numbers](https://help.clickatell.com/sms/long-numbers.md)
+- [Short codes](https://help.clickatell.com/sms/short-codes.md)
+- [Reporting & Analytics](https://help.clickatell.com/sms/reporting-and-analytics.md)
+- [What is 10DLC?](https://help.clickatell.com/sms/10dlc-regulations-us/what-is-10dlc.md)
+- [Apply for a 10DLC brand and campaign](https://help.clickatell.com/sms/10dlc-regulations-us/apply-for-a-10dlc-brand-and-campaign.md)
+- [Apply for additional 10DLC brands and campaigns](https://help.clickatell.com/sms/10dlc-regulations-us/apply-for-additional-10dlc-brands-and-campaigns.md)
+- [Register an existing US long number](https://help.clickatell.com/sms/10dlc-regulations-us/register-an-existing-us-long-number.md)
+- [View your brand and campaign details](https://help.clickatell.com/sms/10dlc-regulations-us/view-your-brand-and-campaign-details.md)
+- [Resubmit a brand](https://help.clickatell.com/sms/10dlc-regulations-us/resubmit-a-brand.md)
+
+## USSD
+
+- [Overview](https://help.clickatell.com/ussd-user-guide/getting-started/overview.md)
+- [USSD features](https://help.clickatell.com/ussd-user-guide/getting-started/ussd-features.md)
+- [Service codes](https://help.clickatell.com/ussd-user-guide/getting-started/service-codes.md)
+- [Onboarding to USSD](https://help.clickatell.com/ussd-user-guide/getting-started/onboarding-to-ussd.md)
+
+## Broadcast Messenger
+
+- [Broadcast Messenger](https://help.clickatell.com/broadcast-messenger/overview/broadcast-messenger.md)
+- [Activate Broadcast Messenger (self-serve)](https://help.clickatell.com/broadcast-messenger/overview/activate-broadcast-messenger-self-serve.md)
+- [Quick Start](https://help.clickatell.com/broadcast-messenger/manage-campaigns/quick-start.md)
+- [View campaign list](https://help.clickatell.com/broadcast-messenger/manage-campaigns/campaign-list.md)
+- [Add a new campaign](https://help.clickatell.com/broadcast-messenger/manage-campaigns/add-a-new-campaign.md)
+- [Predictive analytics](https://help.clickatell.com/broadcast-messenger/manage-campaigns/predictive-analytics.md)
+- [View details & manage campaigns](https://help.clickatell.com/broadcast-messenger/manage-campaigns/view-details-and-manage-campaigns.md)
+- [Campaign statuses](https://help.clickatell.com/broadcast-messenger/manage-campaigns/campaign-statuses.md)
+- [Message templates](https://help.clickatell.com/broadcast-messenger/manage-campaigns/message-templates.md)
+- [View responses](https://help.clickatell.com/broadcast-messenger/responses-and-opt-outs/view-responses.md)
+- [Manage opt-outs](https://help.clickatell.com/broadcast-messenger/responses-and-opt-outs/manage-opt-outs.md)
+- [Campaign Details Summary](https://help.clickatell.com/broadcast-messenger/reporting-and-analytics/campaign-details-summary.md)
+- [Clickatell Portal Reports](https://help.clickatell.com/broadcast-messenger/reporting-and-analytics/clickatell-portal-reports.md)
+- [What's New? 🎈](https://help.clickatell.com/broadcast-messenger/help-and-information/whats-new.md): Read more about new features, improvements, and bug fixes contained in the latest release of Clickatell's Broadcast Messenger tool.
+
+## Chat Desk
+
+- [Chat Desk](https://help.clickatell.com/chat-desk/overview/overview.md)
+- [The Chat Desk dashboard](https://help.clickatell.com/chat-desk/chat-desk-dashboard/dashboard.md)
+- [Configure Chat Desk settings](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings.md)
+- [Business profile](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/about-your-business.md)
+- [Chat tags](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/tags-management.md)
+- [Auto responders](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/auto-responders.md)
+- [Preferences](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/chat-desk.md)
+- [Surveys](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/survey-management.md)
+- [Canned replies](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/canned-replies.md)
+- [Integrations](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/integrations.md)
+- [Clickatell AI](https://help.clickatell.com/chat-desk/chat-desk-dashboard/settings/clickatell-ai.md)
+- [Manage departments](https://help.clickatell.com/chat-desk/chat-desk-dashboard/departments-management.md)
+- [Download transcripts](https://help.clickatell.com/chat-desk/chat-desk-dashboard/download-transcripts.md)
+- [Access & navigate the Agent Desk](https://help.clickatell.com/chat-desk/agent-desk/accessing-the-agent-desk.md)
+- [Manage chat queues (Agent Desk)](https://help.clickatell.com/chat-desk/agent-desk/manage-chat-queues-agent-desk.md)
+- [Chats and tickets](https://help.clickatell.com/chat-desk/agent-desk/manage-chat-queues-agent-desk/chats-and-tickets.md)
+- [Manage tickets](https://help.clickatell.com/chat-desk/agent-desk/manage-chat-queues-agent-desk/manage-tickets.md)
+- [Pending chats](https://help.clickatell.com/chat-desk/agent-desk/manage-chat-queues-agent-desk/pending-chats.md)
+- [Close chats](https://help.clickatell.com/chat-desk/agent-desk/manage-chat-queues-agent-desk/close-chat.md)
+- [Department chat indicator](https://help.clickatell.com/chat-desk/agent-desk/manage-chat-queues-agent-desk/department-chat-indicator.md)
+- [Search, filter, and sort chats & tickets](https://help.clickatell.com/chat-desk/agent-desk/search-and-filter-chats.md)
+- [Chat capabilities](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities.md)
+- [Send attachments (media files)](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/send-attachments-media-files.md)
+- [Send voice recordings](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/voice-recordings.md)
+- [Send emoticons](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/send-emoticons.md)
+- [Share locations](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/location-sharing.md)
+- [Use canned replies](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/use-canned-replies.md)
+- [View chat events](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/keeping-track-of-chat-events.md)
+- [Send 1-way SMS](https://help.clickatell.com/chat-desk/agent-desk/chat-capabilities/send-1-way-sms.md)
+- [Access suggested responses](https://help.clickatell.com/chat-desk/agent-desk/agent-assistant.md)
+- [Authenticate customers](https://help.clickatell.com/chat-desk/agent-desk/authenticate-customers.md)
+- [Send payment requests via Chat 2 Pay](https://help.clickatell.com/chat-desk/agent-desk/send-payment-requests-via-chat-2-pay.md)
+- [View customer details from 3rd party applications](https://help.clickatell.com/chat-desk/agent-desk/view-customer-details-from-3rd-party-applications.md)
+- [Send WhatsApp message templates](https://help.clickatell.com/chat-desk/agent-desk/send-whatsapp-message-templates.md)
+- [Transfer chats](https://help.clickatell.com/chat-desk/agent-desk/transfer-chats.md)
+- [Manage customer profile](https://help.clickatell.com/chat-desk/agent-desk/chat-details-and-history.md)
+- [AI assistant](https://help.clickatell.com/chat-desk/ai-assistant.md)
+- [Access & navigate the Supervisor Desk](https://help.clickatell.com/chat-desk/supervisor-desk/inbox.md)
+- [Manage chat queues (Supervisor Desk)](https://help.clickatell.com/chat-desk/supervisor-desk/manage-chat-queues-supervisor-desk.md)
+- [Chats and tickets](https://help.clickatell.com/chat-desk/supervisor-desk/manage-chat-queues-supervisor-desk/chats-and-tickets.md)
+- [Manage tickets](https://help.clickatell.com/chat-desk/supervisor-desk/manage-chat-queues-supervisor-desk/assigning-and-routing-tickets.md)
+- [Search, filter, and sort chats & tickets](https://help.clickatell.com/chat-desk/supervisor-desk/search-and-filter.md)
+- [Chat ratings](https://help.clickatell.com/chat-desk/chat-ratings.md)
+- [AI assistant](https://help.clickatell.com/chat-desk/ai-assistant-1.md)
+- [Dashboard Metrics](https://help.clickatell.com/chat-desk/reporting-and-analytics/dashboard-metrics.md)
+- [Clickatell Portal Reports](https://help.clickatell.com/chat-desk/reporting-and-analytics/clickatell-portal-reports.md)
+- [What's New? 🎈](https://help.clickatell.com/chat-desk/help-and-information/whats-new.md): Read more about new features, improvements, and bug fixes contained in the latest release of Clickatell's Chat Desk application.
+
+## Chat Flow
+
+- [Chat Flow](https://help.clickatell.com/chat-flow/overview/overview.md)
+- [Quick Start](https://help.clickatell.com/chat-flow/overview/quick-start.md)
+- [Access Chat Flow](https://help.clickatell.com/chat-flow/configuration/access-chat-flow.md)
+- [Configure a route](https://help.clickatell.com/chat-flow/configuration/to-manage-a-route.md)
+- [Add an API integration](https://help.clickatell.com/chat-flow/configuration/api-integration.md)
+- [Set up keywords](https://help.clickatell.com/chat-flow/configuration/using-keywords.md)
+- [Set up session timeout events](https://help.clickatell.com/chat-flow/configuration/set-up-session-timeout-events.md)
+- [Manage your workflow assets](https://help.clickatell.com/chat-flow/configuration/manage-your-workflow-assets.md)
+- [Configure channel display type](https://help.clickatell.com/chat-flow/channel-capabilities/configure-channel-display-type.md)
+- [Use WhatsApp with Chat Flow](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow.md)
+- [Initiate WhatsApp conversations](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow/initiate-whatsapp-conversations.md)
+- [Send WhatsApp message templates](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow/send-whatsapp-message-templates.md)
+- [Map URL to button in free-form message](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow/map-url-to-button-in-free-form-message.md)
+- [WhatsApp Interactive Messages](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow/whatsapp-interactive-messages.md)
+- [WhatsApp Commerce Messages](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow/whatsapp-commerce-messages.md)
+- [Meta's Conversion Events for WhatsApp Ads](https://help.clickatell.com/chat-flow/channel-capabilities/use-whatsapp-with-chat-flow/metas-conversion-events-for-whatsapp-ads.md)
+- [Use Web Chat with Chat Flow](https://help.clickatell.com/chat-flow/channel-capabilities/use-web-chat-with-chat-flow.md)
+- [Link Web Chat to a Flow](https://help.clickatell.com/chat-flow/channel-capabilities/use-web-chat-with-chat-flow/link-web-chat-to-a-flow.md)
+- [Use Apple Messaging for Business with Chat Flow](https://help.clickatell.com/chat-flow/channel-capabilities/use-apple-messaging-for-business-with-chat-flow.md)
+- [Apple Interactive Messages](https://help.clickatell.com/chat-flow/channel-capabilities/use-apple-messaging-for-business-with-chat-flow/apple-interactive-messages.md)
+- [Apple User-Facing Nodes](https://help.clickatell.com/chat-flow/channel-capabilities/use-apple-messaging-for-business-with-chat-flow/apple-user-facing-nodes.md)
+- [Build a workflow](https://help.clickatell.com/chat-flow/workflow-management/create-new-flow.md)
+- [Add a workflow](https://help.clickatell.com/chat-flow/workflow-management/create-new-flow/add-a-workflow.md)
+- [Delete and restore nodes](https://help.clickatell.com/chat-flow/workflow-management/create-new-flow/view-and-retrieve-deleted-nodes-from-the-archive-section.md)
+- [Repeat a step in a workflow](https://help.clickatell.com/chat-flow/workflow-management/create-new-flow/repeating-a-step.md)
+- [Dynamic API Workflows](https://help.clickatell.com/chat-flow/workflow-management/create-new-flow/dynamic-api-workflows.md)
+- [Clickatell AI Flow Summary](https://help.clickatell.com/chat-flow/workflow-management/create-new-flow/clickatell-ai-flow-summary.md)
+- [Edit/delete a workflow](https://help.clickatell.com/chat-flow/workflow-management/open-an-existing-flow.md)
+- [Search, Find & Replace in a workflow](https://help.clickatell.com/chat-flow/workflow-management/search-find-and-replace-in-a-workflow.md)
+- [Duplicate, rename, or move a workflow](https://help.clickatell.com/chat-flow/workflow-management/duplicate-rename-or-move-flow.md)
+- [Preview workflows](https://help.clickatell.com/chat-flow/workflow-management/using-the-previewer.md)
+- [Preview flow on different channels](https://help.clickatell.com/chat-flow/workflow-management/using-the-previewer/preview-flow-on-different-channels.md)
+- [Preview logs](https://help.clickatell.com/chat-flow/workflow-management/using-the-previewer/preview-logs.md)
+- [Approve and deploy workflows](https://help.clickatell.com/chat-flow/workflow-management/approving-deploying-workflows.md)
+- [View flow details](https://help.clickatell.com/chat-flow/workflow-management/approving-deploying-workflows/manage-existing-flows.md)
+- [Submit a workflow for approval](https://help.clickatell.com/chat-flow/workflow-management/approving-deploying-workflows/submit-a-workflow-for-approval.md)
+- [Approve/decline a workflow](https://help.clickatell.com/chat-flow/workflow-management/approving-deploying-workflows/approve-decline-a-workflow.md)
+- [Deploy a workflow to production](https://help.clickatell.com/chat-flow/workflow-management/approving-deploying-workflows/deploy-a-workflow-to-production.md)
+- [Display nodes](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes.md)
+- [Contact Sending](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/menu-nodes-contact-sending.md)
+- [External Link](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/menu-nodes-external-link.md)
+- [Location sharing](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/location-sharing.md)
+- [Media](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/user-facing-interactions-media-node.md)
+- [OTP Menu](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/otp-menu.md)
+- [Rich Link](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/rich-link.md)
+- [Text Display](https://help.clickatell.com/chat-flow/user-facing-nodes/display-nodes/text-display.md)
+- [Product nodes](https://help.clickatell.com/chat-flow/user-facing-nodes/product-nodes.md)
+- [Clickatell AI node](https://help.clickatell.com/chat-flow/user-facing-nodes/product-nodes/clickatell-ai-node.md)
+- [Chat Desk node](https://help.clickatell.com/chat-flow/user-facing-nodes/product-nodes/chat-desk-node.md)
+- [Input nodes](https://help.clickatell.com/chat-flow/user-facing-nodes/input-nodes.md)
+- [Contact Receiving](https://help.clickatell.com/chat-flow/user-facing-nodes/input-nodes/contact-receiving.md)
+- [OAuth Request](https://help.clickatell.com/chat-flow/user-facing-nodes/input-nodes/oauth-request.md)
+- [Request Input](https://help.clickatell.com/chat-flow/user-facing-nodes/input-nodes/menu-nodes-ask-for-input.md)
+- [Send Form](https://help.clickatell.com/chat-flow/user-facing-nodes/input-nodes/send-form.md)
+- [Time Picker](https://help.clickatell.com/chat-flow/user-facing-nodes/input-nodes/time-picker.md)
+- [Commerce](https://help.clickatell.com/chat-flow/user-facing-nodes/commerce.md)
+- [Chat 2 Pay](https://help.clickatell.com/chat-flow/user-facing-nodes/commerce/chat-2-pay.md)
+- [Multi Product](https://help.clickatell.com/chat-flow/user-facing-nodes/commerce/multiple-product.md)
+- [Branch/logic split](https://help.clickatell.com/chat-flow/user-facing-nodes/branch-logic-split.md)
+- [Dynamic List](https://help.clickatell.com/chat-flow/user-facing-nodes/branch-logic-split/menu-nodes-dynamic-list.md)
+- [Apply patterns, custom indexes, filtering, and exclusions](https://help.clickatell.com/chat-flow/user-facing-nodes/branch-logic-split/menu-nodes-dynamic-list/apply-patterns-custom-indexes-filtering-and-exclusions.md)
+- [Menu](https://help.clickatell.com/chat-flow/user-facing-nodes/branch-logic-split/menu-nodes-menu-with-options.md)
+- [Multiple Choice Input](https://help.clickatell.com/chat-flow/user-facing-nodes/branch-logic-split/menu-nodes-multiple-choice-input.md)
+- [API Integration](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-api-integration.md)
+- [Calculate](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-math.md)
+- [Date Format](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-date-format.md)
+- [Display List](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-display-list.md)
+- [Encrypt](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-encrypt.md)
+- [Is Empty](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-is-empty.md)
+- [Is Null](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-is-null.md)
+- [Number Format](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-number-format.md)
+- [Regular Expression](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-regular-expression.md)
+- [Remap](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-remap.md)
+- [Send Template](https://help.clickatell.com/chat-flow/action-nodes/send-template.md)
+- [Set Variable](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-set-variables.md)
+- [Switch Case](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-switch-case.md)
+- [Wait For Callback](https://help.clickatell.com/chat-flow/action-nodes/action-nodes-wait-for-callback.md)
+- [Opt-Out](https://help.clickatell.com/chat-flow/action-nodes/opt-out.md)
+- [Contact Book](https://help.clickatell.com/chat-flow/action-nodes/contact-book.md)
+- [Integration nodes](https://help.clickatell.com/chat-flow/integrations/integration-nodes.md)
+- [Using system variables](https://help.clickatell.com/chat-flow/variable-management-1.md)
+- [Referring to variables](https://help.clickatell.com/chat-flow/untitled-1.md)
+- [Analytics Settings](https://help.clickatell.com/chat-flow/reporting-and-analytics/analytics-settings.md)
+- [Collections & reporting labels](https://help.clickatell.com/chat-flow/reporting-and-analytics/collections-and-reporting-labels.md)
+- [Clickatell Portal Reports](https://help.clickatell.com/chat-flow/reporting-and-analytics/clickatell-portal-reports.md)
+- [System Error Codes](https://help.clickatell.com/chat-flow/system-error-codes/system-error-codes.md)
+- [What's New? 🎈](https://help.clickatell.com/chat-flow/help-and-information/whats-new.md): Read more about new features, improvements, and bug fixes contained in the latest release of Clickatell's Chat Flow application.
+
+## Chat 2 Pay
+
+- [Chat 2 Pay](https://help.clickatell.com/chat-2-pay/overview/master.md)
+- [How do I use Chat 2 Pay?](https://help.clickatell.com/chat-2-pay/overview/how-do-i-use-chat-2-pay.md)
+- [Configure Chat 2 Pay](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/configure-chat-2-pay.md)
+- [Add Setup Name](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/configure-chat-2-pay/add-setup-name.md)
+- [Configure Payment Settings](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/configure-chat-2-pay/step-3-configure-the-extension.md)
+- [Add Message Configurations](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/configure-chat-2-pay/add-message-configurations.md)
+- [Manage Callback Notifications](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/configure-chat-2-pay/manage-callback-notifications.md)
+- [Salesforce](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/configure-chat-2-pay/manage-callback-notifications/salesforce.md)
+- [3D Secure 1.0 and 2.0](https://help.clickatell.com/chat-2-pay/configure-chat-2-pay/3d-secure-1.0-and-2.0.md)
+- [Clickatell Portal Reports](https://help.clickatell.com/chat-2-pay/reporting-and-analytics/clickatell-portal-reports.md)
+
+## Clickatell AI
+
+- [Clickatell AI](https://help.clickatell.com/clickatell-ai/overview/clickatell-ai.md)
+- [Quick Start](https://help.clickatell.com/clickatell-ai/overview/quick-start.md)
+- [Overview](https://help.clickatell.com/clickatell-ai/assistants/overview.md)
+- [Set up your assistants](https://help.clickatell.com/clickatell-ai/assistants/set-up-your-assistants.md)
+- [Test your assistants](https://help.clickatell.com/clickatell-ai/assistants/test-your-assistants.md)
+- [Upload and manage documents](https://help.clickatell.com/clickatell-ai/training/upload-and-manage-documents.md)
+- [Create curated responses](https://help.clickatell.com/clickatell-ai/training/create-curated-responses.md)
+- [Configure intents](https://help.clickatell.com/clickatell-ai/training/configure-intents.md)
+- [Context Router](https://help.clickatell.com/clickatell-ai/training/context-router.md)
+
+## Embedded Client Authentication
+
+- [What is Embedded Client Authentication?](https://help.clickatell.com/embedded-client-authentication-user-guide/overview/what-is-embedded-client-authentication.md)
+- [Use Embedded Client Authentication](https://help.clickatell.com/embedded-client-authentication-user-guide/configuration/use-embedded-client-authentication.md)
+- [Configure and update an identity provider (IDP)](https://help.clickatell.com/embedded-client-authentication-user-guide/configuration/configure-and-update-an-identity-provider-idp.md)
+
+## Data & Analytics
+
+- [Data & Analytics](https://help.clickatell.com/data/data-and-analytics.md)
+- [Dashboards](https://help.clickatell.com/data/dashboards.md)
+- [Messaging channels](https://help.clickatell.com/data/dashboards/messaging-channels.md)
+- [Chat Desk](https://help.clickatell.com/data/dashboards/chat-desk.md)
+- [Chat Flow](https://help.clickatell.com/data/dashboards/chat-flow.md)
+- [Chat 2 Pay](https://help.clickatell.com/data/dashboards/chat-2-pay.md)
+- [Departments](https://help.clickatell.com/data/dashboards/departments.md)
+- [Integrations](https://help.clickatell.com/data/dashboards/integrations.md)
+- [Data Sharing Services](https://help.clickatell.com/data/data-sharing-services.md)
+
+## Integrations
+
+- [Integrations Overview ](https://help.clickatell.com/integrations/getting-started/integrations-overview.md)
+- [Adding a new integration](https://help.clickatell.com/integrations/getting-started/adding-a-new-integration.md)
+- [Using Integrations](https://help.clickatell.com/integrations/getting-started/using-integrations.md)
+- [Integration statuses](https://help.clickatell.com/integrations/manage-existing-integrations/integration-statuses.md)
+- [Reactivate an integration](https://help.clickatell.com/integrations/manage-existing-integrations/reactivate-an-integration.md)
+- [Disable/delete an integration](https://help.clickatell.com/integrations/manage-existing-integrations/disable-delete-an-integration.md)
+- [Overview - Salesforce](https://help.clickatell.com/integrations/salesforce/overview-salesforce.md)
+- [Find configuration details - Salesforce](https://help.clickatell.com/integrations/salesforce/find-configuration-details-salesforce.md)
+- [Add new Connected App - Salesforce](https://help.clickatell.com/integrations/salesforce/add-new-connected-app-salesforce.md)
+- [Overview - Shopify](https://help.clickatell.com/integrations/shopify/overview-shopify.md)
+- [Find configuration details - Shopify](https://help.clickatell.com/integrations/shopify/find-configuration-details-shopify.md)
+- [Install app in Shopify](https://help.clickatell.com/integrations/shopify/install-app-in-shopify.md)
+- [Overview - Zendesk Sell](https://help.clickatell.com/integrations/zendesk-sell/overview-zendesk-sell.md)
+- [Find configuration details - Zendesk Sell](https://help.clickatell.com/integrations/zendesk-sell/find-configuration-details-zendesk-sell.md)
+- [Add new Developer App - Zendesk Sell](https://help.clickatell.com/integrations/zendesk-sell/add-new-developer-app-zendesk-sell.md)
+- [Overview - Zendesk Support](https://help.clickatell.com/integrations/zendesk-support/overview-zendesk-support.md)
+- [Find configuration details - Zendesk Support](https://help.clickatell.com/integrations/zendesk-support/find-configuration-details-zendesk-support.md)
+- [Add new OAuth Client - Zendesk Support](https://help.clickatell.com/integrations/zendesk-support/add-new-oauth-client-zendesk-support.md)
+- [Clickatell Portal Reports](https://help.clickatell.com/integrations/reporting-and-analytics/clickatell-portal-reports.md)
+
+## Release notes
+
+- [Release notes](https://help.clickatell.com/release-notes/readme.md): A summary of our latest updates and improvements.
+- [Release notes](https://help.clickatell.com/release-notes/release-notes.md)
+- [Release notes](https://help.clickatell.com/release-notes/release-notes-1.md)
+- [Release notes](https://help.clickatell.com/release-notes/release-notes-2.md)
+- [Release notes](https://help.clickatell.com/release-notes/release-notes-3.md)
+- [Release notes](https://help.clickatell.com/release-notes/release-notes-4.md)
+
+## Documentation
+
+- [Technical Documentation](https://help.clickatell.com/developers-documentation/readme.md)
+- [WhatsApp & SMS (One API)](https://help.clickatell.com/developers-documentation/channels/whatsapp-and-sms-one-api.md)
+- [Status Codes & Errors](https://help.clickatell.com/developers-documentation/channels/whatsapp-and-sms-one-api/status-codes-and-errors.md)
+- [Supported Content Types & Limitations](https://help.clickatell.com/developers-documentation/channels/whatsapp-and-sms-one-api/supported-content-types-and-limitations.md)
+- [SMS Gateway Docs](https://help.clickatell.com/developers-documentation/sms-gateway-docs.md)
+- [Chat 2 Pay API](https://help.clickatell.com/developers-documentation/applications/chat-2-pay-api.md)
+- [Chat Flow - External Link Handler API](https://help.clickatell.com/developers-documentation/applications/chat-flow-external-link-handler-api.md)
+- [Custom Security Headers for Webhook Callbacks](https://help.clickatell.com/developers-documentation/custom-security-headers-for-webhook-callbacks.md)
+- [Dynamic API to trigger Chat Flow workflows](https://help.clickatell.com/developers-documentation/dynamic-api-to-trigger-chat-flow-workflows.md)
+
+## API Reference
+
+- [Clickatell API Reference](https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference.md): Elevate your business interactions in chat with Clickatell's powerful APIs.
+- [One API](https://help.clickatell.com/developers-api-reference/reference/one-api.md)
+- [One API Client Callbacks](https://help.clickatell.com/developers-api-reference/reference/one-api-client-callbacks.md)
+- [Models](https://help.clickatell.com/developers-api-reference/reference/models.md)
+- [SMS API](https://help.clickatell.com/developers-api-reference/sms-api.md)
+- [SMS Client Callbacks](https://help.clickatell.com/developers-api-reference/sms-client-callbacks.md)
+- [Models](https://help.clickatell.com/developers-api-reference/models.md)
+- [Chat 2 Pay API](https://help.clickatell.com/developers-api-reference/chat-2-pay-api.md)
+- [Chat 2 Pay API Client Callbacks](https://help.clickatell.com/developers-api-reference/chat-2-pay-api-client-callbacks.md)
+- [Models](https://help.clickatell.com/developers-api-reference/models-1.md)
+- [Chat Flow](https://help.clickatell.com/developers-api-reference/chat-flow.md)
+- [External Link Callback](https://help.clickatell.com/developers-api-reference/external-link-callback.md)
+- [Wait For Callback](https://help.clickatell.com/developers-api-reference/wait-for-callback.md)
+- [Models](https://help.clickatell.com/developers-api-reference/models-2.md)
+- [SMS HTTP/S API](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api.md): Archived
+- [Getting Started with SMS](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/getting-started-with-sms.md): Archived
+- [HTTP/S API Overview](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/http-s-api-overview.md): Archived
+- [Overview of the HTTP API features](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/overview-of-the-http-api-features.md): Archived
+- [Using the HTTP API](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/using-the-http-api.md): Archived
+- [SMS API authentication](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/sms-api-authentication.md): Archived
+- [API Ping](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/api-ping.md): Archived
+- [Send message](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/send-message.md): Archived
+- [Stop message](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/stop-message.md): Archived
+- [Message status command](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/message-status-command.md): Archived
+- [Get coverage command](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/get-coverage-command.md): Archived
+- [Retrieve account balance](https://help.clickatell.com/developers-api-reference/developers-archive/sms-http-s-api/retrieve-account-balance.md): Archived
+- [SMS Rest API overview](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview.md): Archived
+- [SMS Rest API overview](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/sms-rest-api-overview.md): Archived
+- [Overview of the REST API features](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/overview-of-the-rest-api-features.md): Archived
+- [Using the SMS REST API](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/using-the-sms-rest-api.md): Archived
+- [API error codes](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/api-error-codes.md): Archived
+- [Response status codes](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/response-status-codes.md): Archived
+- [Send message](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/send-message.md): Archived
+- [Stop message](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/stop-message.md): Archive
+- [Message status command](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/message-status-command.md): Archived
+- [Get coverage command](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/get-coverage-command.md): Archived
+- [Retrieve balance](https://help.clickatell.com/developers-api-reference/developers-archive/sms-rest-api-overview/retrieve-balance.md): Archived
+- [Download test](https://help.clickatell.com/developers-api-reference/developers-archive/download-test.md)
+- [SDKs](https://help.clickatell.com/developers-api-reference/developers-archive/sdks.md): ARCHIVED
+- [C#](https://help.clickatell.com/developers-api-reference/developers-archive/sdks/c.md): ARCHIVED
+- [Java](https://help.clickatell.com/developers-api-reference/developers-archive/sdks/java.md): ARCHIVED
+- [NodeJS](https://help.clickatell.com/developers-api-reference/developers-archive/sdks/nodejs.md): ARCHIVED
+- [Python](https://help.clickatell.com/developers-api-reference/developers-archive/sdks/python.md): ARCHIVED
+- [PHP](https://help.clickatell.com/developers-api-reference/developers-archive/sdks/php.md): ARCHIVED
+- [Bulk SMS Scripts](https://help.clickatell.com/developers-api-reference/developers-archive/bulk-sms-scripts.md): ARCHIVED
+- [C# library](https://help.clickatell.com/developers-api-reference/developers-archive/bulk-sms-scripts/c-library.md): ARCHIVED
+- [Java library](https://help.clickatell.com/developers-api-reference/developers-archive/bulk-sms-scripts/java-library.md): ARCHIVED
+- [PHP library](https://help.clickatell.com/developers-api-reference/developers-archive/bulk-sms-scripts/php-library.md): ARCHIVED
+- [Python library](https://help.clickatell.com/developers-api-reference/developers-archive/bulk-sms-scripts/python-library.md): ARCHIVED
+- [Ruby library](https://help.clickatell.com/developers-api-reference/developers-archive/bulk-sms-scripts/ruby-library.md): ARCHIVED
 
 
-## Homepage
-- [Home](https://augment.market/): Discover and invest in pre-IPO companies through a transparent, tech-enabled private market
+---
 
-## Primary Categories / Sections
-- [Marketplace](https://augment.market/marketplace): Explore 300+ private companies with real-time pricing and streamlined transactions
-- [Collective](https://augment.market/collective): Access curated deals through Augment’s pooled investment fund, starting from $10K
-- [The Power 20](https://augment.market/the-power-20): A quarterly ranking of the top-performing pre-IPO companies on Augment
-- [Manual](https://augment.market/manual): In-depth educational content covering private markets, secondary trading, and investor strategies
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
-## Key Pages
-- [Search](https://augment.market/search): Find companies, sectors, or deals by keyword
-- [Live](https://augment.market/live): Livestreams covering trends, tools, and insights in private investing
-- [Team](https://augment.market/team): Meet the Augment.Market leadership and team members
-- [Contact](https://augment.market/contact): Reach out for support, partnerships, or media inquiries
+## Querying This Documentation
+This site has an agentic ask interface you may use to query the documentation dynamically by asking a question.
 
-## Support / Help Content
-- [Blog](https://augment.market/blog): Market updates, company insights, and secondary market trends
-- [Disclosures](https://augment.market/disclosures): Legal information for investors and issuers
-- [Auctions Seller Terms](https://augment.market/auctions-seller-terms): Rules and guidelines for participating in secondary share auctions
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
 
-## Contact & About
-- [Privacy Policy](https://augment.market/privacy): Details on how user data is collected and used
-- [Terms of Service](https://augment.market/terms): The terms governing use of Augment.Market
-- [Business Continuity Planning](https://augment.market/business-continuity-planning): Operational readiness and risk disclosures
-- [Contact](https://augment.market/contact): Get in touch with our team for assistance
+```
+GET https://help.clickatell.com/index.md?ask=<question>&goal=<user_goal>
+```
 
-## Sitemaps
-- [XML Sitemap](https://augment.market/sitemap.xml): Includes all crawlable and indexable pages for Augment.Market
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
 
-_Last Updated: 2026-01-22_
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.

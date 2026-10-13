@@ -64,5 +64,5 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Clickatell is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://augment.market/c/clickatell
+Clickatell is a company surfaced via the API Evangelist harvest backlog (source: market-gap) and added to the network as a stub for full-pipeline profiling.
+- https://www.clickatell.com

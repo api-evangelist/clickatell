@@ -1,0 +1,840 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-send-omni-channel-messages-request-schema.json",
+  "title": "SendOmniChannelMessagesRequest",
+  "description": "One api send message request",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-one-api-openapi.json#/components/schemas/SendOmniChannelMessagesRequest",
+  "required": [
+    "messages"
+  ],
+  "type": "object",
+  "properties": {
+    "messages": {
+      "maxItems": 100,
+      "minItems": 1,
+      "type": "array",
+      "description": "An array of one or more messages can be specified",
+      "items": {
+        "$ref": "#/$defs/OmniMessageRequest"
+      }
+    }
+  },
+  "$defs": {
+    "Location": {
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "type": "string",
+          "description": "Longitude of the location as a numeric string value."
+        },
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "type": "string",
+          "description": "Longitude of the location as a numeric string value."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the location."
+        },
+        "address": {
+          "type": "string",
+          "description": "Address of the location. The address will only be displayed if the name was set."
+        }
+      },
+      "description": "<b>WhatsApp only</b><br>Object containing parameters for sending a location message."
+    },
+    "OmniIntegrationWaMediaRequest": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string",
+          "description": "Media type header for file format and file content. This parameter is required when sending a media message.<br><b>Inline required.</b>"
+        },
+        "caption": {
+          "type": "string",
+          "description": "This is an optional parameter and may be used to describe the media file being sent. Do not use when sending audio media."
+        },
+        "fileName": {
+          "type": "string",
+          "description": "This is an optional parameter and may be used to specify name of a file that is sent to WhatsApp."
+        },
+        "sha256Hash": {
+          "type": "string",
+          "description": "SHA256 File hash of the unencrypted file content."
+        },
+        "fileId": {
+          "type": "string",
+          "description": "File reference id as returned in the media file upload API call.<br><b>By Reference required.</b>"
+        }
+      },
+      "description": "<b>WhatsApp only</b><br>Object containing parameters for sending a media message."
+    },
+    "OmniMessageRequest": {
+      "required": [
+        "to"
+      ],
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "description": "Specifies the channel to be used with the specified message.",
+          "enum": [
+            "sms",
+            "whatsapp"
+          ]
+        },
+        "to": {
+          "type": "string",
+          "description": "Recipient of the message.<ul>\n<li><b>SMS</b> &ndash; MSISDN, international format, no leading +.</li>\n<li><b>WhatsApp</b> &ndash; MSISDN or BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars). Both are accepted. Use the BSUID when you have one; use the MSISDN to reach a user for the first time, and for one-tap, zero-tap or copy-code authentication templates, which cannot be sent to a BSUID. See <i>WhatsApp recipient identifiers</i> in the API description.</li></ul>"
+        },
+        "content": {
+          "minLength": 1,
+          "type": "string",
+          "description": "The string value contains actual message content. <br><b>Character set UTF-8</b><br>WhatsApp Inline Media: base64 encoded media data<br><b>Not required for media by reference message sending</b><br><br><b>Limit</b><ul><li>WhatsApp text: 4096 characters</li><li>WhatsApp media: 1MB (total 20MB payload limit)</li></ul>"
+        },
+        "clientMessageId": {
+          "type": "string",
+          "description": "Customer defined message ID for tracking purposes. Returned in callbacks and certain API submission formats."
+        },
+        "scheduledDeliveryTime": {
+          "pattern": "yyyy-MM-ddTHH:mm:ssXXX",
+          "type": "string",
+          "description": "Ability to schedule messages for later delivery."
+        },
+        "validityPeriod": {
+          "type": "integer",
+          "description": "The message will not be processed/queued/retried for a period exceeding the provided validity period. (In minutes)",
+          "format": "int32",
+          "default": 1440
+        },
+        "previewFirstUrl": {
+          "type": "boolean",
+          "description": "<b>WhatsApp only</b><br>True or false - will indicate if URL link must display as preview on recipient phone. Only applicable when sending plain text messages."
+        },
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "contacts": {
+          "type": "array",
+          "description": "<b>WhatsApp only</b><br>Array of the contact object containing parameters for sending a contacts message.<br><b>Note:</b><br> if contact object is presented, minimum requirement is the name parameter + at least one other parameter.",
+          "items": {
+            "$ref": "#/$defs/WhatsAppContact"
+          }
+        },
+        "media": {
+          "$ref": "#/$defs/OmniIntegrationWaMediaRequest"
+        },
+        "template": {
+          "$ref": "#/$defs/WhatsAppMessageTemplate"
+        },
+        "listPicker": {
+          "$ref": "#/$defs/WhatsAppMessageList"
+        },
+        "button": {
+          "$ref": "#/$defs/WhatsAppMessageButton"
+        },
+        "actionUrl": {
+          "$ref": "#/$defs/WhatsAppMessageCTAButton"
+        },
+        "locationRequest": {
+          "$ref": "#/$defs/WhatsAppMessageLocationRequest"
+        },
+        "from": {
+          "type": "string",
+          "description": "<b>Sms only</b><br>The two-way number that will be used for message delivery<br>from - Required Field for Two Way communication in the USA."
+        },
+        "userDataHeader": {
+          "type": "string",
+          "description": "<b>Sms only</b><br>UDH content of a message. It does not contain any text, but rather specifies how the message should be processed. Basically, it’s a part of the SMS which tells the receiving handset what type of message being sent."
+        },
+        "binary": {
+          "type": "boolean",
+          "description": "<b>Sms only</b><br>Specifies if <i>content</i> delivered by client needs to be in binary format."
+        },
+        "encryptionKey": {
+          "type": "string",
+          "description": "<b>Client side encryption ONLY</b><br>Base64 encoded encrypted data key as generated from AWS KMS. Note that MC2 will have to submit additional fields to SMS/WA adapter for client side encryption to work. For client side encrypted media by reference send message requests this field must be populated even if the media <i>caption</i> is null."
+        },
+        "encryptionKeyArn": {
+          "type": "string",
+          "description": "<b>Client side encryption ONLY</b><br>Customer defined encryption key ARN."
+        },
+        "encryptionCipher": {
+          "type": "string",
+          "description": "<b>Client side encryption ONLY</b><br>Customer defined encryption cipher."
+        }
+      }
+    },
+    "WhatsAppContact": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "addresses": {
+          "minItems": 1,
+          "type": "array",
+          "description": "List of address object. See request example WhatsApp Contacts: One message",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "birthday": {
+          "pattern": "YYYY-MM-DD",
+          "type": "string",
+          "description": "String date value."
+        },
+        "emails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "List of the email object. See request example WhatsApp Contacts: One message",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "description": "Name object. See request example WhatsApp Contacts: One message"
+          },
+          "description": "Name object. See request example WhatsApp Contacts: One message"
+        },
+        "origin": {
+          "type": "string",
+          "description": "<b>WhatsApp inbound only</b><br>Indicates how the contact was shared by the user. <i>contact_request</i> means the contact was shared in direct response to a REQUEST_CONTACT_INFO button; <i>other</i> means the contact was shared organically (e.g. a forwarded vCard). Present only on inbound contact messages when supplied by WhatsApp; omitted when absent. Not encrypted for client-side encryption.",
+          "enum": [
+            "contact_request",
+            "other"
+          ]
+        },
+        "org": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "description": "See request example WhatsApp Contacts: One message"
+          },
+          "description": "See request example WhatsApp Contacts: One message"
+        },
+        "phones": {
+          "minItems": 1,
+          "type": "array",
+          "description": "List of the phone object. See request example WhatsApp Contacts: One message",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "urls": {
+          "minItems": 1,
+          "type": "array",
+          "description": "List of the url object. See request example WhatsApp Contacts: One message",
+          "items": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "WhatsAppInteractiveMessageHeader": {
+      "required": [
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Indicates the header type<br>",
+          "enum": [
+            "text",
+            "media"
+          ]
+        },
+        "text": {
+          "maximum": 60,
+          "type": "string",
+          "description": "Required, if type text<br><b>Note:</b> Does not allow markdown"
+        },
+        "media": {
+          "$ref": "#/$defs/WhatsAppInteractiveMessageMedia"
+        }
+      },
+      "description": "Header content displayed on top of a message."
+    },
+    "WhatsAppInteractiveMessageMedia": {
+      "required": [
+        "fileId",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "File type value.",
+          "enum": [
+            "image",
+            "video",
+            "document"
+          ]
+        },
+        "fileId": {
+          "type": "string",
+          "description": "File reference id as returned in the media file upload API call."
+        }
+      },
+      "description": "Required, if type media"
+    },
+    "WhatsAppMessageButton": {
+      "required": [
+        "body",
+        "items"
+      ],
+      "type": "object",
+      "properties": {
+        "body": {
+          "maximum": 1024,
+          "type": "string"
+        },
+        "header": {
+          "$ref": "#/$defs/WhatsAppInteractiveMessageHeader"
+        },
+        "items": {
+          "maxItems": 3,
+          "minItems": 1,
+          "type": "array",
+          "description": "Array of button item objects containing specific fields for sending a button message.",
+          "items": {
+            "$ref": "#/$defs/WhatsAppMessageButtonItem"
+          }
+        },
+        "footer": {
+          "maximum": 60,
+          "type": "string"
+        }
+      },
+      "description": "<b>WhatsApp only</b><br>Object containing parameter for sending a button message"
+    },
+    "WhatsAppMessageButtonItem": {
+      "required": [
+        "postbackData",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "postbackData": {
+          "maximum": 256,
+          "type": "string",
+          "description": "Used to identify the item(s) that have been selected.<br><b>Note:</b> The value must be unique across all reply buttons in the message."
+        },
+        "title": {
+          "maximum": 20,
+          "type": "string",
+          "description": "Title of item group.<br><b>Note:</b> Does not allow markdown"
+        },
+        "type": {
+          "type": "string",
+          "description": "This is a reserved field for the case where other option types get added. An example for GBM is a 'open url' action.",
+          "enum": [
+            "reply"
+          ]
+        }
+      }
+    },
+    "WhatsAppMessageCTAButton": {
+      "required": [
+        "body",
+        "title",
+        "url"
+      ],
+      "type": "object",
+      "properties": {
+        "body": {
+          "maximum": 1024,
+          "type": "string"
+        },
+        "header": {
+          "$ref": "#/$defs/WhatsAppInteractiveMessageHeader"
+        },
+        "footer": {
+          "maximum": 60,
+          "type": "string"
+        },
+        "title": {
+          "maximum": 20,
+          "type": "string",
+          "description": "Title that will be displayed on the button"
+        },
+        "url": {
+          "maximum": 2000,
+          "type": "string",
+          "description": "Url for CTA button"
+        }
+      },
+      "description": "<b>WhatsApp only</b><br>Object containing parameter for sending a button message"
+    },
+    "WhatsAppMessageList": {
+      "required": [
+        "button",
+        "sections",
+        "subtitle"
+      ],
+      "type": "object",
+      "properties": {
+        "sections": {
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array",
+          "description": "Array of the message objects containing items for sending a list message.",
+          "items": {
+            "$ref": "#/$defs/WhatsAppMessageListSection"
+          }
+        },
+        "title": {
+          "maximum": 60,
+          "type": "string",
+          "description": "Title for the list picker message.<br><b>Note:</b> Does not allow markdown"
+        },
+        "subtitle": {
+          "maximum": 1024,
+          "type": "string",
+          "description": "Subtitle for the list picker message"
+        },
+        "button": {
+          "maximum": 20,
+          "type": "string",
+          "description": "Button name for the list picker message.<br><b>Note:</b> Does not allow markdown"
+        },
+        "footer": {
+          "maximum": 60,
+          "type": "string"
+        }
+      },
+      "description": "<b>WhatsApp only</b><br>Object containing parameter for sending a list message"
+    },
+    "WhatsAppMessageListSection": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "maxItems": 10,
+          "minItems": 1,
+          "type": "array",
+          "description": "Array of the section message object containing specific title fields for sending a list message. Max items in total is 10.",
+          "items": {
+            "$ref": "#/$defs/WhatsAppMessageListSectionItem"
+          }
+        },
+        "title": {
+          "maximum": 24,
+          "type": "string",
+          "description": "Title of section<br><b>Note:</b> Does not allow markdown.<br>If more than one section is presented, this field is required."
+        }
+      }
+    },
+    "WhatsAppMessageListSectionItem": {
+      "required": [
+        "postbackData",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "title": {
+          "maximum": 24,
+          "type": "string",
+          "description": "Title of item<br><b>Note:</b> Does not allow markdown"
+        },
+        "subtitle": {
+          "maximum": 72,
+          "type": "string",
+          "description": "Subtitle of item<br><b>Note:</b> Does not allow markdown"
+        },
+        "postbackData": {
+          "maximum": 200,
+          "type": "string",
+          "description": "Used to identify the item(s) that have been selected.<br><b>Note:</b> Does not support emojis or markdown as it is not a visible field."
+        }
+      }
+    },
+    "WhatsAppMessageLocationRequest": {
+      "required": [
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "body": {
+          "maximum": 1024,
+          "type": "string",
+          "description": "Whatsapp supports: emojis, markdown, links"
+        }
+      },
+      "description": "<b>WhatsApp only</b> <br>Object for sending a location request message"
+    },
+    "WhatsAppMessageTemplate": {
+      "required": [
+        "templateName",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "templateName": {
+          "type": "string",
+          "description": "Template name which was specified when created."
+        },
+        "language": {
+          "type": "string",
+          "description": "Specifies the language the template may be rendered in."
+        },
+        "header": {
+          "$ref": "#/$defs/WhatsAppMessageTemplateHeader"
+        },
+        "body": {
+          "$ref": "#/$defs/WhatsAppMessageTemplateBody"
+        },
+        "buttons": {
+          "$ref": "#/$defs/WhatsAppMessageTemplateButtons"
+        },
+        "templateButtons": {
+          "maxItems": 10,
+          "minItems": 0,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WhatsAppMixedTemplateButton"
+          },
+          "description": "<li>Suppports a combination of button types in a single WhatsApp message template.</li>  <li>All buttons of the same type must be grouped together, e.g., all “url” buttons, all “suggestedResponse” buttons, etc.</li>  <li><b>Note:</b> If a “phone” or “static URL” button is used in the template, their position (index) requires the “index” parameter of other buttons to be incremented accordingly.</li> <li>See Example: <i>WhatsApp Interactive Text Template with Mixed Buttons.</i></li>\n"
+        }
+      },
+      "description": "<b>WhatsApp only</b><br>Object containing parameters for sending a template message."
+    },
+    "WhatsAppMessageTemplateBody": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "description": "Key value pairs; key is string numeric value parameter and value set to the parameter value"
+          },
+          "description": "Key value pairs; key is string numeric value parameter and value set to the parameter value"
+        }
+      },
+      "description": "Body object."
+    },
+    "WhatsAppMessageTemplateButtons": {
+      "type": "object",
+      "properties": {
+        "suggestedResponse": {
+          "$ref": "#/$defs/WhatsAppTemplateSuggestedResponse"
+        },
+        "websiteUrl": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/WhatsAppTemplateWebsiteUrl"
+          }
+        }
+      },
+      "description": "<b>To be deprecated</b><br><u>Use <i>templateButtons</i> instead</u> <br>Interactive template message buttons. <br><i>buttons</i> parameter supports 1 button type (websiteUrl or suggestedResponse) per send message request."
+    },
+    "WhatsAppMessageTemplateHeader": {
+      "required": [
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Indicates the header type of the template.<br><b>Note:</b><i> location</i> header type (location template) only supported for cloud-hosted numbers",
+          "enum": [
+            "text",
+            "media",
+            "location"
+          ]
+        },
+        "text": {
+          "$ref": "#/$defs/WhatsAppTemplateHeaderText"
+        },
+        "media": {
+          "$ref": "#/$defs/WhatsAppTemplateHeaderMedia"
+        },
+        "location": {
+          "$ref": "#/$defs/WhatsAppTemplateHeaderLocation"
+        }
+      },
+      "description": "Template header."
+    },
+    "WhatsAppMixedTemplateButton": {
+      "type": "object",
+      "anyOf": [
+        {
+          "$ref": "#/$defs/WhatsAppMixedTemplateButtonUrl"
+        },
+        {
+          "$ref": "#/$defs/WhatsAppMixedTemplateButtonSuggestedResponse"
+        },
+        {
+          "$ref": "#/$defs/WhatsAppMixedTemplateButtonCouponCode"
+        },
+        {
+          "$ref": "#/$defs/WhatsAppMixedTemplateButtonOtp"
+        }
+      ]
+    },
+    "WhatsAppMixedTemplateButtonCouponCode": {
+      "required": [
+        "index",
+        "type",
+        "couponCode"
+      ],
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Index of button in template in order it was created, starts at 1"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "couponCode"
+          ]
+        },
+        "couponCode": {
+          "type": "object",
+          "required": [
+            "code"
+          ],
+          "properties": {
+            "code": {
+              "maximum": 15,
+              "type": "string",
+              "description": "Coupon code value."
+            }
+          }
+        }
+      }
+    },
+    "WhatsAppMixedTemplateButtonOtp": {
+      "required": [
+        "index",
+        "type",
+        "otp"
+      ],
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Index of button in template in order it was created, starts at 1"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "otp"
+          ]
+        },
+        "otp": {
+          "type": "object",
+          "required": [
+            "code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "description": "OTP code value for authentication templates."
+            }
+          }
+        }
+      }
+    },
+    "WhatsAppMixedTemplateButtonSuggestedResponse": {
+      "required": [
+        "index",
+        "type",
+        "suggestedResponse"
+      ],
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Index of button in template in order it was created, starts at 1"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "suggestedResponse"
+          ]
+        },
+        "suggestedResponse": {
+          "type": "object",
+          "required": [
+            "postbackData"
+          ],
+          "properties": {
+            "postbackData": {
+              "type": "string",
+              "description": "This string will be passed back in response message if user taps this button."
+            }
+          }
+        }
+      }
+    },
+    "WhatsAppMixedTemplateButtonUrl": {
+      "required": [
+        "index",
+        "type",
+        "url"
+      ],
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Index of button in template in order it was created, starts at 1"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "url"
+          ]
+        },
+        "url": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Enter final part of URL in this field (the first part is already specified in template)."
+            }
+          }
+        }
+      }
+    },
+    "WhatsAppTemplateHeaderLocation": {
+      "required": [
+        "address",
+        "latitude",
+        "longitude",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "longitude": {
+          "maximum": 180,
+          "minimum": -180,
+          "type": "string",
+          "description": "Longitude of the location as a numeric string value."
+        },
+        "latitude": {
+          "maximum": 90,
+          "minimum": -90,
+          "type": "string",
+          "description": "Longitude of the location as a numeric string value."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the location."
+        },
+        "address": {
+          "type": "string",
+          "description": "Address of the location. The address will only be displayed if the name was set."
+        }
+      },
+      "description": "<b>Note:</b> <i>location</i> header only supported for cloud numbers. Required, if type location"
+    },
+    "WhatsAppTemplateHeaderMedia": {
+      "required": [
+        "fileId"
+      ],
+      "type": "object",
+      "properties": {
+        "fileId": {
+          "type": "string",
+          "description": "<i>fileId</i> as returned in the api reponse of the media upload request (see <i>Upload Media file for One Api</i>). <br>WhatsApp allows files of type image, video and document."
+        }
+      },
+      "description": "Required, if type media"
+    },
+    "WhatsAppTemplateHeaderText": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "description": "Key value pairs; key is string numeric value parameter and value set to the parameter value WhatsApp currently only allows for a single parameter value in the header text. <br><b>Only required if the template was created with a variable in the header text</b>"
+          },
+          "description": "Key value pairs; key is string numeric value parameter and value set to the parameter value WhatsApp currently only allows for a single parameter value in the header text. <br><b>Only required if the template was created with a variable in the header text</b>"
+        }
+      },
+      "description": "Required, if type text"
+    },
+    "WhatsAppTemplateSuggestedResponse": {
+      "required": [
+        "postbackData"
+      ],
+      "type": "object",
+      "properties": {
+        "postbackData": {
+          "maximum": 3,
+          "maxProperties": 3,
+          "type": "object",
+          "additionalProperties": {
+            "maximum": 3,
+            "maxProperties": 3,
+            "type": "string",
+            "description": "<b>Key</b> : String integer value of the button to which the postbackData should be associated<br><b>Value</b> : User defined data that will be returned in the callback function to the business."
+          },
+          "description": "<b>Key</b> : String integer value of the button to which the postbackData should be associated<br><b>Value</b> : User defined data that will be returned in the callback function to the business."
+        }
+      }
+    },
+    "WhatsAppTemplateWebsiteUrl": {
+      "required": [
+        "listPosition"
+      ],
+      "type": "object",
+      "properties": {
+        "listPosition": {
+          "type": "integer",
+          "description": "If a template was create with a dial button in the 1st position and the websiteUrl in the 2nd position then the <i>listPosition</i> will be 2.<br>If a template was created with the websiteUrl button in 1st position and the dial button in the 2nd position will be 1.",
+          "format": "int32",
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "parameters": {
+          "maxProperties": 1,
+          "type": "object",
+          "additionalProperties": {
+            "maxProperties": 1,
+            "type": "string",
+            "description": " WhatsApp supports parameter value in a dynamic URL."
+          },
+          "description": " WhatsApp supports parameter value in a dynamic URL."
+        }
+      }
+    }
+  }
+}

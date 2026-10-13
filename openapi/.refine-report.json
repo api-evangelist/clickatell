@@ -1,0 +1,50 @@
+{
+  "provider": "clickatell",
+  "sources": [
+    "clickatell-chat-2-pay-api-client-callbacks-openapi.json",
+    "clickatell-chat-2-pay-api-openapi.json",
+    "clickatell-flow-openapi.json",
+    "clickatell-one-api-client-callbacks-openapi.json",
+    "clickatell-one-api-openapi.json",
+    "clickatell-sms-api-client-callbacks-openapi.json",
+    "clickatell-sms-api-openapi.json"
+  ],
+  "outputs": [
+    "clickatell-chat-2-pay-api-client-callbacks-api-openapi.yml",
+    "clickatell-chat-2-pay-api-api-openapi.yml",
+    "clickatell-external-link-callback-api-openapi.yml",
+    "clickatell-wait-for-callback-api-openapi.yml",
+    "clickatell-one-api-client-callbacks-api-openapi.yml",
+    "clickatell-one-api-api-openapi.yml",
+    "clickatell-sms-client-callbacks-api-openapi.yml",
+    "clickatell-sms-api-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/clickatell-chat-2-pay-api-client-callbacks-openapi.json",
+    "archived openapi/clickatell-chat-2-pay-api-openapi.json",
+    "archived openapi/clickatell-flow-openapi.json",
+    "archived openapi/clickatell-one-api-client-callbacks-openapi.json",
+    "archived openapi/clickatell-one-api-openapi.json",
+    "archived openapi/clickatell-sms-api-client-callbacks-openapi.json",
+    "archived openapi/clickatell-sms-api-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [
+    "no openapi/_original/ archive: this run re-split PREVIOUSLY REFINED output, so any base URL it carries is inherited from an earlier pass rather than read from a document the provider published"
+  ],
+  "notes": [
+    "clickatell-chat-2-pay-api-client-callbacks-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "clickatell-chat-2-pay-api-client-callbacks-openapi.json: declared missing tag: Chat 2 Pay API Client Callbacks",
+    "clickatell-chat-2-pay-api-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "clickatell-chat-2-pay-api-openapi.json: declared missing tag: Chat 2 Pay API",
+    "clickatell-flow-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "clickatell-flow-openapi.json: declared missing tag: External Link Callback",
+    "clickatell-flow-openapi.json: declared missing tag: Wait for Callback",
+    "clickatell-one-api-client-callbacks-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "clickatell-one-api-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "clickatell-sms-api-client-callbacks-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0; renamed 1 component key(s) illegal in 3.x (e.g. Sms status callback)",
+    "clickatell-sms-api-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0; renamed 1 component key(s) illegal in 3.x (e.g. Sms status callback)",
+    "apis.yml register: written (+8 apis, 8 total)"
+  ],
+  "skipped": []
+}

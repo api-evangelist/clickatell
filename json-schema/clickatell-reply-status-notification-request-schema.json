@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-reply-status-notification-request-schema.json",
+  "title": "ReplyStatusNotificationRequest",
+  "description": "Send Business Read Status notification request",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-one-api-openapi.json#/components/schemas/ReplyStatusNotificationRequest",
+  "required": [
+    "event"
+  ],
+  "type": "object",
+  "properties": {
+    "event": {
+      "$ref": "#/$defs/ReplyStatusEvent"
+    }
+  },
+  "$defs": {
+    "ReplyStatusEvent": {
+      "required": [
+        "messageStatusUpdate"
+      ],
+      "type": "object",
+      "properties": {
+        "messageStatusUpdate": {
+          "maxItems": 100,
+          "minItems": 1,
+          "type": "array",
+          "description": "An array of one or more messages can be specified",
+          "items": {
+            "$ref": "#/$defs/ReplyStatusUpdateNotification"
+          }
+        }
+      },
+      "description": "Business Read Status event request"
+    },
+    "ReplyStatusUpdateNotification": {
+      "required": [
+        "messageId",
+        "statusCode"
+      ],
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "description": "Supplier channel on which the inbound message to which this notification relates was received",
+          "default": "whatsapp",
+          "enum": [
+            "whatsapp"
+          ]
+        },
+        "statusCode": {
+          "type": "integer",
+          "description": "Business acknowledges that it has read (seen) an inbound message from the user",
+          "format": "int32",
+          "default": 1001,
+          "enum": [
+            1001
+          ]
+        },
+        "messageId": {
+          "type": "string",
+          "description": "MO message id of the message associated with this status update"
+        },
+        "clientEventId": {
+          "type": "string",
+          "description": "Client internal id that the client can use to match the response to the request. This parameter will just be echoed back in the response."
+        }
+      }
+    }
+  }
+}

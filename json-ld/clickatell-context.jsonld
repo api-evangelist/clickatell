@@ -1,0 +1,867 @@
+{
+  "@context": {
+    "@vocab": "https://clickatell.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "clickatell": "https://clickatell.com/schema#",
+    "TransactionStatusNotificationResponse": "clickatell:TransactionStatusNotificationResponse",
+    "orderNumber": {
+      "@id": "clickatell:orderNumber",
+      "@type": "xsd:string"
+    },
+    "paymentLinkRef": {
+      "@id": "clickatell:paymentLinkRef",
+      "@type": "xsd:string"
+    },
+    "transactionStatuses": {
+      "@id": "clickatell:transactionStatuses",
+      "@container": "@list"
+    },
+    "paymentStatuses": {
+      "@id": "clickatell:paymentStatuses",
+      "@container": "@list"
+    },
+    "paymentStatus": {
+      "@id": "clickatell:paymentStatus",
+      "@type": "xsd:string"
+    },
+    "paymentStatusId": {
+      "@id": "clickatell:paymentStatusId",
+      "@type": "xsd:string"
+    },
+    "paymentStatusTimestamp": {
+      "@id": "clickatell:paymentStatusTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "totalAmount": {
+      "@id": "clickatell:totalAmount",
+      "@type": "xsd:decimal"
+    },
+    "receiptLinkRef": {
+      "@id": "clickatell:receiptLinkRef",
+      "@type": "xsd:string"
+    },
+    "channelName": {
+      "@id": "clickatell:channelName",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "clickatell:currency",
+      "@type": "xsd:string"
+    },
+    "taxAmount": {
+      "@id": "clickatell:taxAmount",
+      "@type": "xsd:decimal"
+    },
+    "subTotalAmount": {
+      "@id": "clickatell:subTotalAmount",
+      "@type": "xsd:decimal"
+    },
+    "additionalData": {
+      "@id": "clickatell:additionalData",
+      "@type": "xsd:string"
+    },
+    "paymentStatusConversionTime": {
+      "@id": "clickatell:paymentStatusConversionTime",
+      "@type": "xsd:dateTime"
+    },
+    "integrator": {
+      "@id": "clickatell:integrator",
+      "@type": "@id"
+    },
+    "paymentReviewAutoReversal": {
+      "@id": "clickatell:paymentReviewAutoReversal",
+      "@type": "xsd:boolean"
+    },
+    "transactionType": {
+      "@id": "clickatell:transactionType",
+      "@type": "xsd:string"
+    },
+    "environment": {
+      "@id": "clickatell:environment",
+      "@type": "xsd:string"
+    },
+    "reconciliationId": {
+      "@id": "clickatell:reconciliationId",
+      "@type": "xsd:string"
+    },
+    "merchantDescriptor": {
+      "@id": "clickatell:merchantDescriptor",
+      "@type": "xsd:string"
+    },
+    "TransactionStatusEntryResponse": "clickatell:TransactionStatusEntryResponse",
+    "transactionStatusId": {
+      "@id": "clickatell:transactionStatusId",
+      "@type": "xsd:integer"
+    },
+    "transactionStatusName": {
+      "@id": "clickatell:transactionStatusName",
+      "@type": "xsd:string"
+    },
+    "created": {
+      "@id": "clickatell:created",
+      "@type": "xsd:dateTime"
+    },
+    "httpResponseCode": {
+      "@id": "clickatell:httpResponseCode",
+      "@type": "xsd:integer"
+    },
+    "responseCode": {
+      "@id": "clickatell:responseCode",
+      "@type": "xsd:string"
+    },
+    "responseCodeDescription": {
+      "@id": "clickatell:responseCodeDescription",
+      "@type": "xsd:string"
+    },
+    "PaymentStatusLogResponse": "clickatell:PaymentStatusLogResponse",
+    "paymentGatewayDecision": {
+      "@id": "clickatell:paymentGatewayDecision",
+      "@type": "xsd:string"
+    },
+    "paymentGatewayReqReferenceNumber": {
+      "@id": "clickatell:paymentGatewayReqReferenceNumber",
+      "@type": "xsd:string"
+    },
+    "paymentGatewayResponseTimestamp": {
+      "@id": "clickatell:paymentGatewayResponseTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "paymentGatewayResponseCode": {
+      "@id": "clickatell:paymentGatewayResponseCode",
+      "@type": "xsd:integer"
+    },
+    "paymentGatewayErrorDecision": {
+      "@id": "clickatell:paymentGatewayErrorDecision",
+      "@type": "xsd:string"
+    },
+    "paymentGatewayAuthReconciliationReferenceNumber": {
+      "@id": "clickatell:paymentGatewayAuthReconciliationReferenceNumber",
+      "@type": "xsd:string"
+    },
+    "cardType": {
+      "@id": "clickatell:cardType",
+      "@type": "xsd:string"
+    },
+    "maskedCardNumber": {
+      "@id": "clickatell:maskedCardNumber",
+      "@type": "xsd:string"
+    },
+    "cardExpiryDate": {
+      "@id": "clickatell:cardExpiryDate",
+      "@type": "xsd:string"
+    },
+    "IntegratorResponse": "clickatell:IntegratorResponse",
+    "applicationId": {
+      "@id": "clickatell:applicationId",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "clickatell:name",
+      "@type": "xsd:string"
+    },
+    "SendPaymentOutcomeRequest": "clickatell:SendPaymentOutcomeRequest",
+    "orderNo": {
+      "@id": "clickatell:orderNo",
+      "@type": "xsd:string"
+    },
+    "from": {
+      "@id": "clickatell:from",
+      "@type": "xsd:string"
+    },
+    "to": {
+      "@id": "clickatell:to",
+      "@type": "xsd:string"
+    },
+    "WidgetConfigResponse": "clickatell:WidgetConfigResponse",
+    "apiKey": {
+      "@id": "clickatell:apiKey",
+      "@type": "xsd:string"
+    },
+    "enabledChannels": {
+      "@id": "clickatell:enabledChannels",
+      "@container": "@list"
+    },
+    "supportedCurrencies": {
+      "@id": "clickatell:supportedCurrencies",
+      "@container": "@list"
+    },
+    "mc2AccountId": {
+      "@id": "clickatell:mc2AccountId",
+      "@type": "xsd:string"
+    },
+    "chatFlowClientId": {
+      "@id": "clickatell:chatFlowClientId",
+      "@type": "xsd:string"
+    },
+    "configId": {
+      "@id": "clickatell:configId",
+      "@type": "xsd:string"
+    },
+    "CurrencyResponse": "clickatell:CurrencyResponse",
+    "id": {
+      "@id": "clickatell:id",
+      "@type": "xsd:integer"
+    },
+    "iso": {
+      "@id": "clickatell:iso",
+      "@type": "xsd:string"
+    },
+    "symbol": {
+      "@id": "clickatell:symbol",
+      "@type": "xsd:string"
+    },
+    "isDefault": {
+      "@id": "clickatell:isDefault",
+      "@type": "xsd:boolean"
+    },
+    "IntegrationStatusRequest": "clickatell:IntegrationStatusRequest",
+    "applicationUuid": {
+      "@id": "clickatell:applicationUuid",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "clickatell:status",
+      "@type": "xsd:string"
+    },
+    "EntityUpdatedResponse": "clickatell:EntityUpdatedResponse",
+    "updateTime": {
+      "@id": "clickatell:updateTime",
+      "@type": "xsd:dateTime"
+    },
+    "PaymentGatewayOperationResultResponse": "clickatell:PaymentGatewayOperationResultResponse",
+    "BadRequestErrorResponse": "clickatell:BadRequestErrorResponse",
+    "message": {
+      "@id": "clickatell:message",
+      "@type": "xsd:string"
+    },
+    "errors": {
+      "@id": "clickatell:errors",
+      "@container": "@list"
+    },
+    "UnauthorizedErrorResponse": "clickatell:UnauthorizedErrorResponse",
+    "timestamp": {
+      "@id": "clickatell:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "error": {
+      "@id": "clickatell:error",
+      "@type": "xsd:string"
+    },
+    "path": {
+      "@id": "clickatell:path",
+      "@type": "xsd:string"
+    },
+    "NotFoundErrorResponse": "clickatell:NotFoundErrorResponse",
+    "PayByLinkRequest": "clickatell:PayByLinkRequest",
+    "channel": {
+      "@id": "clickatell:channel",
+      "@type": "xsd:string"
+    },
+    "paymentGatewaySettingsId": {
+      "@id": "clickatell:paymentGatewaySettingsId",
+      "@type": "xsd:string"
+    },
+    "returnPaymentLink": {
+      "@id": "clickatell:returnPaymentLink",
+      "@type": "xsd:boolean"
+    },
+    "orderLineItems": {
+      "@id": "clickatell:orderLineItems",
+      "@container": "@list"
+    },
+    "LineItemRequest": "clickatell:LineItemRequest",
+    "code": {
+      "@id": "clickatell:code",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "clickatell:quantity",
+      "@type": "xsd:integer"
+    },
+    "sku": {
+      "@id": "clickatell:sku",
+      "@type": "xsd:string"
+    },
+    "unitPrice": {
+      "@id": "clickatell:unitPrice",
+      "@type": "xsd:decimal"
+    },
+    "PayByLinkTransactionLogResponse": "clickatell:PayByLinkTransactionLogResponse",
+    "transactionStatus": {
+      "@id": "clickatell:transactionStatus",
+      "@type": "xsd:string"
+    },
+    "paymentLink": {
+      "@id": "clickatell:paymentLink",
+      "@type": "xsd:string"
+    },
+    "paymentLinkTTL": {
+      "@id": "clickatell:paymentLinkTTL",
+      "@type": "xsd:integer"
+    },
+    "paymentPageTTL": {
+      "@id": "clickatell:paymentPageTTL",
+      "@type": "xsd:integer"
+    },
+    "ThirdPartySystemErrorResponse": "clickatell:ThirdPartySystemErrorResponse",
+    "description": {
+      "@id": "clickatell:description",
+      "@type": "xsd:string"
+    },
+    "PaymentReceiptRequest": "clickatell:PaymentReceiptRequest",
+    "receiptLink": {
+      "@id": "clickatell:receiptLink",
+      "@type": "xsd:string"
+    },
+    "PaymentReceiptResponse": "clickatell:PaymentReceiptResponse",
+    "PaymentCancellationResponse": "clickatell:PaymentCancellationResponse",
+    "TransactionStatusEndpointResponse": "clickatell:TransactionStatusEndpointResponse",
+    "LineItemResponse": "clickatell:LineItemResponse",
+    "DetailedWidgetConfigResponse": "clickatell:DetailedWidgetConfigResponse",
+    "whatsappChannelEnabled": {
+      "@id": "clickatell:whatsappChannelEnabled",
+      "@type": "xsd:boolean"
+    },
+    "smsChannelEnabled": {
+      "@id": "clickatell:smsChannelEnabled",
+      "@type": "xsd:boolean"
+    },
+    "integrators": {
+      "@id": "clickatell:integrators",
+      "@container": "@list"
+    },
+    "IntegratorStatusResponse": "clickatell:IntegratorStatusResponse",
+    "type": {
+      "@id": "clickatell:type",
+      "@type": "xsd:string"
+    },
+    "Externallink": "clickatell:Externallink",
+    "result": {
+      "@id": "clickatell:result",
+      "@type": "xsd:string"
+    },
+    "reference": {
+      "@id": "clickatell:reference",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "clickatell:data"
+    },
+    "OmniReplyCallbackRequest": "clickatell:OmniReplyCallbackRequest",
+    "integrationId": {
+      "@id": "clickatell:integrationId",
+      "@type": "xsd:string"
+    },
+    "integrationName": {
+      "@id": "clickatell:integrationName",
+      "@type": "xsd:string"
+    },
+    "event": {
+      "@id": "clickatell:event",
+      "@type": "@id"
+    },
+    "ReplyEvents": "clickatell:ReplyEvents",
+    "moText": {
+      "@id": "clickatell:moText",
+      "@container": "@list"
+    },
+    "moMedia": {
+      "@id": "clickatell:moMedia",
+      "@container": "@list"
+    },
+    "moLocation": {
+      "@id": "clickatell:moLocation",
+      "@container": "@list"
+    },
+    "moContacts": {
+      "@id": "clickatell:moContacts",
+      "@container": "@list"
+    },
+    "moSuggestedResponse": {
+      "@id": "clickatell:moSuggestedResponse",
+      "@container": "@list"
+    },
+    "moListPickerResponse": {
+      "@id": "clickatell:moListPickerResponse",
+      "@container": "@list"
+    },
+    "moButtonResponse": {
+      "@id": "clickatell:moButtonResponse",
+      "@container": "@list"
+    },
+    "TextReply": "clickatell:TextReply",
+    "messageId": {
+      "@id": "clickatell:messageId",
+      "@type": "xsd:string"
+    },
+    "relatedMessageId": {
+      "@id": "clickatell:relatedMessageId",
+      "@type": "xsd:string"
+    },
+    "relatedClientMessageId": {
+      "@id": "clickatell:relatedClientMessageId",
+      "@type": "xsd:string"
+    },
+    "encryptionKey": {
+      "@id": "clickatell:encryptionKey",
+      "@type": "xsd:string"
+    },
+    "whatsapp": {
+      "@id": "clickatell:whatsapp",
+      "@type": "@id"
+    },
+    "charset": {
+      "@id": "clickatell:charset",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "clickatell:content",
+      "@type": "xsd:string"
+    },
+    "sms": {
+      "@id": "clickatell:sms",
+      "@type": "@id"
+    },
+    "WhatsAppContent": "clickatell:WhatsAppContent",
+    "profileName": {
+      "@id": "clickatell:profileName",
+      "@type": "xsd:string"
+    },
+    "referralInfo": {
+      "@id": "clickatell:referralInfo",
+      "@type": "@id"
+    },
+    "userId": {
+      "@id": "clickatell:userId",
+      "@type": "xsd:string"
+    },
+    "parentUserId": {
+      "@id": "clickatell:parentUserId",
+      "@type": "xsd:string"
+    },
+    "username": {
+      "@id": "clickatell:username",
+      "@type": "xsd:string"
+    },
+    "ReferralInfo": "clickatell:ReferralInfo",
+    "headline": {
+      "@id": "clickatell:headline",
+      "@type": "xsd:string"
+    },
+    "sourceType": {
+      "@id": "clickatell:sourceType",
+      "@type": "xsd:string"
+    },
+    "sourceId": {
+      "@id": "clickatell:sourceId",
+      "@type": "xsd:string"
+    },
+    "sourceUrl": {
+      "@id": "clickatell:sourceUrl",
+      "@type": "xsd:string"
+    },
+    "Sms": "clickatell:Sms",
+    "udh": {
+      "@id": "clickatell:udh",
+      "@type": "xsd:string"
+    },
+    "network": {
+      "@id": "clickatell:network",
+      "@type": "xsd:integer"
+    },
+    "MediaReply": "clickatell:MediaReply",
+    "caption": {
+      "@id": "clickatell:caption",
+      "@type": "xsd:string"
+    },
+    "InlineMediaReply": "clickatell:InlineMediaReply",
+    "sha256Hash": {
+      "@id": "clickatell:sha256Hash",
+      "@type": "xsd:string"
+    },
+    "contentType": {
+      "@id": "clickatell:contentType",
+      "@type": "xsd:string"
+    },
+    "ReferenceMediaReply": "clickatell:ReferenceMediaReply",
+    "files": {
+      "@id": "clickatell:files",
+      "@container": "@list"
+    },
+    "ReferenceMediaFile": "clickatell:ReferenceMediaFile",
+    "downloadUrl": {
+      "@id": "clickatell:downloadUrl",
+      "@type": "xsd:string"
+    },
+    "byteSize": {
+      "@id": "clickatell:byteSize",
+      "@type": "xsd:integer"
+    },
+    "fileName": {
+      "@id": "clickatell:fileName",
+      "@type": "xsd:string"
+    },
+    "LocationReply": "clickatell:LocationReply",
+    "locationAddress": {
+      "@id": "clickatell:locationAddress",
+      "@type": "xsd:string"
+    },
+    "locationName": {
+      "@id": "clickatell:locationName",
+      "@type": "xsd:string"
+    },
+    "latitude": {
+      "@id": "clickatell:latitude",
+      "@type": "xsd:string"
+    },
+    "latitute": {
+      "@id": "clickatell:latitute",
+      "@type": "xsd:string"
+    },
+    "longitude": {
+      "@id": "clickatell:longitude",
+      "@type": "xsd:string"
+    },
+    "ContactsReply": "clickatell:ContactsReply",
+    "contacts": {
+      "@id": "clickatell:contacts",
+      "@container": "@list"
+    },
+    "WhatsAppContact": "clickatell:WhatsAppContact",
+    "addresses": {
+      "@id": "clickatell:addresses",
+      "@container": "@list"
+    },
+    "birthday": {
+      "@id": "clickatell:birthday",
+      "@type": "xsd:string"
+    },
+    "emails": {
+      "@id": "clickatell:emails",
+      "@container": "@list"
+    },
+    "origin": {
+      "@id": "clickatell:origin",
+      "@type": "xsd:string"
+    },
+    "org": {
+      "@id": "clickatell:org"
+    },
+    "phones": {
+      "@id": "clickatell:phones",
+      "@container": "@list"
+    },
+    "urls": {
+      "@id": "clickatell:urls",
+      "@container": "@list"
+    },
+    "SuggestedResponseReply": "clickatell:SuggestedResponseReply",
+    "postbackData": {
+      "@id": "clickatell:postbackData",
+      "@type": "xsd:string"
+    },
+    "ListPickerResponseReply": "clickatell:ListPickerResponseReply",
+    "selectedItems": {
+      "@id": "clickatell:selectedItems",
+      "@container": "@list"
+    },
+    "SelectedButtonItem": "clickatell:SelectedButtonItem",
+    "ButtonResponseReply": "clickatell:ButtonResponseReply",
+    "selectedItem": {
+      "@id": "clickatell:selectedItem",
+      "@type": "@id"
+    },
+    "OmniStatusCallbackRequest": "clickatell:OmniStatusCallbackRequest",
+    "StatusEvents": "clickatell:StatusEvents",
+    "messageStatusUpdate": {
+      "@id": "clickatell:messageStatusUpdate",
+      "@container": "@list"
+    },
+    "messageFallback": {
+      "@id": "clickatell:messageFallback",
+      "@container": "@list"
+    },
+    "statusIsTyping": {
+      "@id": "clickatell:statusIsTyping",
+      "@container": "@list"
+    },
+    "MessageStatus": "clickatell:MessageStatus",
+    "statusCode": {
+      "@id": "clickatell:statusCode",
+      "@type": "xsd:integer"
+    },
+    "clientMessageId": {
+      "@id": "clickatell:clientMessageId",
+      "@type": "xsd:string"
+    },
+    "FallbackStatus": "clickatell:FallbackStatus",
+    "statusDescription": {
+      "@id": "clickatell:statusDescription",
+      "@type": "xsd:integer"
+    },
+    "TypingStatus": "clickatell:TypingStatus",
+    "OmniMessageStatusEntry": "clickatell:OmniMessageStatusEntry",
+    "OmniMessageStatusResponse": "clickatell:OmniMessageStatusResponse",
+    "OmniMessageListResponse": "clickatell:OmniMessageListResponse",
+    "messages": {
+      "@id": "clickatell:messages",
+      "@container": "@list"
+    },
+    "OmniMessagesResponse": "clickatell:OmniMessagesResponse",
+    "apiMessageId": {
+      "@id": "clickatell:apiMessageId",
+      "@type": "xsd:string"
+    },
+    "accepted": {
+      "@id": "clickatell:accepted",
+      "@type": "xsd:boolean"
+    },
+    "OmniResponseError": "clickatell:OmniResponseError",
+    "Location": "clickatell:Location",
+    "address": {
+      "@id": "clickatell:address",
+      "@type": "xsd:string"
+    },
+    "OmniIntegrationWaMediaRequest": "clickatell:OmniIntegrationWaMediaRequest",
+    "fileId": {
+      "@id": "clickatell:fileId",
+      "@type": "xsd:string"
+    },
+    "OmniMessageRequest": "clickatell:OmniMessageRequest",
+    "scheduledDeliveryTime": {
+      "@id": "clickatell:scheduledDeliveryTime",
+      "@type": "xsd:string"
+    },
+    "validityPeriod": {
+      "@id": "clickatell:validityPeriod",
+      "@type": "xsd:integer"
+    },
+    "previewFirstUrl": {
+      "@id": "clickatell:previewFirstUrl",
+      "@type": "xsd:boolean"
+    },
+    "location": {
+      "@id": "clickatell:location",
+      "@type": "@id"
+    },
+    "media": {
+      "@id": "clickatell:media",
+      "@type": "@id"
+    },
+    "template": {
+      "@id": "clickatell:template",
+      "@type": "@id"
+    },
+    "listPicker": {
+      "@id": "clickatell:listPicker",
+      "@type": "@id"
+    },
+    "button": {
+      "@id": "clickatell:button",
+      "@type": "@id"
+    },
+    "actionUrl": {
+      "@id": "clickatell:actionUrl",
+      "@type": "@id"
+    },
+    "locationRequest": {
+      "@id": "clickatell:locationRequest",
+      "@type": "@id"
+    },
+    "userDataHeader": {
+      "@id": "clickatell:userDataHeader",
+      "@type": "xsd:string"
+    },
+    "binary": {
+      "@id": "clickatell:binary",
+      "@type": "xsd:boolean"
+    },
+    "encryptionKeyArn": {
+      "@id": "clickatell:encryptionKeyArn",
+      "@type": "xsd:string"
+    },
+    "encryptionCipher": {
+      "@id": "clickatell:encryptionCipher",
+      "@type": "xsd:string"
+    },
+    "WhatsAppMessageTemplate": "clickatell:WhatsAppMessageTemplate",
+    "templateName": {
+      "@id": "clickatell:templateName",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "clickatell:language",
+      "@type": "xsd:string"
+    },
+    "header": {
+      "@id": "clickatell:header",
+      "@type": "@id"
+    },
+    "body": {
+      "@id": "clickatell:body",
+      "@type": "@id"
+    },
+    "buttons": {
+      "@id": "clickatell:buttons",
+      "@type": "@id"
+    },
+    "templateButtons": {
+      "@id": "clickatell:templateButtons",
+      "@container": "@list"
+    },
+    "WhatsAppMessageTemplateHeader": "clickatell:WhatsAppMessageTemplateHeader",
+    "text": {
+      "@id": "clickatell:text",
+      "@type": "@id"
+    },
+    "WhatsAppTemplateHeaderText": "clickatell:WhatsAppTemplateHeaderText",
+    "parameters": {
+      "@id": "clickatell:parameters"
+    },
+    "WhatsAppTemplateHeaderMedia": "clickatell:WhatsAppTemplateHeaderMedia",
+    "WhatsAppTemplateHeaderLocation": "clickatell:WhatsAppTemplateHeaderLocation",
+    "WhatsAppMessageTemplateBody": "clickatell:WhatsAppMessageTemplateBody",
+    "WhatsAppMessageTemplateButtons": "clickatell:WhatsAppMessageTemplateButtons",
+    "suggestedResponse": {
+      "@id": "clickatell:suggestedResponse",
+      "@type": "@id"
+    },
+    "websiteUrl": {
+      "@id": "clickatell:websiteUrl",
+      "@container": "@list"
+    },
+    "WhatsAppTemplateSuggestedResponse": "clickatell:WhatsAppTemplateSuggestedResponse",
+    "WhatsAppTemplateWebsiteUrl": "clickatell:WhatsAppTemplateWebsiteUrl",
+    "listPosition": {
+      "@id": "clickatell:listPosition",
+      "@type": "xsd:integer"
+    },
+    "WhatsAppMixedTemplateButtonUrl": "clickatell:WhatsAppMixedTemplateButtonUrl",
+    "index": {
+      "@id": "clickatell:index",
+      "@type": "xsd:integer"
+    },
+    "url": {
+      "@id": "clickatell:url"
+    },
+    "WhatsAppMixedTemplateButtonSuggestedResponse": "clickatell:WhatsAppMixedTemplateButtonSuggestedResponse",
+    "WhatsAppMixedTemplateButtonCouponCode": "clickatell:WhatsAppMixedTemplateButtonCouponCode",
+    "couponCode": {
+      "@id": "clickatell:couponCode"
+    },
+    "WhatsAppMixedTemplateButtonOtp": "clickatell:WhatsAppMixedTemplateButtonOtp",
+    "otp": {
+      "@id": "clickatell:otp"
+    },
+    "WhatsAppMessageList": "clickatell:WhatsAppMessageList",
+    "sections": {
+      "@id": "clickatell:sections",
+      "@container": "@list"
+    },
+    "title": {
+      "@id": "clickatell:title",
+      "@type": "xsd:string"
+    },
+    "subtitle": {
+      "@id": "clickatell:subtitle",
+      "@type": "xsd:string"
+    },
+    "footer": {
+      "@id": "clickatell:footer",
+      "@type": "xsd:string"
+    },
+    "WhatsAppMessageListSection": "clickatell:WhatsAppMessageListSection",
+    "items": {
+      "@id": "clickatell:items",
+      "@container": "@list"
+    },
+    "WhatsAppMessageListSectionItem": "clickatell:WhatsAppMessageListSectionItem",
+    "WhatsAppMessageButton": "clickatell:WhatsAppMessageButton",
+    "WhatsAppInteractiveMessageHeader": "clickatell:WhatsAppInteractiveMessageHeader",
+    "WhatsAppInteractiveMessageMedia": "clickatell:WhatsAppInteractiveMessageMedia",
+    "WhatsAppMessageButtonItem": "clickatell:WhatsAppMessageButtonItem",
+    "WhatsAppMessageCTAButton": "clickatell:WhatsAppMessageCTAButton",
+    "WhatsAppMessageLocationRequest": "clickatell:WhatsAppMessageLocationRequest",
+    "SendOmniChannelMessagesRequest": "clickatell:SendOmniChannelMessagesRequest",
+    "MediaFileMetadataResponse": "clickatell:MediaFileMetadataResponse",
+    "expirationTime": {
+      "@id": "clickatell:expirationTime",
+      "@type": "xsd:integer"
+    },
+    "broadcastAllowed": {
+      "@id": "clickatell:broadcastAllowed",
+      "@type": "xsd:boolean"
+    },
+    "OmniMediaUploadResponse": "clickatell:OmniMediaUploadResponse",
+    "MessagingBalanceResponse": "clickatell:MessagingBalanceResponse",
+    "balance": {
+      "@id": "clickatell:balance",
+      "@type": "xsd:decimal"
+    },
+    "NotificationEventResponse": "clickatell:NotificationEventResponse",
+    "NotificationResponse": "clickatell:NotificationResponse",
+    "apiEventId": {
+      "@id": "clickatell:apiEventId",
+      "@type": "xsd:string"
+    },
+    "clientEventId": {
+      "@id": "clickatell:clientEventId",
+      "@type": "xsd:string"
+    },
+    "WhatsAppNotificationListResponse": "clickatell:WhatsAppNotificationListResponse",
+    "ReplyStatusEvent": "clickatell:ReplyStatusEvent",
+    "ReplyStatusUpdateNotification": "clickatell:ReplyStatusUpdateNotification",
+    "ReplyStatusNotificationRequest": "clickatell:ReplyStatusNotificationRequest",
+    "Sms status callback": "clickatell:Sms status callback",
+    "requestId": {
+      "@id": "clickatell:requestId",
+      "@type": "xsd:string"
+    },
+    "SendReplyMessageRequest": "clickatell:SendReplyMessageRequest",
+    "replyMessageId": {
+      "@id": "clickatell:replyMessageId",
+      "@type": "xsd:string"
+    },
+    "fromNumber": {
+      "@id": "clickatell:fromNumber",
+      "@type": "xsd:string"
+    },
+    "toNumber": {
+      "@id": "clickatell:toNumber",
+      "@type": "xsd:string"
+    },
+    "keyword": {
+      "@id": "clickatell:keyword",
+      "@type": "xsd:string"
+    },
+    "SendMessageRequest": "clickatell:SendMessageRequest",
+    "SendMessageResponse": "clickatell:SendMessageResponse",
+    "errorCode": {
+      "@id": "clickatell:errorCode",
+      "@type": "xsd:integer"
+    },
+    "errorDescription": {
+      "@id": "clickatell:errorDescription",
+      "@type": "xsd:string"
+    },
+    "SendMessagesListResponse": "clickatell:SendMessagesListResponse",
+    "SendBulkMessageRequest": "clickatell:SendBulkMessageRequest",
+    "messageList": {
+      "@id": "clickatell:messageList",
+      "@container": "@list"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Clickatell API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Clickatell's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-13) from openapi/clickatell-chat-2-pay-api-client-callbacks-openapi.json, openapi/clickatell-chat-2-pay-api-openapi.json, openapi/clickatell-flow-openapi.json.",
+  "dcterms:created": "2026-10-13",
+  "dcterms:source": [
+    "openapi/clickatell-chat-2-pay-api-client-callbacks-openapi.json",
+    "openapi/clickatell-chat-2-pay-api-openapi.json",
+    "openapi/clickatell-flow-openapi.json",
+    "openapi/clickatell-one-api-client-callbacks-openapi.json",
+    "openapi/clickatell-one-api-openapi.json"
+  ]
+}

@@ -1,0 +1,19 @@
+generated: '2026-10-13'
+method: derived
+source: openapi/clickatell-chat-2-pay-api-openapi.json, openapi/clickatell-one-api-openapi.json,
+  openapi/clickatell-sms-api-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: c2p
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Chat 2 Pay API Key Authorization
+  sources:
+  - openapi/clickatell-chat-2-pay-api-openapi.json
+  - openapi/clickatell-one-api-openapi.json
+  - openapi/clickatell-sms-api-openapi.json

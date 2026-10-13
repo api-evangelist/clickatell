@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-omni-status-callback-request-schema.json",
+  "title": "OmniStatusCallbackRequest",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-one-api-client-callbacks-openapi.json#/components/schemas/OmniStatusCallbackRequest",
+  "type": "object",
+  "properties": {
+    "integrationId": {
+      "type": "string"
+    },
+    "integrationName": {
+      "type": "string"
+    },
+    "event": {
+      "$ref": "#/$defs/StatusEvents"
+    }
+  },
+  "$defs": {
+    "FallbackStatus": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": [
+            "sms",
+            "whatsapp"
+          ]
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "statusDescription": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "string"
+        },
+        "clientMessageId": {
+          "type": "string"
+        }
+      }
+    },
+    "MessageStatus": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": [
+            "sms",
+            "whatsapp"
+          ]
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "statusCode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        },
+        "messageId": {
+          "type": "string"
+        },
+        "clientMessageId": {
+          "type": "string"
+        }
+      }
+    },
+    "StatusEvents": {
+      "type": "object",
+      "properties": {
+        "messageStatusUpdate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MessageStatus"
+          }
+        },
+        "messageFallback": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/$defs/FallbackStatus"
+          }
+        },
+        "statusIsTyping": {
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/$defs/TypingStatus"
+          }
+        }
+      }
+    },
+    "TypingStatus": {
+      "type": "object",
+      "properties": {
+        "channel": {
+          "type": "string",
+          "enum": [
+            "sms",
+            "whatsapp"
+          ]
+        },
+        "timestamp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "from": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

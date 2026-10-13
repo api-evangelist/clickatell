@@ -1,0 +1,334 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SMS API Client Callbacks",
+    "version": "1.0.0",
+    "x-provenance": {
+      "method": "searched",
+      "source": "https://help.clickatell.com/developers-api-reference/ (OpenAPI fragments embedded verbatim in the GitBook .md twins, merged by info.title)",
+      "generated": "2026-10-13"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://customer-server/",
+      "description": "Customer server",
+      "variables": {}
+    }
+  ],
+  "tags": [
+    {
+      "name": "SMS Client Callbacks"
+    }
+  ],
+  "paths": {
+    "/client-callback/sms-status": {
+      "get": {
+        "tags": [
+          "SMS Client Callbacks"
+        ],
+        "summary": "Example of a customer's sms status end-point",
+        "operationId": "sendGetSmsStatusCallback",
+        "parameters": [
+          {
+            "name": "integrationName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "requestId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientMessageId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "statusCode",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "statusDescription",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SMS Client Callbacks"
+        ],
+        "summary": "Example of a customer's sms status end-point",
+        "operationId": "sendPostSmsStatusCallback",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sms status callback"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/client-callback/sms-reply": {
+      "get": {
+        "tags": [
+          "SMS Client Callbacks"
+        ],
+        "summary": "Example of a customer's sms status end-point",
+        "operationId": "sendGetSmsReplyCallback",
+        "parameters": [
+          {
+            "name": "integrationName",
+            "in": "query",
+            "description": "Integration name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "replyMessageId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "toNumber",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "text",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "charset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "udh",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "network",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SMS Client Callbacks"
+        ],
+        "summary": "Example of a customer's sms reply end-point",
+        "operationId": "sendPostSmsReplyCallback",
+        "parameters": [],
+        "requestBody": {
+          "description": "Reply request to client",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendReplyMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Sms status callback": {
+        "type": "object",
+        "properties": {
+          "integrationName": {
+            "type": "string"
+          },
+          "messageId": {
+            "type": "string"
+          },
+          "requestId": {
+            "type": "string"
+          },
+          "clientMessageId": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          },
+          "statusDescription": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "SendReplyMessageRequest": {
+        "type": "object",
+        "properties": {
+          "integrationName": {
+            "type": "string"
+          },
+          "replyMessageId": {
+            "type": "string"
+          },
+          "messageId": {
+            "type": "string"
+          },
+          "fromNumber": {
+            "type": "string"
+          },
+          "toNumber": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "text": {
+            "type": "string"
+          },
+          "charset": {
+            "type": "string"
+          },
+          "udh": {
+            "type": "string"
+          },
+          "network": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "keyword": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

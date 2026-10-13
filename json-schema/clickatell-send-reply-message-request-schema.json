@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/clickatell/main/json-schema/clickatell-send-reply-message-request-schema.json",
+  "title": "SendReplyMessageRequest",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/clickatell-sms-api-client-callbacks-openapi.json#/components/schemas/SendReplyMessageRequest",
+  "type": "object",
+  "properties": {
+    "integrationName": {
+      "type": "string"
+    },
+    "replyMessageId": {
+      "type": "string"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "fromNumber": {
+      "type": "string"
+    },
+    "toNumber": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "text": {
+      "type": "string"
+    },
+    "charset": {
+      "type": "string"
+    },
+    "udh": {
+      "type": "string"
+    },
+    "network": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "keyword": {
+      "type": "string"
+    }
+  }
+}

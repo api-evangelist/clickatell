@@ -1,0 +1,2 @@
+# x-archived-from: clickatell-chat-2-pay-api-openapi.json
+# x-archived-on: 2026-10-13
