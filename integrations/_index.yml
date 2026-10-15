@@ -270,5 +270,5 @@
     app_slug: clickatell
     beta: false
     builder: unknown (not in the directory record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
