@@ -6,6 +6,7 @@ checked:
 - https://composio.dev/toolkits/clickatell
 - https://monid.ai/tools/clickatell
 - https://n8n.io/integrations/clickatell/
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/clickatell/integrations
 summary: null
 marketplace_apps:
@@ -247,6 +248,31 @@ edges:
   direction: third-party
   category: eCommerce
   partner_url: http://kajabi.com/
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/clickatell/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Clickatell
+    matched_domain: clickatell.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: clickatell
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates:
 - title: Send Clickatell SMS for new PlanSo Forms submissions
   url: https://zapier.com/apps/clickatell/integrations/planso/2424/send-clickatell-sms-for-new-planso-forms-submissions
