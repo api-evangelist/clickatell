@@ -309,23 +309,21 @@ paths:
           description: Account not found
 components:
   schemas:
-    OmniMessagesResponse:
+    WhatsAppTemplateSuggestedResponse:
+      required:
+      - postbackData
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/OmniResponseError'
-        apiMessageId:
-          type: string
-          description: System defined message ID.
-        accepted:
-          type: boolean
-          description: Indication if the message has passed API validation
-        to:
-          type: string
-          description: Recipient of the message, echoed back exactly as submitted. For WhatsApp this is a BSUID if a BSUID was submitted.
-        clientMessageId:
-          type: string
-          description: Customer defined message ID for tracking purposes.
+        postbackData:
+          maximum: 3
+          maxProperties: 3
+          type: object
+          additionalProperties:
+            maximum: 3
+            maxProperties: 3
+            type: string
+            description: '<b>Key</b> : String integer value of the button to which the postbackData should be associated<br><b>Value</b> : User defined data that will be returned in the callback function to the business.'
+          description: '<b>Key</b> : String integer value of the button to which the postbackData should be associated<br><b>Value</b> : User defined data that will be returned in the callback function to the business.'
     WhatsAppInteractiveMessageHeader:
       required:
       - type
@@ -344,6 +342,232 @@ components:
         media:
           $ref: '#/components/schemas/WhatsAppInteractiveMessageMedia'
       description: Header content displayed on top of a message.
+    WhatsAppMessageButton:
+      required:
+      - body
+      - items
+      type: object
+      properties:
+        body:
+          maximum: 1024
+          type: string
+        header:
+          $ref: '#/components/schemas/WhatsAppInteractiveMessageHeader'
+        items:
+          maxItems: 3
+          minItems: 1
+          type: array
+          description: Array of button item objects containing specific fields for sending a button message.
+          items:
+            $ref: '#/components/schemas/WhatsAppMessageButtonItem'
+        footer:
+          maximum: 60
+          type: string
+      description: <b>WhatsApp only</b><br>Object containing parameter for sending a button message
+    WhatsAppMessageButtonItem:
+      required:
+      - postbackData
+      - title
+      type: object
+      properties:
+        postbackData:
+          maximum: 256
+          type: string
+          description: Used to identify the item(s) that have been selected.<br><b>Note:</b> The value must be unique across all reply buttons in the message.
+        title:
+          maximum: 20
+          type: string
+          description: Title of item group.<br><b>Note:</b> Does not allow markdown
+        type:
+          type: string
+          description: This is a reserved field for the case where other option types get added. An example for GBM is a 'open url' action.
+          enum:
+          - reply
+    WhatsAppMixedTemplateButtonSuggestedResponse:
+      required:
+      - index
+      - type
+      - suggestedResponse
+      type: object
+      properties:
+        index:
+          type: integer
+          format: int32
+          description: Index of button in template in order it was created, starts at 1
+        type:
+          type: string
+          enum:
+          - suggestedResponse
+        suggestedResponse:
+          type: object
+          required:
+          - postbackData
+          properties:
+            postbackData:
+              type: string
+              description: This string will be passed back in response message if user taps this button.
+    ReplyStatusEvent:
+      required:
+      - messageStatusUpdate
+      type: object
+      properties:
+        messageStatusUpdate:
+          maxItems: 100
+          minItems: 1
+          type: array
+          description: An array of one or more messages can be specified
+          items:
+            $ref: '#/components/schemas/ReplyStatusUpdateNotification'
+      description: Business Read Status event request
+    WhatsAppMessageTemplateButtons:
+      type: object
+      properties:
+        suggestedResponse:
+          $ref: '#/components/schemas/WhatsAppTemplateSuggestedResponse'
+        websiteUrl:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhatsAppTemplateWebsiteUrl'
+      description: <b>To be deprecated</b><br><u>Use <i>templateButtons</i> instead</u> <br>Interactive template message buttons. <br><i>buttons</i> parameter supports 1 button type (websiteUrl or suggestedResponse) per send message request.
+    WhatsAppMixedTemplateButtonOtp:
+      required:
+      - index
+      - type
+      - otp
+      type: object
+      properties:
+        index:
+          type: integer
+          format: int32
+          description: Index of button in template in order it was created, starts at 1
+        type:
+          type: string
+          enum:
+          - otp
+        otp:
+          type: object
+          required:
+          - code
+          properties:
+            code:
+              type: string
+              description: OTP code value for authentication templates.
+    WhatsAppMessageCTAButton:
+      required:
+      - body
+      - title
+      - url
+      type: object
+      properties:
+        body:
+          maximum: 1024
+          type: string
+        header:
+          $ref: '#/components/schemas/WhatsAppInteractiveMessageHeader'
+        footer:
+          maximum: 60
+          type: string
+        title:
+          maximum: 20
+          type: string
+          description: Title that will be displayed on the button
+        url:
+          maximum: 2000
+          type: string
+          description: Url for CTA button
+      description: <b>WhatsApp only</b><br>Object containing parameter for sending a button message
+    OmniMessageListResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/OmniMessagesResponse'
+        error:
+          $ref: '#/components/schemas/OmniResponseError'
+        type:
+          type: string
+          writeOnly: true
+          enum:
+          - SUCCESS
+          - MIXED
+          - FAIL
+    NotificationEventResponse:
+      type: object
+      properties:
+        messageStatusUpdate:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationResponse'
+    WhatsAppMixedTemplateButtonCouponCode:
+      required:
+      - index
+      - type
+      - couponCode
+      type: object
+      properties:
+        index:
+          type: integer
+          format: int32
+          description: Index of button in template in order it was created, starts at 1
+        type:
+          type: string
+          enum:
+          - couponCode
+        couponCode:
+          type: object
+          required:
+          - code
+          properties:
+            code:
+              maximum: 15
+              type: string
+              description: Coupon code value.
+    WhatsAppTemplateHeaderMedia:
+      required:
+      - fileId
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: <i>fileId</i> as returned in the api reponse of the media upload request (see <i>Upload Media file for One Api</i>). <br>WhatsApp allows files of type image, video and document.
+      description: Required, if type media
+    ReplyStatusNotificationRequest:
+      required:
+      - event
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/ReplyStatusEvent'
+      description: Send Business Read Status notification request
+    WhatsAppMessageTemplate:
+      required:
+      - templateName
+      - body
+      type: object
+      properties:
+        templateName:
+          type: string
+          description: Template name which was specified when created.
+        language:
+          type: string
+          description: Specifies the language the template may be rendered in.
+        header:
+          $ref: '#/components/schemas/WhatsAppMessageTemplateHeader'
+        body:
+          $ref: '#/components/schemas/WhatsAppMessageTemplateBody'
+        buttons:
+          $ref: '#/components/schemas/WhatsAppMessageTemplateButtons'
+        templateButtons:
+          maxItems: 10
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/WhatsAppMixedTemplateButton'
+          description: '<li>Suppports a combination of button types in a single WhatsApp message template.</li>  <li>All buttons of the same type must be grouped together, e.g., all “url” buttons, all “suggestedResponse” buttons, etc.</li>  <li><b>Note:</b> If a “phone” or “static URL” button is used in the template, their position (index) requires the “index” parameter of other buttons to be incremented accordingly.</li> <li>See Example: <i>WhatsApp Interactive Text Template with Mixed Buttons.</i></li>
+
+            '
+      description: <b>WhatsApp only</b><br>Object containing parameters for sending a template message.
     WhatsAppTemplateHeaderText:
       type: object
       properties:
@@ -354,181 +578,117 @@ components:
             description: Key value pairs; key is string numeric value parameter and value set to the parameter value WhatsApp currently only allows for a single parameter value in the header text. <br><b>Only required if the template was created with a variable in the header text</b>
           description: Key value pairs; key is string numeric value parameter and value set to the parameter value WhatsApp currently only allows for a single parameter value in the header text. <br><b>Only required if the template was created with a variable in the header text</b>
       description: Required, if type text
-    OmniMessageStatusResponse:
+    WhatsAppNotificationListResponse:
       type: object
       properties:
-        sms:
-          $ref: '#/components/schemas/OmniMessageStatusEntry'
-        whatsapp:
-          $ref: '#/components/schemas/OmniMessageStatusEntry'
-    WhatsAppContact:
-      required:
-      - name
-      type: object
-      properties:
-        addresses:
-          minItems: 1
-          type: array
-          description: 'List of address object. See request example WhatsApp Contacts: One message'
-          items:
-            type: object
-            additionalProperties:
-              type: string
-        birthday:
-          pattern: YYYY-MM-DD
+        event:
+          $ref: '#/components/schemas/NotificationEventResponse'
+        error:
+          $ref: '#/components/schemas/OmniResponseError'
+        type:
           type: string
-          description: String date value.
-        emails:
-          minItems: 1
-          type: array
-          description: 'List of the email object. See request example WhatsApp Contacts: One message'
-          items:
-            type: object
-            additionalProperties:
-              type: string
-        name:
-          type: object
-          additionalProperties:
-            type: string
-            description: 'Name object. See request example WhatsApp Contacts: One message'
-          description: 'Name object. See request example WhatsApp Contacts: One message'
-        origin:
-          type: string
-          description: <b>WhatsApp inbound only</b><br>Indicates how the contact was shared by the user. <i>contact_request</i> means the contact was shared in direct response to a REQUEST_CONTACT_INFO button; <i>other</i> means the contact was shared organically (e.g. a forwarded vCard). Present only on inbound contact messages when supplied by WhatsApp; omitted when absent. Not encrypted for client-side encryption.
+          writeOnly: true
           enum:
-          - contact_request
-          - other
-        org:
-          type: object
-          additionalProperties:
-            type: string
-            description: 'See request example WhatsApp Contacts: One message'
-          description: 'See request example WhatsApp Contacts: One message'
-        phones:
-          minItems: 1
-          type: array
-          description: 'List of the phone object. See request example WhatsApp Contacts: One message'
-          items:
-            type: object
-            additionalProperties:
-              type: string
-        urls:
-          minItems: 1
-          type: array
-          description: 'List of the url object. See request example WhatsApp Contacts: One message'
-          items:
-            type: object
-            additionalProperties:
-              type: string
-    WhatsAppMessageTemplateBody:
+          - SUCCESS
+          - MIXED
+          - FAIL
+    WhatsAppMessageLocationRequest:
+      required:
+      - body
       type: object
       properties:
-        parameters:
-          type: object
-          additionalProperties:
-            type: string
-            description: Key value pairs; key is string numeric value parameter and value set to the parameter value
-          description: Key value pairs; key is string numeric value parameter and value set to the parameter value
-      description: Body object.
-    MediaFileMetadataResponse:
+        body:
+          maximum: 1024
+          type: string
+          description: 'Whatsapp supports: emojis, markdown, links'
+      description: <b>WhatsApp only</b> <br>Object for sending a location request message
+    OmniMessageStatusEntry:
       type: object
       properties:
-        expirationTime:
+        status:
+          type: string
+          enum:
+          - UNKNOWN
+          - QUEUED
+          - SCHEDULED
+          - SENT_TO_SUPPLIER
+          - DEVICE_ACK
+          - READ
+          - EXPIRED
+          - STOPPED_BY_USER
+          - STOPPED_BY_ADMIN
+          - DELIVERY_FAILURE
+          - EMULATED
+          - INSUFFICIENT_ACCOUNT_BALANCE
+          - VOLUME_LIMIT
+          - VOLUME_LIMIT_DAILY
+          - VOLUME_LIMIT_MONTHLY
+          - RECIPIENT_DOES_NOT_EXIST
+          - STOP_MARKETING_MESSAGES
+          - EXCESSIVE_MESSAGES_TO_RECIPIENT
+          - ENCRYPTION_ACCESS_DENIED
+          - ENCRYPTION_CONTENT_ERROR
+          - ENCRYPTION_VALIDATION_ERROR
+          - ANONYMOUS_USER_ID_INVALID
+          - ANONYMOUS_USER_ID_ERROR
+          - MEDIA_NOT_FOUND
+          - MEDIA_SIZE_ERROR
+          - MEDIA_CHECKSUM_FAILURE
+          - MEDIA_REJECTED_BY_SUPPLIER
+          - MEDIA_METADATA_ERROR
+          - MEDIA_ACCESS_ERROR
+          - MEDIA_TYPE_NOT_SUPPORTED
+          - ROUTING_ERROR
+          - WHATSAPP_ACCOUNT_PAYMENT_ISSUE
+          - WHATSAPP_RE_ENGAGEMENT_REQUIRED
+          - WHATSAPP_SPAM_RATE_LIMIT_REACHED
+          - WHATSAPP_SERVER_RATE_LIMIT
+          - WHATSAPP_EXPERIMENTAL_NUMBER
+          - WHATSAPP_TEMPLATE_TEXT_TOO_LONG
+          - WHATSAPP_TEMPLATE_FORMAT_MISMATCH
+          - WHATSAPP_TEMPLATE_FORMATTING_POLICY_VIOLATED
+          - WHATSAPP_TEMPLATE_MEDIA_FORMAT_UNSUPPORTED
+          - WHATSAPP_PARAMETER_MISSING
+          - WHATSAPP_PARAMETER_INVALID
+          - WHATSAPP_PARAMETER_NOT_REQUIRED
+          - WHATSAPP_TEMPLATE_INVALID_URL
+          - WHATSAPP_TEMPLATE_INVALID_PHONE_NUMBER
+          - WHATSAPP_TEMPLATE_RECEIVER_NO_BUTTON_SUPPORT
+          - WHATSAPP_TEMPLATE_DOES_NOT_EXIST
+          - WHATSAPP_TEMPLATE_PARAM_COUNT_MISMATCH
+          - WHATSAPP_TEMPLATE_PAUSED
+          - WHATSAPP_TEMPLATE_DISABLED
+          - WHATSAPP_COMPLIANCE_INFO_MISSING
+          - WHATSAPP_PRODUCT_CATALOG_NOT_FOUND
+          - WHATSAPP_PRODUCT_NOT_FOUND_IN_CATALOG
+          - WHATSAPP_PRODUCT_COMPLIANCE_ERROR
+          - WHATSAPP_MESSAGE_UNDELIVERABLE
+          - WHATSAPP_CHOSE_NOT_TO_DELIVER
+          - PAYMENT_COMPLETED
+          - PAYMENT_DECLINED
+          - PAYMENT_FAILED
+          - PAYMENT_INVALID_MERCHANT_SESSION
+          - PAYMENT_INVALID_WEBHOOK_ENDPOINTS
+        timestamp:
           type: integer
           format: int64
-        broadcastAllowed:
-          type: boolean
-    OmniIntegrationWaMediaRequest:
-      type: object
-      properties:
-        contentType:
-          type: string
-          description: Media type header for file format and file content. This parameter is required when sending a media message.<br><b>Inline required.</b>
-        caption:
-          type: string
-          description: This is an optional parameter and may be used to describe the media file being sent. Do not use when sending audio media.
-        fileName:
-          type: string
-          description: This is an optional parameter and may be used to specify name of a file that is sent to WhatsApp.
-        sha256Hash:
-          type: string
-          description: SHA256 File hash of the unencrypted file content.
-        fileId:
-          type: string
-          description: File reference id as returned in the media file upload API call.<br><b>By Reference required.</b>
-      description: <b>WhatsApp only</b><br>Object containing parameters for sending a media message.
-    WhatsAppTemplateHeaderMedia:
+    WhatsAppInteractiveMessageMedia:
       required:
       - fileId
-      type: object
-      properties:
-        fileId:
-          type: string
-          description: <i>fileId</i> as returned in the api reponse of the media upload request (see <i>Upload Media file for One Api</i>). <br>WhatsApp allows files of type image, video and document.
-      description: Required, if type media
-    WhatsAppMessageTemplateHeader:
-      required:
       - type
       type: object
       properties:
         type:
           type: string
-          description: Indicates the header type of the template.<br><b>Note:</b><i> location</i> header type (location template) only supported for cloud-hosted numbers
+          description: File type value.
           enum:
-          - text
-          - media
-          - location
-        text:
-          $ref: '#/components/schemas/WhatsAppTemplateHeaderText'
-        media:
-          $ref: '#/components/schemas/WhatsAppTemplateHeaderMedia'
-        location:
-          $ref: '#/components/schemas/WhatsAppTemplateHeaderLocation'
-      description: Template header.
-    WhatsAppMessageListSection:
-      type: object
-      properties:
-        items:
-          maxItems: 10
-          minItems: 1
-          type: array
-          description: Array of the section message object containing specific title fields for sending a list message. Max items in total is 10.
-          items:
-            $ref: '#/components/schemas/WhatsAppMessageListSectionItem'
-        title:
-          maximum: 24
+          - image
+          - video
+          - document
+        fileId:
           type: string
-          description: Title of section<br><b>Note:</b> Does not allow markdown.<br>If more than one section is presented, this field is required.
-    WhatsAppMessageList:
-      required:
-      - button
-      - sections
-      - subtitle
-      type: object
-      properties:
-        sections:
-          maxItems: 10
-          minItems: 1
-          type: array
-          description: Array of the message objects containing items for sending a list message.
-          items:
-            $ref: '#/components/schemas/WhatsAppMessageListSection'
-        title:
-          maximum: 60
-          type: string
-          description: Title for the list picker message.<br><b>Note:</b> Does not allow markdown
-        subtitle:
-          maximum: 1024
-          type: string
-          description: Subtitle for the list picker message
-        button:
-          maximum: 20
-          type: string
-          description: Button name for the list picker message.<br><b>Note:</b> Does not allow markdown
-        footer:
-          maximum: 60
-          type: string
-      description: <b>WhatsApp only</b><br>Object containing parameter for sending a list message
+          description: File reference id as returned in the media file upload API call.
+      description: Required, if type media
     OmniMessageRequest:
       required:
       - to
@@ -603,58 +763,6 @@ components:
         encryptionCipher:
           type: string
           description: <b>Client side encryption ONLY</b><br>Customer defined encryption cipher.
-    MessagingBalanceResponse:
-      type: object
-      properties:
-        balance:
-          type: number
-        currency:
-          type: string
-    ReplyStatusNotificationRequest:
-      required:
-      - event
-      type: object
-      properties:
-        event:
-          $ref: '#/components/schemas/ReplyStatusEvent'
-      description: Send Business Read Status notification request
-    OmniMediaUploadResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/OmniResponseError'
-        fileId:
-          type: string
-        accepted:
-          type: boolean
-    WhatsAppMessageTemplate:
-      required:
-      - templateName
-      - body
-      type: object
-      properties:
-        templateName:
-          type: string
-          description: Template name which was specified when created.
-        language:
-          type: string
-          description: Specifies the language the template may be rendered in.
-        header:
-          $ref: '#/components/schemas/WhatsAppMessageTemplateHeader'
-        body:
-          $ref: '#/components/schemas/WhatsAppMessageTemplateBody'
-        buttons:
-          $ref: '#/components/schemas/WhatsAppMessageTemplateButtons'
-        templateButtons:
-          maxItems: 10
-          minItems: 0
-          type: array
-          items:
-            $ref: '#/components/schemas/WhatsAppMixedTemplateButton'
-          description: '<li>Suppports a combination of button types in a single WhatsApp message template.</li>  <li>All buttons of the same type must be grouped together, e.g., all “url” buttons, all “suggestedResponse” buttons, etc.</li>  <li><b>Note:</b> If a “phone” or “static URL” button is used in the template, their position (index) requires the “index” parameter of other buttons to be incremented accordingly.</li> <li>See Example: <i>WhatsApp Interactive Text Template with Mixed Buttons.</i></li>
-
-            '
-      description: <b>WhatsApp only</b><br>Object containing parameters for sending a template message.
     WhatsAppMixedTemplateButtonUrl:
       required:
       - index
@@ -678,6 +786,48 @@ components:
             url:
               type: string
               description: Enter final part of URL in this field (the first part is already specified in template).
+    WhatsAppMessageTemplateHeader:
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Indicates the header type of the template.<br><b>Note:</b><i> location</i> header type (location template) only supported for cloud-hosted numbers
+          enum:
+          - text
+          - media
+          - location
+        text:
+          $ref: '#/components/schemas/WhatsAppTemplateHeaderText'
+        media:
+          $ref: '#/components/schemas/WhatsAppTemplateHeaderMedia'
+        location:
+          $ref: '#/components/schemas/WhatsAppTemplateHeaderLocation'
+      description: Template header.
+    Location:
+      required:
+      - latitude
+      - longitude
+      type: object
+      properties:
+        longitude:
+          maximum: 180
+          minimum: -180
+          type: string
+          description: Longitude of the location as a numeric string value.
+        latitude:
+          maximum: 90
+          minimum: -90
+          type: string
+          description: Longitude of the location as a numeric string value.
+        name:
+          type: string
+          description: Name of the location.
+        address:
+          type: string
+          description: Address of the location. The address will only be displayed if the name was set.
+      description: <b>WhatsApp only</b><br>Object containing parameters for sending a location message.
     ReplyStatusUpdateNotification:
       required:
       - messageId
@@ -703,106 +853,26 @@ components:
         clientEventId:
           type: string
           description: Client internal id that the client can use to match the response to the request. This parameter will just be echoed back in the response.
-    WhatsAppMessageCTAButton:
-      required:
-      - body
-      - title
-      - url
+    WhatsAppMessageTemplateBody:
       type: object
       properties:
-        body:
-          maximum: 1024
-          type: string
-        header:
-          $ref: '#/components/schemas/WhatsAppInteractiveMessageHeader'
-        footer:
-          maximum: 60
-          type: string
-        title:
-          maximum: 20
-          type: string
-          description: Title that will be displayed on the button
-        url:
-          maximum: 2000
-          type: string
-          description: Url for CTA button
-      description: <b>WhatsApp only</b><br>Object containing parameter for sending a button message
-    ReplyStatusEvent:
-      required:
-      - messageStatusUpdate
-      type: object
-      properties:
-        messageStatusUpdate:
-          maxItems: 100
-          minItems: 1
-          type: array
-          description: An array of one or more messages can be specified
-          items:
-            $ref: '#/components/schemas/ReplyStatusUpdateNotification'
-      description: Business Read Status event request
-    WhatsAppMixedTemplateButtonOtp:
-      required:
-      - index
-      - type
-      - otp
-      type: object
-      properties:
-        index:
-          type: integer
-          format: int32
-          description: Index of button in template in order it was created, starts at 1
-        type:
-          type: string
-          enum:
-          - otp
-        otp:
+        parameters:
           type: object
-          required:
-          - code
-          properties:
-            code:
-              type: string
-              description: OTP code value for authentication templates.
-    WhatsAppInteractiveMessageMedia:
-      required:
-      - fileId
-      - type
+          additionalProperties:
+            type: string
+            description: Key value pairs; key is string numeric value parameter and value set to the parameter value
+          description: Key value pairs; key is string numeric value parameter and value set to the parameter value
+      description: Body object.
+    OmniResponseError:
       type: object
       properties:
-        type:
-          type: string
-          description: File type value.
-          enum:
-          - image
-          - video
-          - document
-        fileId:
-          type: string
-          description: File reference id as returned in the media file upload API call.
-      description: Required, if type media
-    WhatsAppMixedTemplateButtonSuggestedResponse:
-      required:
-      - index
-      - type
-      - suggestedResponse
-      type: object
-      properties:
-        index:
+        code:
           type: integer
+          description: '<i>Error Code</i> value in '
           format: int32
-          description: Index of button in template in order it was created, starts at 1
-        type:
+        description:
           type: string
-          enum:
-          - suggestedResponse
-        suggestedResponse:
-          type: object
-          required:
-          - postbackData
-          properties:
-            postbackData:
-              type: string
-              description: This string will be passed back in response message if user taps this button.
+          description: <i>Error Message</i>
     WhatsAppTemplateHeaderLocation:
       required:
       - address
@@ -828,39 +898,50 @@ components:
           type: string
           description: Address of the location. The address will only be displayed if the name was set.
       description: <b>Note:</b> <i>location</i> header only supported for cloud numbers. Required, if type location
-    Location:
+    WhatsAppMessageList:
       required:
-      - latitude
-      - longitude
+      - button
+      - sections
+      - subtitle
       type: object
       properties:
-        longitude:
-          maximum: 180
-          minimum: -180
+        sections:
+          maxItems: 10
+          minItems: 1
+          type: array
+          description: Array of the message objects containing items for sending a list message.
+          items:
+            $ref: '#/components/schemas/WhatsAppMessageListSection'
+        title:
+          maximum: 60
           type: string
-          description: Longitude of the location as a numeric string value.
-        latitude:
-          maximum: 90
-          minimum: -90
-          type: string
-          description: Longitude of the location as a numeric string value.
-        name:
-          type: string
-          description: Name of the location.
-        address:
-          type: string
-          description: Address of the location. The address will only be displayed if the name was set.
-      description: <b>WhatsApp only</b><br>Object containing parameters for sending a location message.
-    WhatsAppMessageLocationRequest:
-      required:
-      - body
-      type: object
-      properties:
-        body:
+          description: Title for the list picker message.<br><b>Note:</b> Does not allow markdown
+        subtitle:
           maximum: 1024
           type: string
-          description: 'Whatsapp supports: emojis, markdown, links'
-      description: <b>WhatsApp only</b> <br>Object for sending a location request message
+          description: Subtitle for the list picker message
+        button:
+          maximum: 20
+          type: string
+          description: Button name for the list picker message.<br><b>Note:</b> Does not allow markdown
+        footer:
+          maximum: 60
+          type: string
+      description: <b>WhatsApp only</b><br>Object containing parameter for sending a list message
+    MessagingBalanceResponse:
+      type: object
+      properties:
+        balance:
+          type: number
+        currency:
+          type: string
+    OmniMessageStatusResponse:
+      type: object
+      properties:
+        sms:
+          $ref: '#/components/schemas/OmniMessageStatusEntry'
+        whatsapp:
+          $ref: '#/components/schemas/OmniMessageStatusEntry'
     WhatsAppMessageListSectionItem:
       required:
       - postbackData
@@ -879,172 +960,42 @@ components:
           maximum: 200
           type: string
           description: Used to identify the item(s) that have been selected.<br><b>Note:</b> Does not support emojis or markdown as it is not a visible field.
-    WhatsAppMixedTemplateButton:
-      type: object
-      anyOf:
-      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonUrl'
-      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonSuggestedResponse'
-      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonCouponCode'
-      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonOtp'
-    WhatsAppMessageButtonItem:
-      required:
-      - postbackData
-      - title
+    OmniMessagesResponse:
       type: object
       properties:
-        postbackData:
-          maximum: 256
-          type: string
-          description: Used to identify the item(s) that have been selected.<br><b>Note:</b> The value must be unique across all reply buttons in the message.
-        title:
-          maximum: 20
-          type: string
-          description: Title of item group.<br><b>Note:</b> Does not allow markdown
-        type:
-          type: string
-          description: This is a reserved field for the case where other option types get added. An example for GBM is a 'open url' action.
-          enum:
-          - reply
-    OmniMessageListResponse:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/OmniMessagesResponse'
         error:
           $ref: '#/components/schemas/OmniResponseError'
-        type:
+        apiMessageId:
           type: string
-          writeOnly: true
-          enum:
-          - SUCCESS
-          - MIXED
-          - FAIL
-    NotificationEventResponse:
-      type: object
-      properties:
-        messageStatusUpdate:
-          type: array
-          items:
-            $ref: '#/components/schemas/NotificationResponse'
-    NotificationResponse:
-      type: object
-      properties:
-        apiEventId:
-          type: string
+          description: System defined message ID.
         accepted:
           type: boolean
-        messageId:
+          description: Indication if the message has passed API validation
+        to:
           type: string
-        clientEventId:
+          description: Recipient of the message, echoed back exactly as submitted. For WhatsApp this is a BSUID if a BSUID was submitted.
+        clientMessageId:
           type: string
-        error:
-          $ref: '#/components/schemas/OmniResponseError'
-    OmniResponseError:
+          description: Customer defined message ID for tracking purposes.
+    OmniIntegrationWaMediaRequest:
       type: object
       properties:
-        code:
-          type: integer
-          description: '<i>Error Code</i> value in '
-          format: int32
-        description:
+        contentType:
           type: string
-          description: <i>Error Message</i>
-    WhatsAppMixedTemplateButtonCouponCode:
-      required:
-      - index
-      - type
-      - couponCode
-      type: object
-      properties:
-        index:
-          type: integer
-          format: int32
-          description: Index of button in template in order it was created, starts at 1
-        type:
+          description: Media type header for file format and file content. This parameter is required when sending a media message.<br><b>Inline required.</b>
+        caption:
           type: string
-          enum:
-          - couponCode
-        couponCode:
-          type: object
-          required:
-          - code
-          properties:
-            code:
-              maximum: 15
-              type: string
-              description: Coupon code value.
-    OmniMessageStatusEntry:
-      type: object
-      properties:
-        status:
+          description: This is an optional parameter and may be used to describe the media file being sent. Do not use when sending audio media.
+        fileName:
           type: string
-          enum:
-          - UNKNOWN
-          - QUEUED
-          - SCHEDULED
-          - SENT_TO_SUPPLIER
-          - DEVICE_ACK
-          - READ
-          - EXPIRED
-          - STOPPED_BY_USER
-          - STOPPED_BY_ADMIN
-          - DELIVERY_FAILURE
-          - EMULATED
-          - INSUFFICIENT_ACCOUNT_BALANCE
-          - VOLUME_LIMIT
-          - VOLUME_LIMIT_DAILY
-          - VOLUME_LIMIT_MONTHLY
-          - RECIPIENT_DOES_NOT_EXIST
-          - STOP_MARKETING_MESSAGES
-          - EXCESSIVE_MESSAGES_TO_RECIPIENT
-          - ENCRYPTION_ACCESS_DENIED
-          - ENCRYPTION_CONTENT_ERROR
-          - ENCRYPTION_VALIDATION_ERROR
-          - ANONYMOUS_USER_ID_INVALID
-          - ANONYMOUS_USER_ID_ERROR
-          - MEDIA_NOT_FOUND
-          - MEDIA_SIZE_ERROR
-          - MEDIA_CHECKSUM_FAILURE
-          - MEDIA_REJECTED_BY_SUPPLIER
-          - MEDIA_METADATA_ERROR
-          - MEDIA_ACCESS_ERROR
-          - MEDIA_TYPE_NOT_SUPPORTED
-          - ROUTING_ERROR
-          - WHATSAPP_ACCOUNT_PAYMENT_ISSUE
-          - WHATSAPP_RE_ENGAGEMENT_REQUIRED
-          - WHATSAPP_SPAM_RATE_LIMIT_REACHED
-          - WHATSAPP_SERVER_RATE_LIMIT
-          - WHATSAPP_EXPERIMENTAL_NUMBER
-          - WHATSAPP_TEMPLATE_TEXT_TOO_LONG
-          - WHATSAPP_TEMPLATE_FORMAT_MISMATCH
-          - WHATSAPP_TEMPLATE_FORMATTING_POLICY_VIOLATED
-          - WHATSAPP_TEMPLATE_MEDIA_FORMAT_UNSUPPORTED
-          - WHATSAPP_PARAMETER_MISSING
-          - WHATSAPP_PARAMETER_INVALID
-          - WHATSAPP_PARAMETER_NOT_REQUIRED
-          - WHATSAPP_TEMPLATE_INVALID_URL
-          - WHATSAPP_TEMPLATE_INVALID_PHONE_NUMBER
-          - WHATSAPP_TEMPLATE_RECEIVER_NO_BUTTON_SUPPORT
-          - WHATSAPP_TEMPLATE_DOES_NOT_EXIST
-          - WHATSAPP_TEMPLATE_PARAM_COUNT_MISMATCH
-          - WHATSAPP_TEMPLATE_PAUSED
-          - WHATSAPP_TEMPLATE_DISABLED
-          - WHATSAPP_COMPLIANCE_INFO_MISSING
-          - WHATSAPP_PRODUCT_CATALOG_NOT_FOUND
-          - WHATSAPP_PRODUCT_NOT_FOUND_IN_CATALOG
-          - WHATSAPP_PRODUCT_COMPLIANCE_ERROR
-          - WHATSAPP_MESSAGE_UNDELIVERABLE
-          - WHATSAPP_CHOSE_NOT_TO_DELIVER
-          - PAYMENT_COMPLETED
-          - PAYMENT_DECLINED
-          - PAYMENT_FAILED
-          - PAYMENT_INVALID_MERCHANT_SESSION
-          - PAYMENT_INVALID_WEBHOOK_ENDPOINTS
-        timestamp:
-          type: integer
-          format: int64
+          description: This is an optional parameter and may be used to specify name of a file that is sent to WhatsApp.
+        sha256Hash:
+          type: string
+          description: SHA256 File hash of the unencrypted file content.
+        fileId:
+          type: string
+          description: File reference id as returned in the media file upload API call.<br><b>By Reference required.</b>
+      description: <b>WhatsApp only</b><br>Object containing parameters for sending a media message.
     SendOmniChannelMessagesRequest:
       required:
       - messages
@@ -1058,42 +1009,6 @@ components:
           items:
             $ref: '#/components/schemas/OmniMessageRequest'
       description: One api send message request
-    WhatsAppNotificationListResponse:
-      type: object
-      properties:
-        event:
-          $ref: '#/components/schemas/NotificationEventResponse'
-        error:
-          $ref: '#/components/schemas/OmniResponseError'
-        type:
-          type: string
-          writeOnly: true
-          enum:
-          - SUCCESS
-          - MIXED
-          - FAIL
-    WhatsAppMessageButton:
-      required:
-      - body
-      - items
-      type: object
-      properties:
-        body:
-          maximum: 1024
-          type: string
-        header:
-          $ref: '#/components/schemas/WhatsAppInteractiveMessageHeader'
-        items:
-          maxItems: 3
-          minItems: 1
-          type: array
-          description: Array of button item objects containing specific fields for sending a button message.
-          items:
-            $ref: '#/components/schemas/WhatsAppMessageButtonItem'
-        footer:
-          maximum: 60
-          type: string
-      description: <b>WhatsApp only</b><br>Object containing parameter for sending a button message
     WhatsAppTemplateWebsiteUrl:
       required:
       - listPosition
@@ -1114,31 +1029,116 @@ components:
             type: string
             description: ' WhatsApp supports parameter value in a dynamic URL.'
           description: ' WhatsApp supports parameter value in a dynamic URL.'
-    WhatsAppMessageTemplateButtons:
+    WhatsAppMessageListSection:
       type: object
       properties:
-        suggestedResponse:
-          $ref: '#/components/schemas/WhatsAppTemplateSuggestedResponse'
-        websiteUrl:
+        items:
+          maxItems: 10
+          minItems: 1
           type: array
+          description: Array of the section message object containing specific title fields for sending a list message. Max items in total is 10.
           items:
-            $ref: '#/components/schemas/WhatsAppTemplateWebsiteUrl'
-      description: <b>To be deprecated</b><br><u>Use <i>templateButtons</i> instead</u> <br>Interactive template message buttons. <br><i>buttons</i> parameter supports 1 button type (websiteUrl or suggestedResponse) per send message request.
-    WhatsAppTemplateSuggestedResponse:
+            $ref: '#/components/schemas/WhatsAppMessageListSectionItem'
+        title:
+          maximum: 24
+          type: string
+          description: Title of section<br><b>Note:</b> Does not allow markdown.<br>If more than one section is presented, this field is required.
+    WhatsAppContact:
       required:
-      - postbackData
+      - name
       type: object
       properties:
-        postbackData:
-          maximum: 3
-          maxProperties: 3
+        addresses:
+          minItems: 1
+          type: array
+          description: 'List of address object. See request example WhatsApp Contacts: One message'
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        birthday:
+          pattern: YYYY-MM-DD
+          type: string
+          description: String date value.
+        emails:
+          minItems: 1
+          type: array
+          description: 'List of the email object. See request example WhatsApp Contacts: One message'
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        name:
           type: object
           additionalProperties:
-            maximum: 3
-            maxProperties: 3
             type: string
-            description: '<b>Key</b> : String integer value of the button to which the postbackData should be associated<br><b>Value</b> : User defined data that will be returned in the callback function to the business.'
-          description: '<b>Key</b> : String integer value of the button to which the postbackData should be associated<br><b>Value</b> : User defined data that will be returned in the callback function to the business.'
+            description: 'Name object. See request example WhatsApp Contacts: One message'
+          description: 'Name object. See request example WhatsApp Contacts: One message'
+        origin:
+          type: string
+          description: <b>WhatsApp inbound only</b><br>Indicates how the contact was shared by the user. <i>contact_request</i> means the contact was shared in direct response to a REQUEST_CONTACT_INFO button; <i>other</i> means the contact was shared organically (e.g. a forwarded vCard). Present only on inbound contact messages when supplied by WhatsApp; omitted when absent. Not encrypted for client-side encryption.
+          enum:
+          - contact_request
+          - other
+        org:
+          type: object
+          additionalProperties:
+            type: string
+            description: 'See request example WhatsApp Contacts: One message'
+          description: 'See request example WhatsApp Contacts: One message'
+        phones:
+          minItems: 1
+          type: array
+          description: 'List of the phone object. See request example WhatsApp Contacts: One message'
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        urls:
+          minItems: 1
+          type: array
+          description: 'List of the url object. See request example WhatsApp Contacts: One message'
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    NotificationResponse:
+      type: object
+      properties:
+        apiEventId:
+          type: string
+        accepted:
+          type: boolean
+        messageId:
+          type: string
+        clientEventId:
+          type: string
+        error:
+          $ref: '#/components/schemas/OmniResponseError'
+    WhatsAppMixedTemplateButton:
+      type: object
+      anyOf:
+      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonUrl'
+      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonSuggestedResponse'
+      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonCouponCode'
+      - $ref: '#/components/schemas/WhatsAppMixedTemplateButtonOtp'
+    MediaFileMetadataResponse:
+      type: object
+      properties:
+        expirationTime:
+          type: integer
+          format: int64
+        broadcastAllowed:
+          type: boolean
+    OmniMediaUploadResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/OmniResponseError'
+        fileId:
+          type: string
+        accepted:
+          type: boolean
   securitySchemes:
     api-key:
       type: apiKey

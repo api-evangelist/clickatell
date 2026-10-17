@@ -108,6 +108,56 @@ paths:
                 $ref: '#/components/schemas/SendMessagesListResponse'
 components:
   schemas:
+    SendMessageRequest:
+      type: object
+      properties:
+        content:
+          type: string
+          xml:
+            name: Content
+        to:
+          uniqueItems: true
+          type: array
+          xml:
+            name: To
+          items:
+            type: string
+            xml:
+              name: To
+        from:
+          type: string
+          xml:
+            name: From
+        binary:
+          type: boolean
+          xml:
+            name: Binary
+        clientMessageId:
+          type: string
+          xml:
+            name: ClientMessageId
+        scheduledDeliveryTime:
+          type: string
+          xml:
+            name: ScheduledDeliveryTime
+        userDataHeader:
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+          xml:
+            name: UserDataHeader
+        validityPeriod:
+          type: integer
+          format: int32
+          xml:
+            name: ValidityPeriod
+        charset:
+          type: string
+          xml:
+            name: Charset
+      description: Send sms request
+      xml:
+        name: SendMessageRequest
     SendMessagesListResponse:
       type: object
       properties:
@@ -168,56 +218,6 @@ components:
           type: string
           xml:
             name: ErrorDescription
-    SendMessageRequest:
-      type: object
-      properties:
-        content:
-          type: string
-          xml:
-            name: Content
-        to:
-          uniqueItems: true
-          type: array
-          xml:
-            name: To
-          items:
-            type: string
-            xml:
-              name: To
-        from:
-          type: string
-          xml:
-            name: From
-        binary:
-          type: boolean
-          xml:
-            name: Binary
-        clientMessageId:
-          type: string
-          xml:
-            name: ClientMessageId
-        scheduledDeliveryTime:
-          type: string
-          xml:
-            name: ScheduledDeliveryTime
-        userDataHeader:
-          maxLength: 2147483647
-          minLength: 1
-          type: string
-          xml:
-            name: UserDataHeader
-        validityPeriod:
-          type: integer
-          format: int32
-          xml:
-            name: ValidityPeriod
-        charset:
-          type: string
-          xml:
-            name: Charset
-      description: Send sms request
-      xml:
-        name: SendMessageRequest
   securitySchemes:
     api-key:
       type: apiKey

@@ -79,6 +79,519 @@ paths:
           description: Success
 components:
   schemas:
+    ButtonResponseReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        postbackData:
+          type: string
+        selectedItem:
+          $ref: '#/components/schemas/SelectedButtonItem'
+    LocationReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        charset:
+          type: string
+          description: Character encoding
+          default: UTF-8
+        locationAddress:
+          type: string
+          description: Address of the location
+        locationName:
+          type: string
+          description: Name of the location
+        latitude:
+          type: string
+          description: Numeric latitude value expressed as a string
+        latitute:
+          type: string
+          description: Numeric latitude value expressed as a string
+        longitude:
+          type: string
+          description: Numeric longitude value expressed as a string
+    TypingStatus:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - sms
+          - whatsapp
+        timestamp:
+          type: integer
+          format: int64
+        from:
+          type: string
+    MessageStatus:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - sms
+          - whatsapp
+        timestamp:
+          type: integer
+          format: int64
+        statusCode:
+          type: integer
+          format: int32
+        status:
+          type: string
+        messageId:
+          type: string
+        clientMessageId:
+          type: string
+    OmniReplyCallbackRequest:
+      type: object
+      properties:
+        integrationId:
+          type: string
+        integrationName:
+          type: string
+        event:
+          $ref: '#/components/schemas/ReplyEvents'
+    ReferralInfo:
+      type: object
+      properties:
+        headline:
+          type: string
+          description: Headline used in the ad that generated the message.
+        content:
+          type: string
+          description: Body from the ad that generated the message.
+        sourceType:
+          type: string
+          description: The type of the ad’s source.
+          enum:
+          - ad
+          - post
+        sourceId:
+          type: string
+          description: Facebook ID for an ad or a post.
+        sourceUrl:
+          type: string
+          description: The url that leads to the ad or post. Opening this url takes you to the ad viewed by your user.
+    ReferenceMediaReply:
+      required:
+      - files
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        caption:
+          type: string
+        files:
+          type: array
+          description: 'An array of the file object with a list of media items that is attached to the inbound media message. This parameter is only applicable to MO event callbacks for media by reference '
+          items:
+            $ref: '#/components/schemas/ReferenceMediaFile'
+    WhatsAppContent:
+      type: object
+      properties:
+        profileName:
+          type: string
+          description: Users profile name as set up on their WA Client
+        referralInfo:
+          $ref: '#/components/schemas/ReferralInfo'
+        userId:
+          type: string
+          description: 'Business-Scoped User ID (BSUID) of the WhatsApp user. Format: CC.alphanumeric (max 131 chars). Always present for WhatsApp messages. Not encrypted for client-side encryption.'
+        parentUserId:
+          type: string
+          description: 'Parent BSUID for linked business portfolios. Format: CC.ENT.alphanumeric (max 135 chars). Present only if your company is an eligible enterprise explicitly enrolled in a Parent BSUID account. Not encrypted for client-side encryption.'
+        username:
+          type: string
+          description: WhatsApp username handle. Present only if the user has enabled a username. Encrypted for client-side encryption.
+      description: WhatsApp specific content
+    ContactsReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhatsAppContact'
+        charset:
+          type: string
+    InlineMediaReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        caption:
+          type: string
+        content:
+          type: string
+        sha256Hash:
+          type: string
+        contentType:
+          type: string
+    SelectedButtonItem:
+      type: object
+      properties:
+        postbackData:
+          type: string
+        content:
+          type: string
+    Sms:
+      type: object
+      properties:
+        udh:
+          type: string
+        network:
+          type: integer
+          format: int32
+    TextReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        charset:
+          type: string
+        content:
+          type: string
+        sms:
+          $ref: '#/components/schemas/Sms'
+    ListPickerResponseReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        postbackData:
+          type: string
+        selectedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/SelectedButtonItem'
+    ReplyEvents:
+      type: object
+      properties:
+        moText:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextReply'
+        moMedia:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaReply'
+        moLocation:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationReply'
+        moContacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContactsReply'
+        moSuggestedResponse:
+          type: array
+          items:
+            $ref: '#/components/schemas/SuggestedResponseReply'
+        moListPickerResponse:
+          type: array
+          items:
+            $ref: '#/components/schemas/ListPickerResponseReply'
+        moButtonResponse:
+          type: array
+          items:
+            $ref: '#/components/schemas/ButtonResponseReply'
+    StatusEvents:
+      type: object
+      properties:
+        messageStatusUpdate:
+          type: array
+          items:
+            $ref: '#/components/schemas/MessageStatus'
+        messageFallback:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/FallbackStatus'
+        statusIsTyping:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/TypingStatus'
+    MediaReply:
+      type: object
+      properties:
+        channel:
+          type: string
+          description: Specifies the channel which is used with the specified message
+          enum:
+          - sms
+          - whatsapp
+        messageId:
+          type: string
+          description: Id of a message that originated from client
+        relatedMessageId:
+          type: string
+          description: Id of a message to which client responds
+        relatedClientMessageId:
+          type: string
+          description: Id which was specified in <i>clientMessageId</i> field
+        from:
+          type: string
+          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
+        to:
+          type: string
+          description: Receiver phone number
+        timestamp:
+          type: integer
+          description: Unix timestamp when the system received the message in milliseconds
+          format: int64
+        encryptionKey:
+          type: string
+          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
+        whatsapp:
+          $ref: '#/components/schemas/WhatsAppContent'
+        caption:
+          type: string
+      anyOf:
+      - $ref: '#/components/schemas/InlineMediaReply'
+      - $ref: '#/components/schemas/ReferenceMediaReply'
+    ReferenceMediaFile:
+      required:
+      - byteSize
+      - contentType
+      - downloadUrl
+      type: object
+      properties:
+        contentType:
+          type: string
+          description: Media content type for the media item
+        downloadUrl:
+          type: string
+          description: Download URL to be used for downloading the media item
+        sha256Hash:
+          type: string
+        byteSize:
+          type: integer
+          description: Byte size of the file to be downloaded
+          format: int64
+        fileName:
+          type: string
+          description: Original file name (if it is available)
+    FallbackStatus:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - sms
+          - whatsapp
+        timestamp:
+          type: integer
+          format: int64
+        statusDescription:
+          type: integer
+          format: int32
+        status:
+          type: string
+        messageId:
+          type: string
+        clientMessageId:
+          type: string
     WhatsAppContact:
       required:
       - name
@@ -138,476 +651,6 @@ components:
             type: object
             additionalProperties:
               type: string
-    MessageStatus:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - sms
-          - whatsapp
-        timestamp:
-          type: integer
-          format: int64
-        statusCode:
-          type: integer
-          format: int32
-        status:
-          type: string
-        messageId:
-          type: string
-        clientMessageId:
-          type: string
-    ContactsReply:
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/WhatsAppContact'
-        charset:
-          type: string
-    MediaReply:
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        caption:
-          type: string
-      anyOf:
-      - $ref: '#/components/schemas/InlineMediaReply'
-      - $ref: '#/components/schemas/ReferenceMediaReply'
-    ListPickerResponseReply:
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        postbackData:
-          type: string
-        selectedItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/SelectedButtonItem'
-    ButtonResponseReply:
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        postbackData:
-          type: string
-        selectedItem:
-          $ref: '#/components/schemas/SelectedButtonItem'
-    TextReply:
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        charset:
-          type: string
-        content:
-          type: string
-        sms:
-          $ref: '#/components/schemas/Sms'
-    TypingStatus:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - sms
-          - whatsapp
-        timestamp:
-          type: integer
-          format: int64
-        from:
-          type: string
-    ReferenceMediaFile:
-      required:
-      - byteSize
-      - contentType
-      - downloadUrl
-      type: object
-      properties:
-        contentType:
-          type: string
-          description: Media content type for the media item
-        downloadUrl:
-          type: string
-          description: Download URL to be used for downloading the media item
-        sha256Hash:
-          type: string
-        byteSize:
-          type: integer
-          description: Byte size of the file to be downloaded
-          format: int64
-        fileName:
-          type: string
-          description: Original file name (if it is available)
-    FallbackStatus:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - sms
-          - whatsapp
-        timestamp:
-          type: integer
-          format: int64
-        statusDescription:
-          type: integer
-          format: int32
-        status:
-          type: string
-        messageId:
-          type: string
-        clientMessageId:
-          type: string
-    StatusEvents:
-      type: object
-      properties:
-        messageStatusUpdate:
-          type: array
-          items:
-            $ref: '#/components/schemas/MessageStatus'
-        messageFallback:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/FallbackStatus'
-        statusIsTyping:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/TypingStatus'
-    OmniStatusCallbackRequest:
-      type: object
-      properties:
-        integrationId:
-          type: string
-        integrationName:
-          type: string
-        event:
-          $ref: '#/components/schemas/StatusEvents'
-    ReferralInfo:
-      type: object
-      properties:
-        headline:
-          type: string
-          description: Headline used in the ad that generated the message.
-        content:
-          type: string
-          description: Body from the ad that generated the message.
-        sourceType:
-          type: string
-          description: The type of the ad’s source.
-          enum:
-          - ad
-          - post
-        sourceId:
-          type: string
-          description: Facebook ID for an ad or a post.
-        sourceUrl:
-          type: string
-          description: The url that leads to the ad or post. Opening this url takes you to the ad viewed by your user.
-    Sms:
-      type: object
-      properties:
-        udh:
-          type: string
-        network:
-          type: integer
-          format: int32
-    ReplyEvents:
-      type: object
-      properties:
-        moText:
-          type: array
-          items:
-            $ref: '#/components/schemas/TextReply'
-        moMedia:
-          type: array
-          items:
-            $ref: '#/components/schemas/MediaReply'
-        moLocation:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocationReply'
-        moContacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContactsReply'
-        moSuggestedResponse:
-          type: array
-          items:
-            $ref: '#/components/schemas/SuggestedResponseReply'
-        moListPickerResponse:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListPickerResponseReply'
-        moButtonResponse:
-          type: array
-          items:
-            $ref: '#/components/schemas/ButtonResponseReply'
-    InlineMediaReply:
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        caption:
-          type: string
-        content:
-          type: string
-        sha256Hash:
-          type: string
-        contentType:
-          type: string
-    ReferenceMediaReply:
-      required:
-      - files
-      type: object
-      properties:
-        channel:
-          type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
-          type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        caption:
-          type: string
-        files:
-          type: array
-          description: 'An array of the file object with a list of media items that is attached to the inbound media message. This parameter is only applicable to MO event callbacks for media by reference '
-          items:
-            $ref: '#/components/schemas/ReferenceMediaFile'
-    OmniReplyCallbackRequest:
-      type: object
-      properties:
-        integrationId:
-          type: string
-        integrationName:
-          type: string
-        event:
-          $ref: '#/components/schemas/ReplyEvents'
-    WhatsAppContent:
-      type: object
-      properties:
-        profileName:
-          type: string
-          description: Users profile name as set up on their WA Client
-        referralInfo:
-          $ref: '#/components/schemas/ReferralInfo'
-        userId:
-          type: string
-          description: 'Business-Scoped User ID (BSUID) of the WhatsApp user. Format: CC.alphanumeric (max 131 chars). Always present for WhatsApp messages. Not encrypted for client-side encryption.'
-        parentUserId:
-          type: string
-          description: 'Parent BSUID for linked business portfolios. Format: CC.ENT.alphanumeric (max 135 chars). Present only if your company is an eligible enterprise explicitly enrolled in a Parent BSUID account. Not encrypted for client-side encryption.'
-        username:
-          type: string
-          description: WhatsApp username handle. Present only if the user has enabled a username. Encrypted for client-side encryption.
-      description: WhatsApp specific content
-    SelectedButtonItem:
-      type: object
-      properties:
-        postbackData:
-          type: string
-        content:
-          type: string
     SuggestedResponseReply:
       type: object
       properties:
@@ -647,55 +690,12 @@ components:
           type: string
         content:
           type: string
-    LocationReply:
+    OmniStatusCallbackRequest:
       type: object
       properties:
-        channel:
+        integrationId:
           type: string
-          description: Specifies the channel which is used with the specified message
-          enum:
-          - sms
-          - whatsapp
-        messageId:
+        integrationName:
           type: string
-          description: Id of a message that originated from client
-        relatedMessageId:
-          type: string
-          description: Id of a message to which client responds
-        relatedClientMessageId:
-          type: string
-          description: Id which was specified in <i>clientMessageId</i> field
-        from:
-          type: string
-          description: 'Sender identifier. Phone number (international format, no leading +) or WhatsApp BSUID (Business-Scoped User ID, format: CC.alphanumeric, max 131 chars) for WhatsApp messages.'
-        to:
-          type: string
-          description: Receiver phone number
-        timestamp:
-          type: integer
-          description: Unix timestamp when the system received the message in milliseconds
-          format: int64
-        encryptionKey:
-          type: string
-          description: <b>Client side encryption ONLY</b><br>Base64 encoded CipherTextBlob which must be used to generate the plain text decryption key for decryption of the content parameter
-        whatsapp:
-          $ref: '#/components/schemas/WhatsAppContent'
-        charset:
-          type: string
-          description: Character encoding
-          default: UTF-8
-        locationAddress:
-          type: string
-          description: Address of the location
-        locationName:
-          type: string
-          description: Name of the location
-        latitude:
-          type: string
-          description: Numeric latitude value expressed as a string
-        latitute:
-          type: string
-          description: Numeric latitude value expressed as a string
-        longitude:
-          type: string
-          description: Numeric longitude value expressed as a string
+        event:
+          $ref: '#/components/schemas/StatusEvents'

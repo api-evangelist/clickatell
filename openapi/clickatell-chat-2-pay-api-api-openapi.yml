@@ -306,100 +306,6 @@ paths:
                 type: object
 components:
   schemas:
-    TransactionStatusEntryResponse:
-      type: object
-      properties:
-        transactionStatusId:
-          type: integer
-          description: Transaction status ID
-          format: int32
-        transactionStatusName:
-          type: string
-          description: Transaction status name
-        created:
-          type: string
-          description: Transaction date
-          format: date-time
-        httpResponseCode:
-          type: integer
-          description: HTTP response code received from third-parties after interaction
-          format: int32
-        responseCode:
-          type: string
-          description: Error code received from third-parties after interaction
-        responseCodeDescription:
-          type: string
-          description: Error description received from third-parties after interaction
-      description: The list of all transaction statuses transitions
-    PaymentReceiptResponse:
-      type: object
-      properties:
-        receiptLinkRef:
-          type: string
-          description: The unique reference number for the receipt link generated
-        orderNumber:
-          type: string
-          description: The order number that the receipt is for
-        timestamp:
-          type: string
-          description: The date and time the instruction to create the link was received (In ISO 8601 format)
-          format: date-time
-        transactionStatus:
-          type: string
-          description: The current status of the transaction
-          enum:
-          - PAYMENT_LINK_REQUEST_RECEIVED
-          - PAYMENT_LINK_SENT
-          - PAYMENT_LINK_DELIVERED
-          - PAYMENT_STATUS_RECEIVED
-          - PAYMENT_STATUS_NOTIFICATION_SENT
-          - RECEIPT_LINK_REQUEST_RECEIVED
-          - RECEIPT_LINK_SENT
-          - PAYMENT_LINK_REQUEST_FAILED
-          - PAYMENT_LINK_SENT_FAILED
-          - PAYMENT_URL_EXPIRED
-          - PAYMENT_LINK_DELIVERY_FAILED
-          - PAYMENT_STATUS_NOTIFICATION_DELIVERY_SUCCESSFUL
-          - PAYMENT_STATUS_NOTIFICATION_DELIVERY_FAILED
-          - RECEIPT_LINK_REQUEST_FAILED
-          - RECEIPT_LINK_SENT_FAILED
-          - RECEIPT_LINK_DELIVERED
-          - RECEIPT_LINK_DELIVERY_FAILED
-          - PAYMENT_LINK_CANCELLED
-          - PAYMENT_LINK_CLICKED
-        transactionStatusId:
-          type: integer
-          description: The ID of the transaction status
-          format: int32
-        error:
-          $ref: '#/components/schemas/ThirdPartySystemErrorResponse'
-    UnauthorizedErrorResponse:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          description: Timestamp
-          format: date-time
-        status:
-          type: integer
-          description: HTTP status
-          format: int32
-        error:
-          type: string
-          description: Error name
-        message:
-          type: string
-          description: Error message
-        path:
-          type: string
-          description: Path
-    EntityUpdatedResponse:
-      type: object
-      properties:
-        updateTime:
-          type: string
-          description: Last modified time
-          format: date-time
     NotFoundErrorResponse:
       type: object
       properties:
@@ -484,6 +390,75 @@ components:
           items:
             type: string
             description: The list of errors
+    PaymentCancellationResponse:
+      type: object
+      properties:
+        paymentLinkRef:
+          type: string
+          description: Payment Link Reference Number
+        transactionStatus:
+          type: string
+          description: Transaction status of payment link
+        transactionStatusId:
+          type: string
+          description: The ID of transaction status for payment link
+        additionalData:
+          type: string
+          description: Additional data field for payment link
+        timestamp:
+          type: string
+          description: Timestamp of payment link
+          format: date-time
+    PayByLinkTransactionLogResponse:
+      type: object
+      properties:
+        paymentLinkRef:
+          type: string
+          description: The unique reference number for the payment link generated
+        transactionStatus:
+          type: string
+          description: The status of the transaction
+          enum:
+          - PAYMENT_LINK_REQUEST_RECEIVED
+          - PAYMENT_LINK_SENT
+          - PAYMENT_LINK_DELIVERED
+          - PAYMENT_STATUS_RECEIVED
+          - PAYMENT_STATUS_NOTIFICATION_SENT
+          - RECEIPT_LINK_REQUEST_RECEIVED
+          - RECEIPT_LINK_SENT
+          - PAYMENT_LINK_REQUEST_FAILED
+          - PAYMENT_LINK_SENT_FAILED
+          - PAYMENT_URL_EXPIRED
+          - PAYMENT_LINK_DELIVERY_FAILED
+          - PAYMENT_STATUS_NOTIFICATION_DELIVERY_SUCCESSFUL
+          - PAYMENT_STATUS_NOTIFICATION_DELIVERY_FAILED
+          - RECEIPT_LINK_REQUEST_FAILED
+          - RECEIPT_LINK_SENT_FAILED
+          - RECEIPT_LINK_DELIVERED
+          - RECEIPT_LINK_DELIVERY_FAILED
+          - PAYMENT_LINK_CANCELLED
+          - PAYMENT_LINK_CLICKED
+        transactionStatusId:
+          type: integer
+          description: The ID of the transaction status
+          format: int32
+        timestamp:
+          type: string
+          description: Timestamp generated by Clickatell’s application (in ISO 8601 format)
+          format: date-time
+        error:
+          $ref: '#/components/schemas/ThirdPartySystemErrorResponse'
+        paymentLink:
+          type: string
+          description: Contains the unique payment link for this payment. It will only return in the response if returnPaymentLink was set to true in the request.
+        paymentLinkTTL:
+          type: integer
+          description: Time to live in minutes for the Payment Link
+          format: int32
+        paymentPageTTL:
+          type: integer
+          description: Time to live in minutes for the Payment Page
+          format: int32
     TransactionStatusEndpointResponse:
       type: object
       properties:
@@ -576,22 +551,283 @@ components:
           description: 'The list of items associated with an order, e.g. products. '
           items:
             $ref: '#/components/schemas/LineItemResponse'
-    PaymentReceiptRequest:
+    LineItemRequest:
       required:
-      - paymentLinkRef
-      - receiptLink
-      - timestamp
+      - name
+      - unitPrice
       type: object
       properties:
-        receiptLink:
+        code:
+          maxLength: 255
+          minLength: 0
           type: string
-          description: The link that is sent to the end-user to direct them to their order receipt
-        paymentLinkRef:
+          description: Type of product
+        name:
+          maxLength: 255
+          minLength: 0
           type: string
-          description: The unique reference number for the payment link generated
+          description: Name of the item
+        quantity:
+          minimum: 1
+          type: integer
+          description: Quantity of line items
+          format: int32
+        sku:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: Identification code for the product
+        unitPrice:
+          type: number
+          description: Price of the line item
+          exclusiveMinimum: 0
+        taxAmount:
+          type: number
+          description: Tax amount to apply to the line item
+          exclusiveMinimum: 0
+      description: 'The list of items associated with an order, e.g. products. '
+    ThirdPartySystemErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: The error code received from third-parties after interaction
+          format: int32
+        description:
+          type: string
+          description: The error code description received from third-parties after interaction
+      description: Error details if request failed
+    JsonNode:
+      type: object
+      description: Any additional data over and above what is already included that you want to store in the database along with that record and/or return in the response
+    PaymentGatewayOperationResultResponse:
+      type: object
+      properties:
+        transactionType:
+          type: string
+          description: The type of transaction executed
+          enum:
+          - TransactionType.AUTHORIZATION(name=Authorization, id=1)
+          - TransactionType.SALE(name=Sale, id=2)
+          - TransactionType.VOID(name=Void, id=3)
+          - TransactionType.CAPTURE(name=Capture, id=4)
+        totalAmount:
+          type: number
+          description: The total amount of the transaction
+        paymentGatewayDecision:
+          type: string
+          description: Decision received back from the Payment Gateway for the payment request
+        paymentGatewayReqReferenceNumber:
+          type: string
+          description: Payment Reference number received back from the Payment Gateway for the payment request
+        paymentGatewayResponseTimestamp:
+          type: string
+          description: Timestamp received back from the Payment Gateway for the payment request
+          format: date-time
+        paymentGatewayResponseCode:
+          type: integer
+          description: Response code received back from the Payment Gateway for the payment request
+          format: int32
+        paymentGatewayErrorDecision:
+          type: string
+          description: Error description received back from Payment Gateway if error occurred
+        paymentGatewayAuthReconciliationReferenceNumber:
+          type: string
+          description: Unique number generated by Payment Gateway to identify the transaction for the payment request
+        cardType:
+          type: string
+          description: The type of card used for the transaction, as received back from the Payment Gateway for the payment request
+        maskedCardNumber:
+          type: string
+          description: 'The masked card number used for the transaction, as received back from the Payment Gateway for the payment request
+
+            '
+        cardExpiryDate:
+          type: string
+          description: 'The expiry date of the card used for the payment, as received back from the Payment Gateway for the payment request
+
+            '
+        paymentStatus:
+          type: string
+          description: New payment status if it was changed
+        paymentStatusId:
+          type: string
+          description: The ID of the new payment status
+    DetailedWidgetConfigResponse:
+      type: object
+      properties:
+        updateTime:
+          type: string
+          description: Last modified time
+          format: date-time
+        whatsappChannelEnabled:
+          type: boolean
+          description: Checks if WA omni integration is enabled
+        smsChannelEnabled:
+          type: boolean
+          description: Checks if SMS omni integration is enabled
+        integrators:
+          uniqueItems: true
+          type: array
+          description: Integrators
+          items:
+            $ref: '#/components/schemas/IntegratorStatusResponse'
+        apiKey:
+          type: string
+          description: Api key
+        supportedCurrencies:
+          uniqueItems: true
+          type: array
+          description: Supported currencies
+          items:
+            $ref: '#/components/schemas/CurrencyResponse'
+        environment:
+          type: string
+          description: Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)
+    IntegrationStatusRequest:
+      required:
+      - applicationUuid
+      - status
+      type: object
+      properties:
+        applicationUuid:
+          type: string
+          description: Unique identifier generated for each custom application the customer links to the account
+        status:
+          type: string
+          description: Status
+          enum:
+          - ACTIVATED
+          - DEACTIVATED
+          - DELETED
+    TransactionStatusEntryResponse:
+      type: object
+      properties:
+        transactionStatusId:
+          type: integer
+          description: Transaction status ID
+          format: int32
+        transactionStatusName:
+          type: string
+          description: Transaction status name
+        created:
+          type: string
+          description: Transaction date
+          format: date-time
+        httpResponseCode:
+          type: integer
+          description: HTTP response code received from third-parties after interaction
+          format: int32
+        responseCode:
+          type: string
+          description: Error code received from third-parties after interaction
+        responseCodeDescription:
+          type: string
+          description: Error description received from third-parties after interaction
+      description: The list of all transaction statuses transitions
+    CurrencyResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Currency unique identifier
+          format: int32
+        iso:
+          type: string
+          description: The ISO currency code
+        name:
+          type: string
+          description: Name of currency
+        symbol:
+          type: string
+          description: Symbol used to display currency
+        isDefault:
+          type: boolean
+          description: True if this is set as the default currency; otherwise, false
+      description: Supported currencies
+    LineItemResponse:
+      required:
+      - name
+      - unitPrice
+      type: object
+      properties:
+        code:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: Type of product
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: Name of the item
+        quantity:
+          minimum: 1
+          type: integer
+          description: Quantity of line items
+          format: int32
+        sku:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: Identification code for the product
+        unitPrice:
+          type: number
+          description: Price of the line item
+          exclusiveMinimum: 0
+        taxAmount:
+          type: number
+          description: Tax amount to apply to the line item
+          exclusiveMinimum: 0
+      description: 'The list of items associated with an order, e.g. products. '
+    BadRequestErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The error message
+        errors:
+          type: array
+          description: The list of errors
+          items:
+            type: string
+            description: The list of errors
+    UnauthorizedErrorResponse:
+      type: object
+      properties:
         timestamp:
           type: string
-          description: The date and time the instruction to create the link was sent
+          description: Timestamp
+          format: date-time
+        status:
+          type: integer
+          description: HTTP status
+          format: int32
+        error:
+          type: string
+          description: Error name
+        message:
+          type: string
+          description: Error message
+        path:
+          type: string
+          description: Path
+    IntegratorResponse:
+      type: object
+      properties:
+        applicationId:
+          type: string
+          description: Unique identifier generated for each custom application the customer links to the account
+        name:
+          type: string
+          description: Name of the integrator
+      description: The integrator/application that requested this payment
+    EntityUpdatedResponse:
+      type: object
+      properties:
+        updateTime:
+          type: string
+          description: Last modified time
           format: date-time
     IntegratorStatusResponse:
       type: object
@@ -617,40 +853,71 @@ components:
           - CLICKATELL_PRODUCT
           - APPLICATION
       description: Integrators
-    PaymentCancellationResponse:
+    PaymentStatusLogResponse:
       type: object
       properties:
+        transactionType:
+          type: string
+          description: The type of transaction executed
+          enum:
+          - TransactionType.AUTHORIZATION(name=Authorization, id=1)
+          - TransactionType.SALE(name=Sale, id=2)
+          - TransactionType.VOID(name=Void, id=3)
+          - TransactionType.CAPTURE(name=Capture, id=4)
+        totalAmount:
+          type: number
+          description: The total amount of the transaction
+        paymentGatewayDecision:
+          type: string
+          description: Decision received back from the Payment Gateway for the payment request
+        paymentGatewayReqReferenceNumber:
+          type: string
+          description: Payment Reference number received back from the Payment Gateway for the payment request
+        paymentGatewayResponseTimestamp:
+          type: string
+          description: Timestamp received back from the Payment Gateway for the payment request
+          format: date-time
+        paymentGatewayResponseCode:
+          type: integer
+          description: Response code received back from the Payment Gateway for the payment request
+          format: int32
+        paymentGatewayErrorDecision:
+          type: string
+          description: Error description received back from Payment Gateway if error occurred
+        paymentGatewayAuthReconciliationReferenceNumber:
+          type: string
+          description: Unique number generated by Payment Gateway to identify the transaction for the payment request
+        cardType:
+          type: string
+          description: The type of card used for the transaction, as received back from the Payment Gateway for the payment request
+        maskedCardNumber:
+          type: string
+          description: 'The masked card number used for the transaction, as received back from the Payment Gateway for the payment request
+
+            '
+        cardExpiryDate:
+          type: string
+          description: 'The expiry date of the card used for the payment, as received back from the Payment Gateway for the payment request
+
+            '
+      description: The list of all payment status transitions
+    PaymentReceiptRequest:
+      required:
+      - paymentLinkRef
+      - receiptLink
+      - timestamp
+      type: object
+      properties:
+        receiptLink:
+          type: string
+          description: The link that is sent to the end-user to direct them to their order receipt
         paymentLinkRef:
           type: string
-          description: Payment Link Reference Number
-        transactionStatus:
-          type: string
-          description: Transaction status of payment link
-        transactionStatusId:
-          type: string
-          description: The ID of transaction status for payment link
-        additionalData:
-          type: string
-          description: Additional data field for payment link
+          description: The unique reference number for the payment link generated
         timestamp:
           type: string
-          description: Timestamp of payment link
+          description: The date and time the instruction to create the link was sent
           format: date-time
-    JsonNode:
-      type: object
-      description: Any additional data over and above what is already included that you want to store in the database along with that record and/or return in the response
-    BadRequestErrorResponse:
-      type: object
-      properties:
-        message:
-          type: string
-          description: The error message
-        errors:
-          type: array
-          description: The list of errors
-          items:
-            type: string
-            description: The list of errors
     PayByLinkRequest:
       required:
       - channel
@@ -735,274 +1002,22 @@ components:
         merchantDescriptor:
           type: string
           description: Merchant's business name. This name is displayed on the cardholder’s statement. Check your payment gateway integration guides for restrictions on maximum data length and allowed characters.
-    PaymentGatewayOperationResultResponse:
+    PaymentReceiptResponse:
       type: object
       properties:
-        transactionType:
+        receiptLinkRef:
           type: string
-          description: The type of transaction executed
-          enum:
-          - TransactionType.AUTHORIZATION(name=Authorization, id=1)
-          - TransactionType.SALE(name=Sale, id=2)
-          - TransactionType.VOID(name=Void, id=3)
-          - TransactionType.CAPTURE(name=Capture, id=4)
-        totalAmount:
-          type: number
-          description: The total amount of the transaction
-        paymentGatewayDecision:
+          description: The unique reference number for the receipt link generated
+        orderNumber:
           type: string
-          description: Decision received back from the Payment Gateway for the payment request
-        paymentGatewayReqReferenceNumber:
+          description: The order number that the receipt is for
+        timestamp:
           type: string
-          description: Payment Reference number received back from the Payment Gateway for the payment request
-        paymentGatewayResponseTimestamp:
-          type: string
-          description: Timestamp received back from the Payment Gateway for the payment request
+          description: The date and time the instruction to create the link was received (In ISO 8601 format)
           format: date-time
-        paymentGatewayResponseCode:
-          type: integer
-          description: Response code received back from the Payment Gateway for the payment request
-          format: int32
-        paymentGatewayErrorDecision:
-          type: string
-          description: Error description received back from Payment Gateway if error occurred
-        paymentGatewayAuthReconciliationReferenceNumber:
-          type: string
-          description: Unique number generated by Payment Gateway to identify the transaction for the payment request
-        cardType:
-          type: string
-          description: The type of card used for the transaction, as received back from the Payment Gateway for the payment request
-        maskedCardNumber:
-          type: string
-          description: 'The masked card number used for the transaction, as received back from the Payment Gateway for the payment request
-
-            '
-        cardExpiryDate:
-          type: string
-          description: 'The expiry date of the card used for the payment, as received back from the Payment Gateway for the payment request
-
-            '
-        paymentStatus:
-          type: string
-          description: New payment status if it was changed
-        paymentStatusId:
-          type: string
-          description: The ID of the new payment status
-    PaymentStatusLogResponse:
-      type: object
-      properties:
-        transactionType:
-          type: string
-          description: The type of transaction executed
-          enum:
-          - TransactionType.AUTHORIZATION(name=Authorization, id=1)
-          - TransactionType.SALE(name=Sale, id=2)
-          - TransactionType.VOID(name=Void, id=3)
-          - TransactionType.CAPTURE(name=Capture, id=4)
-        totalAmount:
-          type: number
-          description: The total amount of the transaction
-        paymentGatewayDecision:
-          type: string
-          description: Decision received back from the Payment Gateway for the payment request
-        paymentGatewayReqReferenceNumber:
-          type: string
-          description: Payment Reference number received back from the Payment Gateway for the payment request
-        paymentGatewayResponseTimestamp:
-          type: string
-          description: Timestamp received back from the Payment Gateway for the payment request
-          format: date-time
-        paymentGatewayResponseCode:
-          type: integer
-          description: Response code received back from the Payment Gateway for the payment request
-          format: int32
-        paymentGatewayErrorDecision:
-          type: string
-          description: Error description received back from Payment Gateway if error occurred
-        paymentGatewayAuthReconciliationReferenceNumber:
-          type: string
-          description: Unique number generated by Payment Gateway to identify the transaction for the payment request
-        cardType:
-          type: string
-          description: The type of card used for the transaction, as received back from the Payment Gateway for the payment request
-        maskedCardNumber:
-          type: string
-          description: 'The masked card number used for the transaction, as received back from the Payment Gateway for the payment request
-
-            '
-        cardExpiryDate:
-          type: string
-          description: 'The expiry date of the card used for the payment, as received back from the Payment Gateway for the payment request
-
-            '
-      description: The list of all payment status transitions
-    LineItemResponse:
-      required:
-      - name
-      - unitPrice
-      type: object
-      properties:
-        code:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: Type of product
-        name:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: Name of the item
-        quantity:
-          minimum: 1
-          type: integer
-          description: Quantity of line items
-          format: int32
-        sku:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: Identification code for the product
-        unitPrice:
-          type: number
-          description: Price of the line item
-          exclusiveMinimum: 0
-        taxAmount:
-          type: number
-          description: Tax amount to apply to the line item
-          exclusiveMinimum: 0
-      description: 'The list of items associated with an order, e.g. products. '
-    IntegrationStatusRequest:
-      required:
-      - applicationUuid
-      - status
-      type: object
-      properties:
-        applicationUuid:
-          type: string
-          description: Unique identifier generated for each custom application the customer links to the account
-        status:
-          type: string
-          description: Status
-          enum:
-          - ACTIVATED
-          - DEACTIVATED
-          - DELETED
-    LineItemRequest:
-      required:
-      - name
-      - unitPrice
-      type: object
-      properties:
-        code:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: Type of product
-        name:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: Name of the item
-        quantity:
-          minimum: 1
-          type: integer
-          description: Quantity of line items
-          format: int32
-        sku:
-          maxLength: 255
-          minLength: 0
-          type: string
-          description: Identification code for the product
-        unitPrice:
-          type: number
-          description: Price of the line item
-          exclusiveMinimum: 0
-        taxAmount:
-          type: number
-          description: Tax amount to apply to the line item
-          exclusiveMinimum: 0
-      description: 'The list of items associated with an order, e.g. products. '
-    DetailedWidgetConfigResponse:
-      type: object
-      properties:
-        updateTime:
-          type: string
-          description: Last modified time
-          format: date-time
-        whatsappChannelEnabled:
-          type: boolean
-          description: Checks if WA omni integration is enabled
-        smsChannelEnabled:
-          type: boolean
-          description: Checks if SMS omni integration is enabled
-        integrators:
-          uniqueItems: true
-          type: array
-          description: Integrators
-          items:
-            $ref: '#/components/schemas/IntegratorStatusResponse'
-        apiKey:
-          type: string
-          description: Api key
-        supportedCurrencies:
-          uniqueItems: true
-          type: array
-          description: Supported currencies
-          items:
-            $ref: '#/components/schemas/CurrencyResponse'
-        environment:
-          type: string
-          description: Chat 2 Pay configuration run environment (SANDBOX or PRODUCTION)
-    ThirdPartySystemErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: The error code received from third-parties after interaction
-          format: int32
-        description:
-          type: string
-          description: The error code description received from third-parties after interaction
-      description: Error details if request failed
-    IntegratorResponse:
-      type: object
-      properties:
-        applicationId:
-          type: string
-          description: Unique identifier generated for each custom application the customer links to the account
-        name:
-          type: string
-          description: Name of the integrator
-      description: The integrator/application that requested this payment
-    CurrencyResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Currency unique identifier
-          format: int32
-        iso:
-          type: string
-          description: The ISO currency code
-        name:
-          type: string
-          description: Name of currency
-        symbol:
-          type: string
-          description: Symbol used to display currency
-        isDefault:
-          type: boolean
-          description: True if this is set as the default currency; otherwise, false
-      description: Supported currencies
-    PayByLinkTransactionLogResponse:
-      type: object
-      properties:
-        paymentLinkRef:
-          type: string
-          description: The unique reference number for the payment link generated
         transactionStatus:
           type: string
-          description: The status of the transaction
+          description: The current status of the transaction
           enum:
           - PAYMENT_LINK_REQUEST_RECEIVED
           - PAYMENT_LINK_SENT
@@ -1027,23 +1042,8 @@ components:
           type: integer
           description: The ID of the transaction status
           format: int32
-        timestamp:
-          type: string
-          description: Timestamp generated by Clickatell’s application (in ISO 8601 format)
-          format: date-time
         error:
           $ref: '#/components/schemas/ThirdPartySystemErrorResponse'
-        paymentLink:
-          type: string
-          description: Contains the unique payment link for this payment. It will only return in the response if returnPaymentLink was set to true in the request.
-        paymentLinkTTL:
-          type: integer
-          description: Time to live in minutes for the Payment Link
-          format: int32
-        paymentPageTTL:
-          type: integer
-          description: Time to live in minutes for the Payment Page
-          format: int32
   securitySchemes:
     c2p:
       type: apiKey
