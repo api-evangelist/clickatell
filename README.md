@@ -64,5 +64,152 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Clickatell is a company surfaced via the API Evangelist harvest backlog (source: market-gap) and added to the network as a stub for full-pipeline profiling.
-- https://www.clickatell.com
+Clickatell is a chat commerce and CPaaS company offering SMS and WhatsApp messaging (One API), the SMS API, Chat 2 Pay payments-in-chat, and Chat Flow workflow APIs for businesses.
+
+**Areas:** Company · SMS · WhatsApp · Messaging · CPaaS · Chat Commerce · Payments
+
+## Clickatell on APIs.io
+
+Everything profiled for Clickatell is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/clickatell/](https://apis.io/providers/clickatell/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [Clickatell Chat 2 Pay API](https://apis.io/apis/clickatell/clickatell-chat-2-pay-api-api/) — The Chat 2 Pay API API from Clickatell — 8 operation(s) for chat 2 pay api.
+- [Clickatell Chat 2 Pay API Client Callbacks API](https://apis.io/apis/clickatell/clickatell-chat-2-pay-api-client-callbacks-api/) — The Chat 2 Pay API Client Callbacks API from Clickatell — 3 operation(s) for chat 2 pay api client callbacks.
+- [Clickatell External Link Callback API](https://apis.io/apis/clickatell/clickatell-external-link-callback-api/) — The External Link Callback API from Clickatell — 1 operation(s) for external link callback.
+- [Clickatell One API](https://apis.io/apis/clickatell/clickatell-one-api-api/) — The One API API from Clickatell — 6 operation(s) for one api.
+- [Clickatell One API Client Callbacks API](https://apis.io/apis/clickatell/clickatell-one-api-client-callbacks-api/) — <b>Forward Compatibility</b><br>While the basic callback structure will remain constant:<br><pre> { "integrationId": "string", "integrationName": "string",…
+- [Clickatell SMS API](https://apis.io/apis/clickatell/clickatell-sms-api-api/) — The SMS API API from Clickatell — 3 operation(s) for sms api.
+- [Clickatell SMS Client Callbacks API](https://apis.io/apis/clickatell/clickatell-sms-client-callbacks-api/) — The SMS Client Callbacks API from Clickatell — 2 operation(s) for sms client callbacks.
+- [Clickatell Wait for Callback API](https://apis.io/apis/clickatell/clickatell-wait-for-callback-api/) — The Wait for Callback API from Clickatell — 1 operation(s) for wait for callback.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [clickatell-mcp.yml](https://apis.io/servers/clickatell/clickatell-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Clickatell Agentic Access](https://apis.io/agentic-access/clickatell/clickatell-agentic-access/)
+
+#### JSON Schema (24)
+
+The data models the API reads and writes.
+
+- [DetailedWidgetConfigResponse](https://apis.io/schemas/clickatell/clickatell-detailed-widget-config-response/)
+- [Externallink](https://apis.io/schemas/clickatell/clickatell-externallink/)
+- [OmniMediaUploadResponse](https://apis.io/schemas/clickatell/clickatell-omni-media-upload-response/)
+- [OmniMessageListResponse](https://apis.io/schemas/clickatell/clickatell-omni-message-list-response/)
+- [OmniMessageStatusResponse](https://apis.io/schemas/clickatell/clickatell-omni-message-status-response/)
+- [OmniReplyCallbackRequest](https://apis.io/schemas/clickatell/clickatell-omni-reply-callback-request/)
+- [OmniStatusCallbackRequest](https://apis.io/schemas/clickatell/clickatell-omni-status-callback-request/)
+- [PayByLinkRequest](https://apis.io/schemas/clickatell/clickatell-pay-by-link-request/)
+- [PayByLinkTransactionLogResponse](https://apis.io/schemas/clickatell/clickatell-pay-by-link-transaction-log-response/)
+- [PaymentGatewayOperationResultResponse](https://apis.io/schemas/clickatell/clickatell-payment-gateway-operation-result-response/)
+- [PaymentReceiptResponse](https://apis.io/schemas/clickatell/clickatell-payment-receipt-response/)
+- [ReplyStatusNotificationRequest](https://apis.io/schemas/clickatell/clickatell-reply-status-notification-request/)
+- [SendBulkMessageRequest](https://apis.io/schemas/clickatell/clickatell-send-bulk-message-request/)
+- [SendMessageRequest](https://apis.io/schemas/clickatell/clickatell-send-message-request/)
+- [SendMessagesListResponse](https://apis.io/schemas/clickatell/clickatell-send-messages-list-response/)
+- [SendOmniChannelMessagesRequest](https://apis.io/schemas/clickatell/clickatell-send-omni-channel-messages-request/)
+- [SendPaymentOutcomeRequest](https://apis.io/schemas/clickatell/clickatell-send-payment-outcome-request/)
+- [SendReplyMessageRequest](https://apis.io/schemas/clickatell/clickatell-send-reply-message-request/)
+- [Sms status callback](https://apis.io/schemas/clickatell/clickatell-sms-status-callback/)
+- [TransactionStatusEndpointResponse](https://apis.io/schemas/clickatell/clickatell-transaction-status-endpoint-response/)
+- [TransactionStatusNotificationResponse](https://apis.io/schemas/clickatell/clickatell-transaction-status-notification-response/)
+- [Waitforcallback](https://apis.io/schemas/clickatell/clickatell-waitforcallback/)
+- [WhatsAppNotificationListResponse](https://apis.io/schemas/clickatell/clickatell-whats-app-notification-list-response/)
+- [WidgetConfigResponse](https://apis.io/schemas/clickatell/clickatell-widget-config-response/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Clickatell Context](https://apis.io/jsonld/clickatell/clickatell-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Clickatell API Rules](https://apis.io/rules/clickatell/clickatell-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Clickatell Authentication](https://apis.io/security/clickatell/clickatell-authentication/)
+- [Clickatell Domain Security](https://apis.io/security/clickatell/clickatell-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.clickatell.com)
+- [Documentation](https://help.clickatell.com/developers-api-reference/reference/clickatell-api-reference)
+- [Getting started](https://help.clickatell.com/whatsapp/getting-started/whatsapp)
+- [Pricing](https://www.clickatell.com/packages/)
+- [Support](https://help.clickatell.com/)
+- [Changelog](https://help.clickatell.com/release-notes)
+- [Security](https://www.clickatell.com/security)
+
+## API Evangelist rating
+
+**Kin Score 38.4** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.1 |
+| Contract governance | 22.0 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 54.8 |
+| Access clarity | 10.5 |
+
+**Agent readiness 26.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 14.2** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/clickatell/](https://apis.io/providers/clickatell/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Clickatell: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/clickatell/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
